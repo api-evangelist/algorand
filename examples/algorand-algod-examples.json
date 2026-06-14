@@ -1,0 +1,84 @@
+{
+  "title": "Algorand Algod REST API Examples",
+  "description": "Illustrative request and response examples for the Algorand Algod REST API",
+  "examples": {
+    "GetAccountResponse": {
+      "address": "AAAA2TSOZIPYF77QYTKYJ6VNVV3YLL5HYJ6JPPPJLVP64XN3N5P35A7MQ",
+      "amount": 100000000,
+      "amount-without-pending-rewards": 99999000,
+      "min-balance": 100000,
+      "pending-rewards": 1000,
+      "reward-base": 100000,
+      "rewards": 1000,
+      "round": 35000000,
+      "status": "Online",
+      "total-apps-opted-in": 2,
+      "total-assets-opted-in": 5,
+      "total-created-apps": 1,
+      "total-created-assets": 0
+    },
+    "TransactionSubmissionRequest": {
+      "rawtxn": "gqNzaWfEQHsgfklug9M5D9jblOMK8Aojg31nMKJ5Mk5mqhILlPt..."
+    },
+    "BlockResponse": {
+      "block": {
+        "rnd": 35000000,
+        "ts": 1700000000,
+        "txn": 500,
+        "fees": "FEE...",
+        "rwd": "RWD..."
+      }
+    },
+    "AssetResponse": {
+      "asset": {
+        "index": 31566704,
+        "params": {
+          "creator": "AAAA2TSOZIPYF77QYTKYJ6VNVV3YLL5HYJ6JPPPJLVP64XN3N5P35A7MQ",
+          "decimals": 6,
+          "name": "USD Coin",
+          "total": 18446744073709551615,
+          "unit-name": "USDC",
+          "url": "https://www.centre.io/usdc"
+        }
+      }
+    },
+    "ApplicationResponse": {
+      "application": {
+        "id": 1002541853,
+        "params": {
+          "creator": "AAAA2TSOZIPYF77QYTKYJ6VNVV3YLL5HYJ6JPPPJLVP64XN3N5P35A7MQ",
+          "approval-program": "BYEB",
+          "clear-state-program": "BYEB",
+          "global-state-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "local-state-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          }
+        }
+      }
+    },
+    "PendingTransactionsResponse": {
+      "top-transactions": [],
+      "total-transactions": 0
+    },
+    "NodeStatusResponse": {
+      "catchpoint": "",
+      "catchpoint-acquired-blocks": 0,
+      "catchpoint-processed-accounts": 0,
+      "catchpoint-total-accounts": 0,
+      "catchpoint-total-blocks": 0,
+      "catchup-time": 0,
+      "last-catchpoint": "",
+      "last-round": 35000000,
+      "last-version": "https://github.com/algorandfoundation/specs/tree/abc",
+      "next-version": "https://github.com/algorandfoundation/specs/tree/abc",
+      "next-version-round": 35000001,
+      "next-version-supported": true,
+      "stopped-at-unsupported-round": false,
+      "time-since-last-round": 3200000000
+    }
+  }
+}

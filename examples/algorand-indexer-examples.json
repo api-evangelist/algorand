@@ -1,0 +1,75 @@
+{
+  "title": "Algorand Indexer REST API Examples",
+  "description": "Illustrative request and response examples for the Algorand Indexer REST API",
+  "examples": {
+    "SearchAccountsResponse": {
+      "accounts": [
+        {
+          "address": "AAAA2TSOZIPYF77QYTKYJ6VNVV3YLL5HYJ6JPPPJLVP64XN3N5P35A7MQ",
+          "amount": 100000000,
+          "round": 35000000,
+          "status": "Online",
+          "total-assets-opted-in": 5,
+          "total-created-assets": 0
+        }
+      ],
+      "current-round": 35000000,
+      "next-token": "eyJhbGciOi..."
+    },
+    "LookupTransactionResponse": {
+      "current-round": 35000000,
+      "transaction": {
+        "id": "TXID5XZ3J7OZ4XJKLQVBZ5XJKLQVBZ5XJKLQVBZ5XJKLQVBZ5XJ",
+        "tx-type": "pay",
+        "sender": "AAAA2TSOZIPYF77QYTKYJ6VNVV3YLL5HYJ6JPPPJLVP64XN3N5P35A7MQ",
+        "fee": 1000,
+        "first-valid": 34999990,
+        "last-valid": 35000000,
+        "round": 35000000,
+        "intra-round-offset": 5,
+        "payment-transaction": {
+          "amount": 1000000,
+          "receiver": "BBBB2TSOZIPYF77QYTKYJ6VNVV3YLL5HYJ6JPPPJLVP64XN3N5P35A7MQ"
+        }
+      }
+    },
+    "SearchAssetsResponse": {
+      "assets": [
+        {
+          "index": 31566704,
+          "params": {
+            "creator": "AAAA2TSOZIPYF77QYTKYJ6VNVV3YLL5HYJ6JPPPJLVP64XN3N5P35A7MQ",
+            "decimals": 6,
+            "name": "USD Coin",
+            "total": 18446744073709551615,
+            "unit-name": "USDC"
+          }
+        }
+      ],
+      "current-round": 35000000,
+      "next-token": "eyJhbGciOi..."
+    },
+    "LookupBlockResponse": {
+      "current-round": 35000000,
+      "genesis-hash": "wGHE2Pwdvd7S12BL5FaOP20EGYesN73ktiC1qzkkit8=",
+      "genesis-id": "mainnet-v1.0",
+      "previous-block-hash": "BBBB2TSOZIPYF77QYTKYJ6VNVV3YLL5HYJ6JPPPJLVP64XN3N5P35A7MQ",
+      "timestamp": 1700000000,
+      "transactions": [],
+      "transactions-root": "CCCC2TSOZIPYF77QYTKYJ6VNVV3YLL5HYJ6JPPPJLVP64XN3N5P35A7MQ",
+      "transactions-root-sha256": "DDDD2TSOZIPYF77QYTKYJ6VNVV3YLL5HYJ6JPPPJLVP64XN3N5P35A7MQ"
+    },
+    "SearchTransactionsForAccountResponse": {
+      "current-round": 35000000,
+      "next-token": "eyJhbGciOi...",
+      "transactions": [
+        {
+          "id": "TXID5XZ3J7OZ4XJ",
+          "tx-type": "pay",
+          "round": 35000000,
+          "fee": 1000
+        }
+      ]
+    }
+  }
+}

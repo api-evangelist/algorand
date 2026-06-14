@@ -1,0 +1,107 @@
+{
+  "title": "Algorand API Vocabulary",
+  "description": "Domain vocabulary and key terms for the Algorand blockchain REST APIs (Algod, Indexer, KMD)",
+  "version": "1.0.0",
+  "terms": [
+    {
+      "term": "Algod",
+      "definition": "The Algorand protocol daemon that exposes a REST API for real-time node interaction including submitting transactions, querying account state, and reading block data.",
+      "aliases": ["algod daemon", "node daemon"]
+    },
+    {
+      "term": "Indexer",
+      "definition": "The Algorand Indexer daemon that provides historical ledger search via a PostgreSQL-backed REST API, enabling deep queries across transactions, accounts, assets, and applications.",
+      "aliases": ["algorand-indexer", "indexer daemon"]
+    },
+    {
+      "term": "KMD",
+      "definition": "Key Management Daemon that provides local wallet storage, key generation, and transaction signing for Algorand node operators.",
+      "aliases": ["kmd", "key management daemon"]
+    },
+    {
+      "term": "ASA",
+      "definition": "Algorand Standard Asset — a native on-chain asset primitive representing fungible or non-fungible tokens with creator-defined parameters.",
+      "aliases": ["Algorand Standard Asset", "asset"]
+    },
+    {
+      "term": "TEAL",
+      "definition": "Transaction Execution Approval Language — the stack-based bytecode language used to write Algorand smart contracts (approval and clear-state programs).",
+      "aliases": ["Transaction Execution Approval Language"]
+    },
+    {
+      "term": "AVM",
+      "definition": "Algorand Virtual Machine — the execution environment for TEAL programs that runs approval and clear-state programs for smart contracts.",
+      "aliases": ["Algorand Virtual Machine"]
+    },
+    {
+      "term": "Application",
+      "definition": "An Algorand smart contract deployed on-chain, identified by an application ID. It has approval and clear-state programs and optionally global and local state storage.",
+      "aliases": ["app", "smart contract", "dApp"]
+    },
+    {
+      "term": "Round",
+      "definition": "A single block in the Algorand blockchain, identified by its round number. Algorand produces approximately one block every 3.3 seconds.",
+      "aliases": ["block", "ledger round"]
+    },
+    {
+      "term": "AlgoKit",
+      "definition": "The official Algorand developer toolkit providing CLI tooling, a local development sandbox (LocalNet), and utility SDKs for Python and TypeScript.",
+      "aliases": ["algokit", "algokit-cli"]
+    },
+    {
+      "term": "X-Algo-API-Token",
+      "definition": "The HTTP header used to authenticate requests to the Algod REST API when running a private or restricted node.",
+      "aliases": ["algod token", "API token"]
+    },
+    {
+      "term": "X-KMD-API-Token",
+      "definition": "The HTTP header used to authenticate requests to the KMD REST API.",
+      "aliases": ["kmd token"]
+    },
+    {
+      "term": "Catchpoint",
+      "definition": "A snapshot of the Algorand ledger state at a specific round, used for fast node bootstrapping via catchup rather than replaying all blocks.",
+      "aliases": ["catchpoint catchup", "fast catchup"]
+    },
+    {
+      "term": "State Proof",
+      "definition": "A cryptographic proof of the Algorand blockchain state at a given round, enabling light-client verification and cross-chain bridging.",
+      "aliases": ["stateproof", "state proof message"]
+    },
+    {
+      "term": "Box Storage",
+      "definition": "Per-application key-value storage on Algorand that allows smart contracts to store arbitrary byte data beyond the limits of global and local state.",
+      "aliases": ["app box", "boxes"]
+    },
+    {
+      "term": "Microalgos",
+      "definition": "The smallest unit of ALGO, the native currency of the Algorand blockchain. 1 ALGO equals 1,000,000 microalgos.",
+      "aliases": ["microalgo", "uALGO"]
+    },
+    {
+      "term": "Nodely",
+      "definition": "A third-party provider of free and commercial Algorand archival Algod and Indexer API endpoints with global infrastructure.",
+      "aliases": ["AlgoNode", "nodely.io", "algonode.cloud"]
+    },
+    {
+      "term": "Proof-of-Stake",
+      "definition": "Algorand uses Pure Proof-of-Stake (PPoS) consensus where block proposers and committee members are selected randomly proportional to their ALGO stake.",
+      "aliases": ["PPoS", "Pure Proof-of-Stake"]
+    },
+    {
+      "term": "next-token",
+      "definition": "A pagination cursor returned by Indexer list responses. Pass this value as the next-token query parameter to fetch the next page of results.",
+      "aliases": ["cursor", "pagination token"]
+    },
+    {
+      "term": "Opt-in",
+      "definition": "The process by which an Algorand account accepts an ASA or application by sending a zero-transfer transaction, establishing the associated local state.",
+      "aliases": ["asset opt-in", "app opt-in"]
+    },
+    {
+      "term": "Simulation",
+      "definition": "Algorand Algod API feature allowing developers to simulate a transaction group without submitting it, returning execution traces and results for debugging.",
+      "aliases": ["simulate", "transaction simulation"]
+    }
+  ]
+}

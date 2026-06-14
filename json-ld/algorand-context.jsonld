@@ -1,0 +1,136 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "schema": "https://schema.org/",
+    "algo": "https://algorand.co/vocab#",
+    "api": "https://dev.algorand.co/reference/rest-api/",
+
+    "Algorand": "algo:Algorand",
+    "AlgodAPI": "algo:AlgodAPI",
+    "IndexerAPI": "algo:IndexerAPI",
+    "KMDAPI": "algo:KMDAPI",
+
+    "Account": {
+      "@id": "algo:Account",
+      "@context": {
+        "address": {"@id": "algo:address", "@type": "xsd:string"},
+        "amount": {"@id": "algo:amount", "@type": "xsd:integer"},
+        "amountWithoutPendingRewards": {"@id": "algo:amountWithoutPendingRewards", "@type": "xsd:integer"},
+        "minBalance": {"@id": "algo:minBalance", "@type": "xsd:integer"},
+        "pendingRewards": {"@id": "algo:pendingRewards", "@type": "xsd:integer"},
+        "rewards": {"@id": "algo:rewards", "@type": "xsd:integer"},
+        "round": {"@id": "algo:round", "@type": "xsd:integer"},
+        "status": {"@id": "algo:status", "@type": "xsd:string"},
+        "totalAppsOptedIn": {"@id": "algo:totalAppsOptedIn", "@type": "xsd:integer"},
+        "totalAssetsOptedIn": {"@id": "algo:totalAssetsOptedIn", "@type": "xsd:integer"},
+        "totalCreatedApps": {"@id": "algo:totalCreatedApps", "@type": "xsd:integer"},
+        "totalCreatedAssets": {"@id": "algo:totalCreatedAssets", "@type": "xsd:integer"}
+      }
+    },
+
+    "Transaction": {
+      "@id": "algo:Transaction",
+      "@context": {
+        "id": {"@id": "algo:txId", "@type": "xsd:string"},
+        "txType": {"@id": "algo:txType", "@type": "xsd:string"},
+        "sender": {"@id": "algo:sender", "@type": "xsd:string"},
+        "fee": {"@id": "algo:fee", "@type": "xsd:integer"},
+        "firstValid": {"@id": "algo:firstValid", "@type": "xsd:integer"},
+        "lastValid": {"@id": "algo:lastValid", "@type": "xsd:integer"},
+        "round": {"@id": "algo:round", "@type": "xsd:integer"},
+        "intraRoundOffset": {"@id": "algo:intraRoundOffset", "@type": "xsd:integer"},
+        "note": {"@id": "algo:note", "@type": "xsd:string"},
+        "group": {"@id": "algo:group", "@type": "xsd:string"},
+        "genesisId": {"@id": "algo:genesisId", "@type": "xsd:string"},
+        "genesisHash": {"@id": "algo:genesisHash", "@type": "xsd:string"}
+      }
+    },
+
+    "Asset": {
+      "@id": "algo:Asset",
+      "@context": {
+        "index": {"@id": "algo:assetIndex", "@type": "xsd:integer"},
+        "params": {
+          "@id": "algo:assetParams",
+          "@context": {
+            "creator": {"@id": "algo:creator", "@type": "xsd:string"},
+            "decimals": {"@id": "algo:decimals", "@type": "xsd:integer"},
+            "defaultFrozen": {"@id": "algo:defaultFrozen", "@type": "xsd:boolean"},
+            "name": {"@id": "schema:name", "@type": "xsd:string"},
+            "unitName": {"@id": "algo:unitName", "@type": "xsd:string"},
+            "total": {"@id": "algo:totalSupply", "@type": "xsd:integer"},
+            "url": {"@id": "schema:url", "@type": "xsd:anyURI"},
+            "manager": {"@id": "algo:manager", "@type": "xsd:string"},
+            "reserve": {"@id": "algo:reserve", "@type": "xsd:string"},
+            "freeze": {"@id": "algo:freeze", "@type": "xsd:string"},
+            "clawback": {"@id": "algo:clawback", "@type": "xsd:string"}
+          }
+        }
+      }
+    },
+
+    "Application": {
+      "@id": "algo:Application",
+      "@context": {
+        "id": {"@id": "algo:appId", "@type": "xsd:integer"},
+        "params": {
+          "@id": "algo:appParams",
+          "@context": {
+            "creator": {"@id": "algo:creator", "@type": "xsd:string"},
+            "approvalProgram": {"@id": "algo:approvalProgram", "@type": "xsd:string"},
+            "clearStateProgram": {"@id": "algo:clearStateProgram", "@type": "xsd:string"},
+            "globalState": {"@id": "algo:globalState"},
+            "localStateSchema": {"@id": "algo:localStateSchema"},
+            "globalStateSchema": {"@id": "algo:globalStateSchema"}
+          }
+        }
+      }
+    },
+
+    "Block": {
+      "@id": "algo:Block",
+      "@context": {
+        "round": {"@id": "algo:round", "@type": "xsd:integer"},
+        "timestamp": {"@id": "schema:dateCreated", "@type": "xsd:integer"},
+        "transactions": {"@id": "algo:transactions", "@container": "@list"},
+        "transactionsRoot": {"@id": "algo:transactionsRoot", "@type": "xsd:string"},
+        "genesisId": {"@id": "algo:genesisId", "@type": "xsd:string"},
+        "genesisHash": {"@id": "algo:genesisHash", "@type": "xsd:string"},
+        "previousBlockHash": {"@id": "algo:previousBlockHash", "@type": "xsd:string"}
+      }
+    },
+
+    "StateProof": {
+      "@id": "algo:StateProof",
+      "@context": {
+        "message": {"@id": "algo:stateProofMessage"},
+        "stateproof": {"@id": "algo:stateproofData"},
+        "type": {"@id": "algo:stateProofType", "@type": "xsd:integer"}
+      }
+    },
+
+    "NodeStatus": {
+      "@id": "algo:NodeStatus",
+      "@context": {
+        "lastRound": {"@id": "algo:lastRound", "@type": "xsd:integer"},
+        "lastVersion": {"@id": "algo:lastVersion", "@type": "xsd:string"},
+        "nextVersion": {"@id": "algo:nextVersion", "@type": "xsd:string"},
+        "nextVersionRound": {"@id": "algo:nextVersionRound", "@type": "xsd:integer"},
+        "catchupTime": {"@id": "algo:catchupTime", "@type": "xsd:integer"},
+        "stoppedAtUnsupportedRound": {"@id": "algo:stoppedAtUnsupportedRound", "@type": "xsd:boolean"}
+      }
+    },
+
+    "Wallet": {
+      "@id": "algo:Wallet",
+      "@context": {
+        "id": {"@id": "algo:walletId", "@type": "xsd:string"},
+        "name": {"@id": "schema:name", "@type": "xsd:string"},
+        "driverName": {"@id": "algo:driverName", "@type": "xsd:string"},
+        "driverVersion": {"@id": "algo:driverVersion", "@type": "xsd:integer"},
+        "mnemonic": {"@id": "algo:mnemonic", "@type": "xsd:string"}
+      }
+    }
+  }
+}
