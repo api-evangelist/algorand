@@ -1,0 +1,125 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Algorand
+providerId: algorand
+created: '2026-06-13'
+modified: '2026-06-13'
+reconciled: true
+tags:
+  - Blockchain
+  - Proof-of-Stake
+  - FinOps
+  - FOCUS
+  - DeFi
+description: >-
+  FOCUS-aligned FinOps for Algorand API consumption. The Algorand daemons (Algod, Indexer, KMD) are
+  open-source and free to self-host; operational costs arise from infrastructure (compute, storage,
+  bandwidth) rather than per-call charges. For teams using managed Nodely endpoints, costs are
+  subscription-based (flat monthly fee) rather than metered per request, with the free tier at $0
+  and commercial tiers starting at $256/month. On-chain transaction fees are separate and minimal
+  (~0.001 ALGO per transaction, ~$0.0002 at typical prices).
+sources:
+  - https://nodely.io/
+  - https://nodely.io/docs/free/start/
+  - https://dev.algorand.co/concepts/transactions/fees/
+  - https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Algorand Foundation / Nodely
+serviceCategory: Blockchain
+billingModel:
+  pricingCategory: Subscription
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+    - Purchase
+    - Usage
+    - Adjustment
+focusColumns:
+  ServiceName: Algorand REST API
+  ServiceCategory: Blockchain
+  ProviderName: Algorand / Nodely
+  PublisherName: Algorand Foundation / Nodely
+  InvoiceIssuerName: Nodely
+  BillingCurrency: USD
+  ChargeCategory: Purchase
+  PricingCategory: Subscription
+  PricingUnit: month
+meters:
+  - name: api_subscription_month
+    description: >-
+      Monthly flat subscription fee for managed Nodely Algorand API access (Unlimited or Business SLA tier).
+      Free tier is $0 and requires no key.
+    unit: month
+    aggregation: count
+    dimensions:
+      - plan
+      - billing_period
+  - name: api_requests
+    description: >-
+      Total API requests made to Algod or Indexer endpoints. Not directly billed on any tier but governs
+      rate-limit enforcement. Tracked for capacity planning and quota monitoring.
+    unit: request
+    aggregation: sum
+    dimensions:
+      - endpoint
+      - network
+      - tier
+  - name: onchain_transaction_fee_algo
+    description: >-
+      Algorand network transaction fees paid in ALGO. Minimum fee is 0.001 ALGO per transaction
+      (1000 microALGO). Fees increase with transaction size (1000 microALGO per 512 bytes over base).
+    unit: ALGO
+    aggregation: sum
+    dimensions:
+      - transaction_type
+      - network
+  - name: self_hosted_compute
+    description: >-
+      Monthly cloud compute cost for self-hosted Algod/Indexer nodes (EC2, GCP, Azure equivalent).
+      Archival nodes require substantial disk (multi-TB NVMe) and moderate CPU/RAM.
+    unit: instance-month
+    aggregation: sum
+    dimensions:
+      - instance_type
+      - region
+      - network
+  - name: self_hosted_storage_gb
+    description: >-
+      Monthly storage cost for self-hosted Algorand archival nodes. Mainnet archival storage
+      exceeds several TB and grows continuously with chain growth.
+    unit: GB-month
+    aggregation: sum
+    dimensions:
+      - storage_type
+      - region
+      - network
+principles:
+  - name: Visibility
+    description: >-
+      Track API request volumes through Nodely dashboard metrics and application-level logging.
+      Monitor on-chain ALGO fee spend per application using the Indexer transaction history API,
+      filtering by sender address and transaction type.
+  - name: Allocation
+    description: >-
+      Assign separate Nodely API keys per team or application to attribute costs to consuming
+      projects. For on-chain fees, tag sender accounts by cost center and query via Indexer.
+  - name: Optimization
+    description: >-
+      Use AlgoKit LocalNet for development and testing to eliminate API costs. Route read-only
+      queries through the free Nodely tier during development and switch to commercial keys only
+      for production workloads. Batch transactions into atomic groups to minimize per-transaction
+      fees and reduce Algod submission calls.
+  - name: Accountability
+    description: >-
+      Designate an engineering owner for API key management and monthly Nodely subscription
+      renewal. Review on-chain fee trends quarterly; unusually high fees may indicate smart
+      contract loops or inefficient transaction batching.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

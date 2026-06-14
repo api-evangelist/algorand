@@ -1,0 +1,154 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Algorand
+providerId: algorand
+created: '2026-06-13'
+modified: '2026-06-13'
+reconciled: true
+tags:
+  - Blockchain
+  - Proof-of-Stake
+  - DeFi
+  - API Access
+description: >-
+  The Algorand Algod and Indexer APIs are open-source daemons operators can self-host at no cost. For
+  developers who prefer a managed service, Nodely (the successor to AlgoNode) provides tiered public
+  API access to Algorand mainnet, testnet, betanet, and other AVM-compatible networks. The free tier
+  requires no API key and is suitable for development and low-traffic production use. Commercial tiers
+  target higher-throughput production workloads with SLA guarantees.
+sources:
+  - https://nodely.io/
+  - https://nodely.io/docs/free/start/
+  - https://nodely.io/docs/free/endpoints/
+  - https://algonode.cloud/
+plans:
+  - id: algorand-free
+    name: Free (No Key Required)
+    type: free
+    description: >-
+      Public archival Algod and Indexer endpoints with no API key required. Includes 50 ms artificial
+      latency per response and global request quotas on backend/bot traffic. Suitable for development
+      and low-volume production use. Includes IPFS Gateway access.
+    entries:
+      - label: Frontend requests per second
+        name: free_rps_frontend
+        type: rate
+        metric: requests_per_second
+        limit: 60
+        timeFrame: second
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: Monthly request quota
+        name: free_monthly_requests
+        type: quota
+        metric: requests_per_month
+        limit: 6000000
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: Monthly data transfer
+        name: free_monthly_data
+        type: quota
+        metric: gb_per_month
+        limit: 150
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: Algod archival node access (mainnet, testnet, betanet)
+      - name: Indexer archival access (mainnet, testnet, betanet)
+      - name: IPFS Gateway
+      - name: No API key required
+      - name: 99.95% SLA
+      - name: 50 ms artificial latency per response
+      - name: Backend/bot traffic subject to global quotas
+  - id: algorand-unlimited
+    name: Unlimited (Shared Infrastructure)
+    type: subscription
+    description: >-
+      Commercial shared-infrastructure tier with per-key rate limits, reduced latency (~30% improvement
+      over free tier), 25+ geographic locations, and 99.99% SLA. Suitable for high-traffic production
+      applications.
+    entries:
+      - label: Monthly subscription
+        name: unlimited_monthly
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '256.00'
+        userMultiplied: false
+    elements:
+      - name: Unlimited queries on shared infrastructure
+      - name: 6,000 req/s per key or site
+      - name: 500 req/s per IP
+      - name: 25+ geographic locations
+      - name: Algod and Indexer archival access
+      - name: Unlimited IPFS Gateway
+      - name: 99.99% SLA
+      - name: ~30% latency reduction vs. free tier
+      - name: 1 month free on annual subscription
+  - id: algorand-business-sla
+    name: Business SLA
+    type: subscription
+    description: >-
+      Annual-only plan with 100% SLA commitment, 10x reimbursement, 4-hour response time SLA,
+      USD-denominated transaction fee abstraction, and 1 million transactions included. Multiple
+      whitelisted keys and domains, plus custom API and validator node services.
+    entries:
+      - label: Annual subscription (billed monthly equivalent)
+        name: business_sla_monthly
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '256.00'
+        userMultiplied: false
+    elements:
+      - name: 100% SLA with 10x reimbursement
+      - name: 4-hour response time SLA
+      - name: Transaction fees billed in USD
+      - name: 1 million transactions included per month
+      - name: 500 req/s per IP
+      - name: 200,000 requests daily quota
+      - name: Multiple whitelisted API keys and domains
+      - name: Custom API and validator node service
+      - name: Annual billing only
+  - id: algorand-enterprise
+    name: Enterprise (Dedicated / Analytics)
+    type: enterprise
+    description: >-
+      Dedicated infrastructure, SQL Direct access, and Analytics Data Warehouse options for organizations
+      with specialized throughput, data residency, or analytics requirements. Pricing is negotiated
+      directly with Nodely.
+    entries:
+      - label: Custom contract
+        name: enterprise_contract
+        type: subscription
+        metric: contract
+        limit: -1
+        timeFrame: year
+        geo: global
+        unit: 1
+        price: contact sales
+        userMultiplied: false
+    elements:
+      - name: Dedicated Algorand node infrastructure
+      - name: SQL Direct access to ledger data
+      - name: Analytics Data Warehouse
+      - name: Custom SLA and data residency
+      - name: All Unlimited tier features
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

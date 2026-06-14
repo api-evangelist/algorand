@@ -1,0 +1,101 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Algorand
+providerId: algorand
+created: '2026-06-13'
+modified: '2026-06-13'
+reconciled: true
+tags:
+  - Blockchain
+  - Proof-of-Stake
+  - Rate Limiting
+  - API Access
+description: >-
+  Rate limits for Algorand Algod and Indexer REST APIs depend on the infrastructure provider. The
+  Algorand daemons themselves impose no hard rate limits when self-hosted; limits are enforced by
+  managed service providers such as Nodely. The free tier (no API key) applies a 60 req/s per
+  browser/frontend ceiling and global monthly quotas for backend traffic. Commercial tiers offer
+  substantially higher throughput with per-key and per-IP limits.
+sources:
+  - https://nodely.io/
+  - https://nodely.io/docs/free/start/
+  - https://nodely.io/docs/free/endpoints/
+responseCodes:
+  throttled: 429
+  quotaExceeded: 429
+limits:
+  - name: Free tier frontend requests per second
+    scope: ip
+    metric: requests_per_second
+    limit: 60
+    timeFrame: second
+    notes: >-
+      Applies to browser/frontend traffic on the free public endpoints (no API key).
+      Backed by 50 ms artificial latency injection per response.
+  - name: Free tier monthly request quota
+    scope: global
+    metric: requests_per_month
+    limit: 6000000
+    timeFrame: month
+    notes: >-
+      Aggregate monthly cap shared across all free-tier users for backend/bot traffic.
+      Frontend browser traffic has a separate 150 GB data transfer cap.
+  - name: Free tier monthly data transfer
+    scope: global
+    metric: gb_per_month
+    limit: 150
+    timeFrame: month
+    notes: Frontend bandwidth cap on the free tier; applies to browser-origin requests.
+  - name: Unlimited tier requests per second per key
+    scope: key
+    metric: requests_per_second
+    limit: 6000
+    timeFrame: second
+    notes: Per API key or whitelisted domain on the Unlimited commercial plan.
+  - name: Unlimited tier requests per second per IP
+    scope: ip
+    metric: requests_per_second
+    limit: 500
+    timeFrame: second
+    notes: Per IP address ceiling on the Unlimited commercial plan.
+  - name: Business SLA tier requests per second per IP
+    scope: ip
+    metric: requests_per_second
+    limit: 500
+    timeFrame: second
+    notes: Per IP ceiling on the Business SLA annual plan.
+  - name: Business SLA tier daily request quota
+    scope: account
+    metric: requests_per_day
+    limit: 200000
+    timeFrame: day
+    notes: Daily request cap on the Business SLA plan; resets at midnight UTC.
+policies:
+  - name: Retry on 429
+    description: >-
+      On receiving a 429 Too Many Requests response, back off exponentially with jitter before
+      retrying. Nodely does not document a Retry-After header, so implement client-side
+      exponential backoff starting at 1 second.
+  - name: Pagination for Indexer queries
+    description: >-
+      Use cursor-based pagination (next-token) when querying large transaction or account result
+      sets via the Indexer API. Paginating in moderate page sizes avoids spiking request rates
+      and keeps individual responses fast.
+  - name: Use testnet for development
+    description: >-
+      Run development and integration tests against the free testnet endpoints
+      (testnet-api.4160.nodely.dev, testnet-idx.4160.nodely.dev) to avoid consuming mainnet
+      quota and to ensure idempotent testing with faucet funds.
+  - name: LocalNet for unit testing
+    description: >-
+      Use AlgoKit LocalNet (a local sandboxed Algorand network) for unit and simulation tests
+      that do not require live network data, eliminating all network rate-limit concerns.
+  - name: Self-host for unrestricted throughput
+    description: >-
+      Operators requiring unlimited throughput can run their own Algod and Indexer daemons.
+      The software is open-source (go-algorand, algorand/indexer) and imposes no built-in
+      per-request rate limits.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
