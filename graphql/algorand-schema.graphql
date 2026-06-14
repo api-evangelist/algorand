@@ -1,0 +1,828 @@
+# Algorand GraphQL Schema
+# Covers the Algorand Algod REST API and Indexer REST API
+# Source: https://developer.algorand.org/docs/rest-apis/
+
+scalar Microalgos
+scalar Bytes
+scalar JSON
+
+# ─── Node / Infrastructure ────────────────────────────────────────────────────
+
+type Node {
+  status: NodeStatus
+  version: NodeVersion
+  health: Boolean
+  genesis: String
+  genesisId: String
+}
+
+type NodeStatus {
+  lastRound: Int!
+  lastVersion: String
+  nextVersion: String
+  nextVersionRound: Int
+  nextVersionSupported: Boolean
+  timeSinceLastRound: Int
+  catchupTime: Int
+  hasSyncedSinceStartup: Boolean
+  stoppedAtUnsupportedRound: Boolean
+}
+
+type NodeVersion {
+  major: Int!
+  minor: Int!
+  patch: Int!
+  build: Int
+  channel: String
+  commitHash: String
+  genesisId: String
+  genesisHashB64: String
+}
+
+type Token {
+  value: String!
+}
+
+type APIKey {
+  token: String!
+  expiresAt: String
+}
+
+type Websocket {
+  endpoint: String!
+  protocol: String
+  authToken: String
+}
+
+# ─── Round / Block primitives ─────────────────────────────────────────────────
+
+type Round {
+  number: Int!
+}
+
+type BlockHash {
+  hash: String!
+}
+
+type BlockHeader {
+  round: Int!
+  previousBlockHash: String
+  seed: String
+  timestamp: Int
+  genesisId: String
+  genesisHash: String
+  rewardsLevel: Int
+  rewardsRate: Int
+  rewardsResidue: Int
+  rewardsPool: String
+  rewardsCalculationRound: Int
+  upgradeState: UpgradeState
+  upgradeVote: UpgradeVote
+  txnCommitmentsNativeSha512_256: String
+  txnCommitmentssSha256: String
+  proposer: String
+  feesCollected: Microalgos
+  bonus: Microalgos
+}
+
+type UpgradeState {
+  currentProtocol: String
+  nextProtocol: String
+  nextProtocolApprovals: Int
+  nextProtocolVoteBefore: Int
+  nextProtocolSwitchOn: Int
+}
+
+type UpgradeVote {
+  upgradeApprove: Boolean
+  upgradeDelay: Int
+  upgradePropose: String
+}
+
+type MiniBlock {
+  round: Int!
+  timestamp: Int
+  txnCount: Int
+  proposer: String
+}
+
+type Block {
+  round: Int!
+  timestamp: Int!
+  txnCount: Int
+  genesisId: String
+  genesisHash: String
+  previousBlockHash: String
+  seed: String
+  rewardsLevel: Int
+  rewardsRate: Int
+  rewardsPool: String
+  header: BlockHeader
+  transactions: [Transaction!]
+  hash: BlockHash
+}
+
+type BlockDetails {
+  round: Int!
+  timestamp: Int!
+  genesisId: String
+  genesisHash: String
+  previousBlockHash: String
+  seed: String
+  rewardsLevel: Int
+  rewardsRate: Int
+  rewardsPool: String
+  feesCollected: Microalgos
+  bonus: Microalgos
+  proposer: String
+  header: BlockHeader
+  transactions: [TransactionDetails!]
+  upgradeState: UpgradeState
+  upgradeVote: UpgradeVote
+  participationUpdates: ParticipationUpdates
+}
+
+type ParticipationUpdates {
+  absentParticipationAccounts: [String!]
+  expiredParticipationAccounts: [String!]
+}
+
+# ─── Supply / Ledger ──────────────────────────────────────────────────────────
+
+type Supply {
+  currentRound: Int!
+  onlineMoney: Microalgos!
+  totalMoney: Microalgos!
+}
+
+type SupplyDetails {
+  currentRound: Int!
+  onlineMoney: Microalgos!
+  totalMoney: Microalgos!
+  rewardsPool: String
+  rewardsLevel: Int
+  rewardsRate: Int
+}
+
+type Balance {
+  address: String!
+  amount: Microalgos!
+  amountWithoutPendingRewards: Microalgos
+  pendingRewards: Microalgos
+  rewards: Microalgos
+}
+
+# ─── Pool / Pending Transactions ─────────────────────────────────────────────
+
+type Pool {
+  topTransactions: [PendingTransaction!]
+  totalTransactions: Int!
+  maxTransactions: Int
+}
+
+type PendingTransaction {
+  txn: SignedTransaction!
+  poolError: String
+  confirmedRound: Int
+  receiverRewards: Microalgos
+  senderRewards: Microalgos
+  closeRewards: Microalgos
+  assetIndex: Int
+  applicationIndex: Int
+  innerTransactions: [PendingTransaction!]
+  logs: [Bytes!]
+}
+
+# ─── Transactions ─────────────────────────────────────────────────────────────
+
+enum TransactionType {
+  pay
+  keyreg
+  acfg
+  axfer
+  afrz
+  appl
+  stpf
+}
+
+type Transaction {
+  id: String!
+  type: TransactionType!
+  sender: String!
+  fee: Microalgos
+  firstValid: Int
+  lastValid: Int
+  note: Bytes
+  group: Bytes
+  lease: Bytes
+  rekeyTo: String
+  genesisId: String
+  genesisHash: String
+  confirmedRound: Int
+  roundTime: Int
+  intraRoundOffset: Int
+  senderRewards: Microalgos
+  receiverRewards: Microalgos
+  closeRewards: Microalgos
+  signature: TransactionSignature
+}
+
+type TransactionDetails {
+  id: String!
+  type: TransactionType!
+  sender: String!
+  fee: Microalgos!
+  firstValid: Int!
+  lastValid: Int!
+  note: Bytes
+  group: Bytes
+  lease: Bytes
+  rekeyTo: String
+  confirmedRound: Int
+  roundTime: Int
+  intraRoundOffset: Int
+  senderRewards: Microalgos
+  receiverRewards: Microalgos
+  closeRewards: Microalgos
+  payment: PaymentTransaction
+  keyReg: KeyRegTransaction
+  assetConfig: AssetConfigTransaction
+  assetTransfer: AssetTransferTransaction
+  assetFreeze: AssetFreezeTransaction
+  applicationCall: ApplicationCallTransaction
+  stateProof: StateProof
+  innerTransactions: [InnerTransaction!]
+  logs: [Bytes!]
+  signature: TransactionSignature
+  globalStateDelta: [EvalDeltaKeyValue!]
+  localStateDelta: [AccountStateDelta!]
+}
+
+type TransactionSignature {
+  sig: Bytes
+  multisig: MultiSig
+  logicsig: LogicSig
+}
+
+type SignedTransaction {
+  txn: UnsignedTransaction!
+  sig: Bytes
+  msig: MultiSig
+  lsig: LogicSig
+}
+
+type UnsignedTransaction {
+  type: TransactionType!
+  sender: String!
+  fee: Microalgos!
+  firstValid: Int!
+  lastValid: Int!
+  genesisId: String
+  genesisHash: String
+  note: Bytes
+  group: Bytes
+  lease: Bytes
+  rekeyTo: String
+}
+
+type InnerTransaction {
+  type: TransactionType!
+  sender: String!
+  fee: Microalgos
+  payment: PaymentTransaction
+  assetTransfer: AssetTransferTransaction
+  assetConfig: AssetConfigTransaction
+  assetFreeze: AssetFreezeTransaction
+  applicationCall: ApplicationCallTransaction
+  innerTransactions: [InnerTransaction!]
+  logs: [Bytes!]
+  globalStateDelta: [EvalDeltaKeyValue!]
+  localStateDelta: [AccountStateDelta!]
+}
+
+# ─── Transaction Kinds ────────────────────────────────────────────────────────
+
+type PaymentTransaction {
+  receiver: String!
+  amount: Microalgos!
+  closeRemainderTo: String
+  closeAmount: Microalgos
+}
+
+type KeyRegTransaction {
+  voteKey: Bytes
+  selectionKey: Bytes
+  stateProofKey: Bytes
+  voteFirst: Int
+  voteLast: Int
+  voteKeyDilution: Int
+  nonParticipation: Boolean
+}
+
+type AssetConfigTransaction {
+  assetId: Int
+  params: AssetParams
+}
+
+type AssetTransferTransaction {
+  assetId: Int!
+  amount: Microalgos!
+  receiver: String!
+  sender: String
+  closeTo: String
+  closeAmount: Microalgos
+}
+
+type AssetFreezeTransaction {
+  address: String!
+  assetId: Int!
+  newFreezeStatus: Boolean!
+}
+
+type ApplicationCallTransaction {
+  applicationId: Int
+  onCompletion: OnCompletion
+  accounts: [String!]
+  approvalProgram: Bytes
+  clearStateProgram: Bytes
+  foreignApps: [Int!]
+  foreignAssets: [Int!]
+  globalStateSchema: StateSchema
+  localStateSchema: StateSchema
+  appArguments: [Bytes!]
+  boxes: [BoxRef!]
+  extraProgramPages: Int
+}
+
+enum OnCompletion {
+  noop
+  optin
+  closeout
+  clear
+  update
+  delete
+}
+
+type BoxRef {
+  app: Int
+  name: Bytes
+}
+
+# ─── State Proof ──────────────────────────────────────────────────────────────
+
+type StateProof {
+  stateProofType: Int
+  stateProof: Bytes
+  message: StateProofMessage
+}
+
+type StateProofMessage {
+  blockHeadersCommitment: Bytes
+  votersCommitment: Bytes
+  lnProvenWeight: Int
+  firstAttestedRound: Int
+  lastAttestedRound: Int
+}
+
+# ─── Accounts ─────────────────────────────────────────────────────────────────
+
+enum AccountStatus {
+  Offline
+  Online
+  NotParticipating
+}
+
+type Account {
+  address: String!
+  amount: Microalgos!
+  amountWithoutPendingRewards: Microalgos!
+  pendingRewards: Microalgos!
+  rewards: Microalgos!
+  rewardBase: Int
+  status: AccountStatus!
+  round: Int
+  sigType: String
+  authAddr: String
+  totalAppsOptedIn: Int
+  totalAssetsOptedIn: Int
+  totalCreatedApps: Int
+  totalCreatedAssets: Int
+  totalBoxBytes: Int
+  totalBoxes: Int
+  minBalance: Microalgos
+  participation: AccountParticipation
+  assets: [AccountAsset!]
+  createdAssets: [Asset!]
+  createdApps: [Application!]
+  appsLocalState: [ApplicationLocalState!]
+  appsTotalSchema: StateSchema
+}
+
+type AccountDetails {
+  address: String!
+  amount: Microalgos!
+  amountWithoutPendingRewards: Microalgos!
+  pendingRewards: Microalgos!
+  rewards: Microalgos!
+  rewardBase: Int
+  status: AccountStatus!
+  round: Int
+  authAddr: String
+  totalAppsOptedIn: Int
+  totalAssetsOptedIn: Int
+  totalCreatedApps: Int
+  totalCreatedAssets: Int
+  totalBoxBytes: Int
+  totalBoxes: Int
+  minBalance: Microalgos
+  participation: AccountParticipation
+  assets: [AccountAsset!]
+  createdAssets: [AssetDetails!]
+  createdApps: [ApplicationDetails!]
+  appsLocalState: [ApplicationLocalState!]
+  appsTotalSchema: StateSchema
+  closedAtRound: Int
+  deleted: Boolean
+  firstValid: Int
+  lastValid: Int
+  sigType: String
+}
+
+type AccountAsset {
+  assetId: Int!
+  amount: Microalgos!
+  isFrozen: Boolean!
+  deleted: Boolean
+  optedInAtRound: Int
+  optedOutAtRound: Int
+}
+
+type AccountAssetInfo {
+  address: String!
+  assetId: Int!
+  amount: Microalgos!
+  isFrozen: Boolean!
+  creator: String
+  round: Int
+}
+
+type AccountParticipation {
+  voteParticipationKey: Bytes!
+  selectionParticipationKey: Bytes!
+  stateProofKey: Bytes
+  voteFirstValid: Int!
+  voteLastValid: Int!
+  voteKeyDilution: Int!
+}
+
+# ─── Assets ───────────────────────────────────────────────────────────────────
+
+type Asset {
+  index: Int!
+  params: AssetParams!
+  createdAtRound: Int
+  destroyedAtRound: Int
+  deleted: Boolean
+}
+
+type AssetDetails {
+  index: Int!
+  params: AssetParams!
+  createdAtRound: Int
+  destroyedAtRound: Int
+  deleted: Boolean
+  currentHolders: Int
+}
+
+type AssetParams {
+  creator: String!
+  name: String
+  unitName: String
+  total: Microalgos!
+  decimals: Int!
+  defaultFrozen: Boolean
+  url: String
+  metadataHash: Bytes
+  manager: String
+  reserve: String
+  freeze: String
+  clawback: String
+}
+
+type AssetFrozen {
+  address: String!
+  assetId: Int!
+  isFrozen: Boolean!
+}
+
+# ─── Applications (Smart Contracts) ──────────────────────────────────────────
+
+type Application {
+  id: Int!
+  params: ApplicationParams!
+  createdAtRound: Int
+  deletedAtRound: Int
+  deleted: Boolean
+}
+
+type ApplicationDetails {
+  id: Int!
+  params: ApplicationParams!
+  createdAtRound: Int
+  deletedAtRound: Int
+  deleted: Boolean
+  globalState: [TealKeyValue!]
+}
+
+type ApplicationParams {
+  creator: String!
+  approvalProgram: Bytes!
+  clearStateProgram: Bytes!
+  globalStateSchema: StateSchema
+  localStateSchema: StateSchema
+  extraProgramPages: Int
+  globalState: [TealKeyValue!]
+}
+
+type ApplicationLocalState {
+  id: Int!
+  schema: StateSchema!
+  keyValue: [TealKeyValue!]
+  optedInAtRound: Int
+  closedOutAtRound: Int
+  deleted: Boolean
+}
+
+type GlobalState {
+  applicationId: Int!
+  keyValue: [TealKeyValue!]!
+  round: Int
+}
+
+type LocalState {
+  address: String!
+  applicationId: Int!
+  keyValue: [TealKeyValue!]!
+  round: Int
+}
+
+type StateSchema {
+  numByteSlice: Int!
+  numUint: Int!
+}
+
+type TealKeyValue {
+  key: Bytes!
+  value: TealValue!
+}
+
+type TealValue {
+  type: Int!
+  bytes: Bytes
+  uint: Microalgos
+}
+
+type EvalDeltaKeyValue {
+  key: Bytes!
+  value: EvalDelta!
+}
+
+type EvalDelta {
+  action: Int!
+  bytes: Bytes
+  uint: Microalgos
+}
+
+type AccountStateDelta {
+  address: String!
+  delta: [EvalDeltaKeyValue!]!
+}
+
+# ─── Signing ──────────────────────────────────────────────────────────────────
+
+type LogicSig {
+  logic: Bytes!
+  sig: Bytes
+  msig: MultiSig
+  args: [Bytes!]
+}
+
+type MultiSig {
+  version: Int!
+  threshold: Int!
+  subsig: [MultiSigSubsig!]!
+}
+
+type MultiSigSubsig {
+  pk: Bytes!
+  s: Bytes
+}
+
+# ─── Compile Result ───────────────────────────────────────────────────────────
+
+type CompileResult {
+  result: String!
+  hash: String!
+  sourcemap: JSON
+}
+
+type DisassembleResult {
+  result: String!
+}
+
+type SimulateResult {
+  version: Int!
+  txnGroups: [SimulateTxnGroup!]!
+  wouldSucceed: Boolean
+  evalOverrides: JSON
+}
+
+type SimulateTxnGroup {
+  txnResults: [SimulateTxnResult!]!
+  failureMessage: String
+  failedAt: [Int!]
+}
+
+type SimulateTxnResult {
+  txnResult: PendingTransaction
+  appBudgetConsumed: Int
+  logicSigBudgetConsumed: Int
+}
+
+# ─── Submit Result ────────────────────────────────────────────────────────────
+
+type SubmitTransactionResult {
+  txId: String!
+}
+
+# ─── Pagination ───────────────────────────────────────────────────────────────
+
+type PageInfo {
+  nextToken: String
+}
+
+type TransactionList {
+  transactions: [TransactionDetails!]!
+  nextToken: String
+  currentRound: Int
+}
+
+type AccountList {
+  accounts: [AccountDetails!]!
+  nextToken: String
+  currentRound: Int
+}
+
+type AssetList {
+  assets: [AssetDetails!]!
+  nextToken: String
+  currentRound: Int
+}
+
+type ApplicationList {
+  applications: [ApplicationDetails!]!
+  nextToken: String
+  currentRound: Int
+}
+
+type BlockList {
+  blocks: [BlockDetails!]!
+  nextToken: String
+  currentRound: Int
+}
+
+# ─── Root Operations ──────────────────────────────────────────────────────────
+
+type Query {
+  # Node
+  node: Node
+  supply: Supply
+  supplyDetails: SupplyDetails
+
+  # Blocks
+  block(round: Int!): Block
+  blockDetails(round: Int!): BlockDetails
+  blocks(
+    afterTime: String
+    beforeTime: String
+    limit: Int
+    nextToken: String
+  ): BlockList
+
+  # Accounts
+  account(address: String!): Account
+  accountDetails(address: String!): AccountDetails
+  accounts(
+    assetId: Int
+    applicationId: Int
+    authAddr: String
+    limit: Int
+    nextToken: String
+    round: Int
+    exclude: [String!]
+    includeAll: Boolean
+  ): AccountList
+  accountAsset(address: String!, assetId: Int!): AccountAssetInfo
+
+  # Assets
+  asset(id: Int!): Asset
+  assetDetails(id: Int!): AssetDetails
+  assets(
+    creator: String
+    name: String
+    unit: String
+    limit: Int
+    nextToken: String
+    includeAll: Boolean
+  ): AssetList
+  assetBalances(
+    assetId: Int!
+    limit: Int
+    nextToken: String
+    currencyGreaterThan: Microalgos
+    currencyLessThan: Microalgos
+    includeAll: Boolean
+  ): AccountList
+
+  # Applications
+  application(id: Int!): Application
+  applicationDetails(id: Int!): ApplicationDetails
+  applications(
+    creator: String
+    limit: Int
+    nextToken: String
+    includeAll: Boolean
+  ): ApplicationList
+  applicationBox(applicationId: Int!, name: Bytes!): ApplicationBox
+  applicationBoxes(
+    applicationId: Int!
+    limit: Int
+    nextToken: String
+  ): ApplicationBoxList
+
+  # Transactions
+  transaction(id: String!): TransactionDetails
+  transactions(
+    address: String
+    addressRole: AddressRole
+    assetId: Int
+    applicationId: Int
+    txType: TransactionType
+    sigType: SigType
+    minRound: Int
+    maxRound: Int
+    afterTime: String
+    beforeTime: String
+    currencyGreaterThan: Microalgos
+    currencyLessThan: Microalgos
+    notePrefix: Bytes
+    rekeyTo: Boolean
+    limit: Int
+    nextToken: String
+    excludeCloseTo: Boolean
+  ): TransactionList
+
+  # Pool
+  pendingTransactions(max: Int): Pool
+  pendingTransactionsByAddress(address: String!, max: Int): Pool
+  pendingTransaction(txId: String!): PendingTransaction
+
+  # Round
+  currentRound: Round
+}
+
+enum AddressRole {
+  sender
+  receiver
+  freeze_target
+}
+
+enum SigType {
+  sig
+  msig
+  lsig
+}
+
+type ApplicationBox {
+  name: Bytes!
+  value: Bytes!
+  round: Int
+}
+
+type ApplicationBoxList {
+  boxes: [ApplicationBox!]!
+  nextToken: String
+}
+
+type Mutation {
+  # Submit signed raw transaction (base64-encoded msgpack)
+  submitTransaction(signedTxn: String!): SubmitTransactionResult
+  submitTransactions(signedTxns: [String!]!): SubmitTransactionResult
+
+  # TEAL compilation
+  compileTeal(source: String!): CompileResult
+  disassembleTeal(bytecode: Bytes!): DisassembleResult
+
+  # Simulation
+  simulateTransactions(request: JSON!): SimulateResult
+}

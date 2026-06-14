@@ -4,183 +4,206 @@ name: Algorand
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - Blockchain
-  - Cryptocurrency
-  - Proof-of-Stake
-  - DeFi
-  - Smart Contracts
-description: >-
-  Algorand is a pure proof-of-stake blockchain platform designed for speed, security, and decentralization.
-  It exposes REST APIs through two core daemons — Algod (the Algorand protocol daemon) for real-time node
-  interaction including submitting transactions, querying account balances, retrieving blocks, and managing
-  smart contracts; and the Indexer daemon for deep historical querying of accounts, assets, applications,
-  transactions, and blocks from a PostgreSQL-backed store. A third daemon, KMD (Key Management Daemon),
-  handles local key storage and signing. Public archival endpoints are freely available via third-party
-  providers such as Nodely/AlgoNode, and the developer toolchain is anchored by AlgoKit with SDKs for
-  Python, JavaScript, Go, and Java.
+- Blockchain
+- Cryptocurrency
+- Proof-of-Stake
+- DeFi
+- Smart Contracts
+description: Algorand is a pure proof-of-stake blockchain platform designed for speed,
+  security, and decentralization. It exposes REST APIs through two core daemons —
+  Algod (the Algorand protocol daemon) for real-time node interaction including submitting
+  transactions, querying account balances, retrieving blocks, and managing smart contracts;
+  and the Indexer daemon for deep historical querying of accounts, assets, applications,
+  transactions, and blocks from a PostgreSQL-backed store. A third daemon, KMD (Key
+  Management Daemon), handles local key storage and signing. Public archival endpoints
+  are freely available via third-party providers such as Nodely/AlgoNode, and the
+  developer toolchain is anchored by AlgoKit with SDKs for Python, JavaScript, Go,
+  and Java.
 created: '2026-06-13'
 modified: '2026-06-13'
 specificationVersion: '0.19'
 apis:
-  - aid: algorand:algorand-algod-api
-    name: Algorand Algod REST API
-    tags:
-      - Blockchain
-      - Accounts
-      - Assets
-      - Transactions
-      - Blocks
-      - Smart Contracts
-      - State Proofs
-    humanURL: https://dev.algorand.co/reference/rest-api/algod/
-    baseURL: https://mainnet-api.4160.nodely.dev
-    properties:
-      - url: https://dev.algorand.co/reference/rest-api/algod/
-        type: Documentation
-      - url: https://raw.githubusercontent.com/algorand/go-algorand/master/daemon/algod/api/algod.oas3.yml
-        type: OpenAPI
-    description: >-
-      The Algod REST API is the primary interface for interacting with a live Algorand node. It exposes
-      endpoints for querying account information, asset details, application (smart contract) state,
-      pending and confirmed transactions, blocks, and state proofs. Developers can submit signed raw
-      transactions, simulate transaction groups, compile and disassemble TEAL programs, manage catchpoint
-      catchups, and inspect ledger supply. Authentication uses an X-Algo-API-Token header. Public archival
-      nodes (e.g. mainnet-api.4160.nodely.dev) are freely accessible without a token on the free tier.
-  - aid: algorand:algorand-indexer-api
-    name: Algorand Indexer REST API
-    tags:
-      - Blockchain
-      - Analytics
-      - Accounts
-      - Assets
-      - Transactions
-      - Blocks
-      - Applications
-    humanURL: https://dev.algorand.co/reference/rest-api/indexer/
-    baseURL: https://mainnet-idx.4160.nodely.dev
-    properties:
-      - url: https://dev.algorand.co/reference/rest-api/indexer/
-        type: Documentation
-      - url: https://raw.githubusercontent.com/algorand/indexer/main/api/indexer.oas3.yml
-        type: OpenAPI
-    description: >-
-      The Algorand Indexer 2.0 API is a ledger analytics REST API backed by a PostgreSQL database
-      populated by the algorand-indexer daemon. It provides rich historical search across transactions,
-      accounts, assets, applications, blocks, and block headers with flexible query parameters including
-      address, asset ID, application ID, round ranges, note prefixes, and more. Responses include
-      cursor-based pagination for traversing large result sets. Public archival indexer nodes are
-      available at mainnet-idx.4160.nodely.dev (and legacy algonode.cloud endpoints) free of charge.
-  - aid: algorand:algorand-kmd-api
-    name: Algorand KMD REST API
-    tags:
-      - Key Management
-      - Wallets
-      - Signing
-      - Security
-    humanURL: https://dev.algorand.co/reference/rest-api/overview/
-    baseURL: http://localhost:7833
-    properties:
-      - url: https://dev.algorand.co/reference/rest-api/overview/
-        type: Documentation
-    description: >-
-      The Key Management Daemon (KMD) REST API provides local key storage and transaction signing for
-      Algorand nodes. It exposes wallet management, key generation, and signing endpoints through a
-      locally-running daemon. Authentication uses an X-KMD-API-Token header with a token stored in the
-      node's data directory. KMD is intended for node operators and local development workflows; production
-      applications typically use external signing solutions or the AlgoKit SDK utilities instead.
+- aid: algorand:algorand-algod-api
+  name: Algorand Algod REST API
+  tags:
+  - Blockchain
+  - Accounts
+  - Assets
+  - Transactions
+  - Blocks
+  - Smart Contracts
+  - State Proofs
+  humanURL: https://dev.algorand.co/reference/rest-api/algod/
+  baseURL: https://mainnet-api.4160.nodely.dev
+  properties:
+  - url: https://dev.algorand.co/reference/rest-api/algod/
+    type: Documentation
+  - url: https://raw.githubusercontent.com/algorand/go-algorand/master/daemon/algod/api/algod.oas3.yml
+    type: OpenAPI
+  - url: graphql/algorand-graphql.md
+    type: GraphQL
+  description: The Algod REST API is the primary interface for interacting with a
+    live Algorand node. It exposes endpoints for querying account information, asset
+    details, application (smart contract) state, pending and confirmed transactions,
+    blocks, and state proofs. Developers can submit signed raw transactions, simulate
+    transaction groups, compile and disassemble TEAL programs, manage catchpoint catchups,
+    and inspect ledger supply. Authentication uses an X-Algo-API-Token header. Public
+    archival nodes (e.g. mainnet-api.4160.nodely.dev) are freely accessible without
+    a token on the free tier.
+- aid: algorand:algorand-indexer-api
+  name: Algorand Indexer REST API
+  tags:
+  - Blockchain
+  - Analytics
+  - Accounts
+  - Assets
+  - Transactions
+  - Blocks
+  - Applications
+  humanURL: https://dev.algorand.co/reference/rest-api/indexer/
+  baseURL: https://mainnet-idx.4160.nodely.dev
+  properties:
+  - url: https://dev.algorand.co/reference/rest-api/indexer/
+    type: Documentation
+  - url: https://raw.githubusercontent.com/algorand/indexer/main/api/indexer.oas3.yml
+    type: OpenAPI
+  description: The Algorand Indexer 2.0 API is a ledger analytics REST API backed
+    by a PostgreSQL database populated by the algorand-indexer daemon. It provides
+    rich historical search across transactions, accounts, assets, applications, blocks,
+    and block headers with flexible query parameters including address, asset ID,
+    application ID, round ranges, note prefixes, and more. Responses include cursor-based
+    pagination for traversing large result sets. Public archival indexer nodes are
+    available at mainnet-idx.4160.nodely.dev (and legacy algonode.cloud endpoints)
+    free of charge.
+- aid: algorand:algorand-kmd-api
+  name: Algorand KMD REST API
+  tags:
+  - Key Management
+  - Wallets
+  - Signing
+  - Security
+  humanURL: https://dev.algorand.co/reference/rest-api/overview/
+  baseURL: http://localhost:7833
+  properties:
+  - url: https://dev.algorand.co/reference/rest-api/overview/
+    type: Documentation
+  description: The Key Management Daemon (KMD) REST API provides local key storage
+    and transaction signing for Algorand nodes. It exposes wallet management, key
+    generation, and signing endpoints through a locally-running daemon. Authentication
+    uses an X-KMD-API-Token header with a token stored in the node's data directory.
+    KMD is intended for node operators and local development workflows; production
+    applications typically use external signing solutions or the AlgoKit SDK utilities
+    instead.
 common:
-  - type: Website
-    url: https://algorand.co/
-  - type: Portal
-    url: https://dev.algorand.co/
-  - type: Documentation
-    url: https://dev.algorand.co/reference/rest-api/overview/
-  - type: GettingStarted
-    url: https://dev.algorand.co/getting-started/portal-guide/
-  - type: Authentication
-    url: https://dev.algorand.co/reference/rest-api/overview/
-  - type: SDK
-    url: https://pypi.org/project/py-algorand-sdk/
-    title: Python SDK
-  - type: SDK
-    url: https://www.npmjs.com/package/algosdk
-    title: JavaScript SDK
-  - type: SDK
-    url: https://pkg.go.dev/github.com/algorand/go-algorand-sdk/v2
-    title: Go SDK
-  - type: SDK
-    url: https://mvnrepository.com/artifact/com.algorand/algosdk
-    title: Java SDK
-  - type: CLI
-    url: https://github.com/algorandfoundation/algokit-cli
-    title: AlgoKit CLI
-  - type: GitHubOrganization
-    url: https://github.com/algorand
-  - type: GitHubOrganization
-    url: https://github.com/algorandfoundation
-  - type: Blog
-    url: https://algorand.co/blog
-  - type: Support
-    url: https://dev.algorand.co/
-  - type: PrivacyPolicy
-    url: https://algorand.co/privacy-policy
-  - type: TermsOfService
-    url: https://algorand.co/terms
-  - type: Plans
-    url: plans/algorand-plans.yml
-  - type: RateLimits
-    url: rate-limits/algorand-rate-limits.yml
-  - type: FinOps
-    url: finops/algorand-finops.yml
-  - type: PublicWorkspace
-    url: https://nodely.io/
-    title: Nodely Free Public API
-  - type: Features
-    data:
-      - name: Real-Time Node Interaction
-        description: Algod API provides live access to node state, pending transactions, and block production
-      - name: Historical Ledger Analytics
-        description: Indexer API enables deep search across all historical transactions, accounts, assets, and blocks
-      - name: Transaction Submission
-        description: Submit signed raw transactions or transaction groups directly via the Algod API
-      - name: Smart Contract Support
-        description: Query AVM application state, box storage, and logs; compile and simulate TEAL programs
-      - name: Asset Management
-        description: Query Algorand Standard Assets (ASA) metadata, balances, and transaction history
-      - name: State Proofs
-        description: Retrieve cryptographic state proofs for cross-chain verification and light-client support
-      - name: Free Public Nodes
-        description: Nodely/AlgoNode provides free archival Algod and Indexer endpoints on mainnet and testnet
-      - name: AlgoKit Toolchain
-        description: End-to-end developer toolkit with CLI, LocalNet sandbox, and utility SDKs
-  - type: UseCases
-    data:
-      - name: DeFi Application Development
-        description: Query on-chain liquidity pools, AMMs, and ASA token balances in real time
-      - name: NFT Marketplaces
-        description: Look up ASA metadata, ownership history, and transfer transactions for NFTs
-      - name: Block Explorers
-        description: Retrieve and display blocks, transactions, and account state via Indexer search APIs
-      - name: Wallet Integration
-        description: Fetch account balances, transaction history, and pending transactions for wallet UIs
-      - name: Transaction Automation
-        description: Construct, sign, and broadcast payment, asset transfer, or application call transactions
-      - name: Compliance and Auditing
-        description: Search historical transactions by address, round, or note field for audit trails
-      - name: Smart Contract Deployment
-        description: Compile TEAL programs, simulate execution, and deploy AVM applications
-  - type: Integrations
-    data:
-      - name: AlgoKit
-        description: Official Algorand developer toolkit with CLI and SDK utilities for Python and TypeScript
-      - name: Nodely
-        description: Free and commercial archival Algod and Indexer endpoints with global infrastructure
-      - name: AlgoNode
-        description: Legacy free public API endpoints for Algorand mainnet and testnet
-      - name: Pera Wallet
-        description: Reference wallet implementation using Algorand SDKs for transaction signing
-      - name: Vestige
-        description: DeFi analytics platform querying Algorand pools and assets via Indexer
+- type: Website
+  url: https://algorand.co/
+- type: Portal
+  url: https://dev.algorand.co/
+- type: Documentation
+  url: https://dev.algorand.co/reference/rest-api/overview/
+- type: GettingStarted
+  url: https://dev.algorand.co/getting-started/portal-guide/
+- type: Authentication
+  url: https://dev.algorand.co/reference/rest-api/overview/
+- type: SDK
+  url: https://pypi.org/project/py-algorand-sdk/
+  title: Python SDK
+- type: SDK
+  url: https://www.npmjs.com/package/algosdk
+  title: JavaScript SDK
+- type: SDK
+  url: https://pkg.go.dev/github.com/algorand/go-algorand-sdk/v2
+  title: Go SDK
+- type: SDK
+  url: https://mvnrepository.com/artifact/com.algorand/algosdk
+  title: Java SDK
+- type: CLI
+  url: https://github.com/algorandfoundation/algokit-cli
+  title: AlgoKit CLI
+- type: GitHubOrganization
+  url: https://github.com/algorand
+- type: GitHubOrganization
+  url: https://github.com/algorandfoundation
+- type: Blog
+  url: https://algorand.co/blog
+- type: Support
+  url: https://dev.algorand.co/
+- type: PrivacyPolicy
+  url: https://algorand.co/privacy-policy
+- type: TermsOfService
+  url: https://algorand.co/terms
+- type: Plans
+  url: plans/algorand-plans.yml
+- type: RateLimits
+  url: rate-limits/algorand-rate-limits.yml
+- type: FinOps
+  url: finops/algorand-finops.yml
+- type: PublicWorkspace
+  url: https://nodely.io/
+  title: Nodely Free Public API
+- type: Features
+  data:
+  - name: Real-Time Node Interaction
+    description: Algod API provides live access to node state, pending transactions,
+      and block production
+  - name: Historical Ledger Analytics
+    description: Indexer API enables deep search across all historical transactions,
+      accounts, assets, and blocks
+  - name: Transaction Submission
+    description: Submit signed raw transactions or transaction groups directly via
+      the Algod API
+  - name: Smart Contract Support
+    description: Query AVM application state, box storage, and logs; compile and simulate
+      TEAL programs
+  - name: Asset Management
+    description: Query Algorand Standard Assets (ASA) metadata, balances, and transaction
+      history
+  - name: State Proofs
+    description: Retrieve cryptographic state proofs for cross-chain verification
+      and light-client support
+  - name: Free Public Nodes
+    description: Nodely/AlgoNode provides free archival Algod and Indexer endpoints
+      on mainnet and testnet
+  - name: AlgoKit Toolchain
+    description: End-to-end developer toolkit with CLI, LocalNet sandbox, and utility
+      SDKs
+- type: UseCases
+  data:
+  - name: DeFi Application Development
+    description: Query on-chain liquidity pools, AMMs, and ASA token balances in real
+      time
+  - name: NFT Marketplaces
+    description: Look up ASA metadata, ownership history, and transfer transactions
+      for NFTs
+  - name: Block Explorers
+    description: Retrieve and display blocks, transactions, and account state via
+      Indexer search APIs
+  - name: Wallet Integration
+    description: Fetch account balances, transaction history, and pending transactions
+      for wallet UIs
+  - name: Transaction Automation
+    description: Construct, sign, and broadcast payment, asset transfer, or application
+      call transactions
+  - name: Compliance and Auditing
+    description: Search historical transactions by address, round, or note field for
+      audit trails
+  - name: Smart Contract Deployment
+    description: Compile TEAL programs, simulate execution, and deploy AVM applications
+- type: Integrations
+  data:
+  - name: AlgoKit
+    description: Official Algorand developer toolkit with CLI and SDK utilities for
+      Python and TypeScript
+  - name: Nodely
+    description: Free and commercial archival Algod and Indexer endpoints with global
+      infrastructure
+  - name: AlgoNode
+    description: Legacy free public API endpoints for Algorand mainnet and testnet
+  - name: Pera Wallet
+    description: Reference wallet implementation using Algorand SDKs for transaction
+      signing
+  - name: Vestige
+    description: DeFi analytics platform querying Algorand pools and assets via Indexer
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com
