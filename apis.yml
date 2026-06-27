@@ -105,16 +105,16 @@ common:
   url: https://dev.algorand.co/getting-started/portal-guide/
 - type: Authentication
   url: https://dev.algorand.co/reference/rest-api/overview/
-- type: SDK
+- type: SDKs
   url: https://pypi.org/project/py-algorand-sdk/
   title: Python SDK
-- type: SDK
+- type: SDKs
   url: https://www.npmjs.com/package/algosdk
   title: JavaScript SDK
-- type: SDK
+- type: SDKs
   url: https://pkg.go.dev/github.com/algorand/go-algorand-sdk/v2
   title: Go SDK
-- type: SDK
+- type: SDKs
   url: https://mvnrepository.com/artifact/com.algorand/algosdk
   title: Java SDK
 - type: CLI

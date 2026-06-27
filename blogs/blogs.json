@@ -2,6 +2,13 @@
   "repo": "algorand",
   "feeds": [
     {
+      "source": "https://algorand.co/blog",
+      "feed_url": "https://algorand.co/blog/rss.xml",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
+    },
+    {
       "source": "https://github.com/algorandfoundation",
       "feed_url": "https://github.com/algorandfoundation",
       "title": "",
@@ -9,6 +16,6 @@
       "method": "none"
     }
   ],
-  "post_count": 0,
-  "fetched": "2026-06-14T20:42:17Z"
+  "post_count": 4,
+  "fetched": "2026-06-27T12:03:07Z"
 }
