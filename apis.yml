@@ -95,6 +95,10 @@ apis:
     applications typically use external signing solutions or the AlgoKit SDK utilities
     instead.
 common:
+- type: DomainSecurity
+  url: security/algorand-domain-security.yml
+- type: Authentication
+  url: authentication/algorand-authentication.yml
 - type: Website
   url: https://algorand.co/
 - type: Portal

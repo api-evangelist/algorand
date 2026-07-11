@@ -1,0 +1,32 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: algorand.co
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Aug 29 18:41:32 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: dev.algorand.co
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct  2 21:19:56 2026 GMT
+  hsts: false
+- host: mainnet-api.4160.nodely.dev
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 13 16:09:24 2026 GMT
+  hsts: false
+domains:
+- domain: algorand.co
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: reject
+- domain: nodely.dev
+  dnssec: true
+  caa: []
+  spf: false
+  dmarc: false
