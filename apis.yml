@@ -95,6 +95,8 @@ apis:
     applications typically use external signing solutions or the AlgoKit SDK utilities
     instead.
 common:
+- type: AgenticAccess
+  url: agentic-access/algorand-agentic-access.yml
 - type: DomainSecurity
   url: security/algorand-domain-security.yml
 - type: Authentication
