@@ -1,0 +1,373 @@
+openapi: 3.0.1
+info:
+  contact:
+    email: contact@algorand.com
+    name: algorand
+    url: https://www.algorand.com/get-in-touch/contact
+  description: API endpoint for algod operations.
+  title: Algod REST API. common Wallet API
+  version: 0.0.1
+servers:
+- url: http://localhost/
+- url: https://localhost/
+security:
+- api_key: []
+tags:
+- name: Wallet
+paths:
+  /v1/wallet:
+    post:
+      description: Create a new wallet (collection of keys) with the given parameters.
+      produces:
+      - application/json
+      summary: Create a wallet
+      operationId: CreateWallet
+      parameters:
+      - name: Create Wallet Request
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/CreateWalletRequest'
+      responses:
+        '200':
+          $ref: '#/responses/CreateWalletResponse'
+      tags:
+      - Wallet
+  /v1/wallet/info:
+    post:
+      description: 'Returns information about the wallet associated with the passed wallet handle token. Additionally returns expiration information about the token itself.
+
+        '
+      produces:
+      - application/json
+      summary: Get wallet info
+      operationId: GetWalletInfo
+      parameters:
+      - name: Get Wallet Info Request
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/WalletInfoRequest'
+      responses:
+        '200':
+          $ref: '#/responses/WalletInfoResponse'
+      tags:
+      - Wallet
+  /v1/wallet/init:
+    post:
+      description: 'Unlock the wallet and return a wallet handle token that can be used for subsequent operations. These tokens expire periodically and must be renewed. You can `POST` the token to `/v1/wallet/info` to see how much time remains until expiration, and renew it with `/v1/wallet/renew`. When you''re done, you can invalidate the token with `/v1/wallet/release`.
+
+        '
+      produces:
+      - application/json
+      summary: Initialize a wallet handle token
+      operationId: InitWalletHandleToken
+      parameters:
+      - name: Initialize Wallet Handle Token Request
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/InitWalletHandleTokenRequest'
+      responses:
+        '200':
+          $ref: '#/responses/InitWalletHandleTokenResponse'
+      tags:
+      - Wallet
+  /v1/wallet/release:
+    post:
+      description: Invalidate the passed wallet handle token, making it invalid for use in subsequent requests.
+      produces:
+      - application/json
+      summary: Release a wallet handle token
+      operationId: ReleaseWalletHandleToken
+      parameters:
+      - name: Release Wallet Handle Token Request
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/ReleaseWalletHandleTokenRequest'
+      responses:
+        '200':
+          $ref: '#/responses/ReleaseWalletHandleTokenResponse'
+      tags:
+      - Wallet
+  /v1/wallet/rename:
+    post:
+      description: Rename the underlying wallet to something else
+      produces:
+      - application/json
+      summary: Rename a wallet
+      operationId: RenameWallet
+      parameters:
+      - name: Rename Wallet Request
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/RenameWalletRequest'
+      responses:
+        '200':
+          $ref: '#/responses/RenameWalletResponse'
+      tags:
+      - Wallet
+  /v1/wallet/renew:
+    post:
+      description: Renew a wallet handle token, increasing its expiration duration to its initial value
+      produces:
+      - application/json
+      summary: Renew a wallet handle token
+      operationId: RenewWalletHandleToken
+      parameters:
+      - name: Renew Wallet Handle Token Request
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/RenewWalletHandleTokenRequest'
+      responses:
+        '200':
+          $ref: '#/responses/RenewWalletHandleTokenResponse'
+      tags:
+      - Wallet
+components:
+  securitySchemes:
+    api_key:
+      description: Generated header parameter. This token can be generated using the Goal command line tool. Example value ='b7e384d0317b8050ce45900a94a1931e28540e1f69b2d242b424659c341b4697'
+      in: header
+      name: X-Algo-API-Token
+      type: apiKey
+definitions:
+  APIV1WalletHandle:
+    description: 'APIV1WalletHandle includes the wallet the handle corresponds to
+
+      and the number of number of seconds to expiration'
+    type: object
+    properties:
+      expires_seconds:
+        type: integer
+        format: int64
+        x-go-name: ExpiresSeconds
+      wallet:
+        $ref: '#/definitions/APIV1Wallet'
+    x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+  APIV1POSTWalletReleaseResponse:
+    description: 'APIV1POSTWalletReleaseResponse is the response to `POST /v1/wallet/release`
+
+      friendly:ReleaseWalletHandleTokenResponse'
+    type: object
+    properties:
+      error:
+        type: boolean
+        x-go-name: Error
+      message:
+        type: string
+        x-go-name: Message
+    x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+  TxType:
+    description: TxType is the type of the transaction written to the ledger
+    type: string
+    x-go-package: github.com/algorand/go-algorand/protocol
+  MasterDerivationKey:
+    description: MasterDerivationKey is used to derive ed25519 keys for use in wallets
+    type: array
+    items:
+      type: integer
+      format: uint8
+    x-go-package: github.com/algorand/go-algorand/crypto
+  APIV1POSTWalletRenameResponse:
+    description: 'APIV1POSTWalletRenameResponse is the response to `POST /v1/wallet/rename`
+
+      friendly:RenameWalletResponse'
+    type: object
+    properties:
+      error:
+        type: boolean
+        x-go-name: Error
+      message:
+        type: string
+        x-go-name: Message
+      wallet:
+        $ref: '#/definitions/APIV1Wallet'
+    x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+  RenameWalletRequest:
+    description: APIV1POSTWalletRenameRequest is the request for `POST /v1/wallet/rename`
+    type: object
+    properties:
+      wallet_id:
+        type: string
+        x-go-name: WalletID
+      wallet_name:
+        type: string
+        x-go-name: NewWalletName
+      wallet_password:
+        type: string
+        x-go-name: WalletPassword
+    x-go-name: APIV1POSTWalletRenameRequest
+    x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+  CreateWalletRequest:
+    description: APIV1POSTWalletRequest is the request for `POST /v1/wallet`
+    type: object
+    properties:
+      master_derivation_key:
+        $ref: '#/definitions/MasterDerivationKey'
+      wallet_driver_name:
+        type: string
+        x-go-name: WalletDriverName
+      wallet_name:
+        type: string
+        x-go-name: WalletName
+      wallet_password:
+        type: string
+        x-go-name: WalletPassword
+    x-go-name: APIV1POSTWalletRequest
+    x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+  WalletInfoRequest:
+    description: APIV1POSTWalletInfoRequest is the request for `POST /v1/wallet/info`
+    type: object
+    properties:
+      wallet_handle_token:
+        type: string
+        x-go-name: WalletHandleToken
+    x-go-name: APIV1POSTWalletInfoRequest
+    x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+  RenewWalletHandleTokenRequest:
+    description: APIV1POSTWalletRenewRequest is the request for `POST /v1/wallet/renew`
+    type: object
+    properties:
+      wallet_handle_token:
+        type: string
+        x-go-name: WalletHandleToken
+    x-go-name: APIV1POSTWalletRenewRequest
+    x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+  APIV1POSTWalletRenewResponse:
+    description: 'APIV1POSTWalletRenewResponse is the response to `POST /v1/wallet/renew`
+
+      friendly:RenewWalletHandleTokenResponse'
+    type: object
+    properties:
+      error:
+        type: boolean
+        x-go-name: Error
+      message:
+        type: string
+        x-go-name: Message
+      wallet_handle:
+        $ref: '#/definitions/APIV1WalletHandle'
+    x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+  APIV1POSTWalletInfoResponse:
+    description: 'APIV1POSTWalletInfoResponse is the response to `POST /v1/wallet/info`
+
+      friendly:WalletInfoResponse'
+    type: object
+    properties:
+      error:
+        type: boolean
+        x-go-name: Error
+      message:
+        type: string
+        x-go-name: Message
+      wallet_handle:
+        $ref: '#/definitions/APIV1WalletHandle'
+    x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+  APIV1Wallet:
+    description: APIV1Wallet is the API's representation of a wallet
+    type: object
+    properties:
+      driver_name:
+        type: string
+        x-go-name: DriverName
+      driver_version:
+        type: integer
+        format: uint32
+        x-go-name: DriverVersion
+      id:
+        type: string
+        x-go-name: ID
+      mnemonic_ux:
+        type: boolean
+        x-go-name: SupportsMnemonicUX
+      name:
+        type: string
+        x-go-name: Name
+      supported_txs:
+        type: array
+        items:
+          $ref: '#/definitions/TxType'
+        x-go-name: SupportedTransactions
+    x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+  InitWalletHandleTokenRequest:
+    description: APIV1POSTWalletInitRequest is the request for `POST /v1/wallet/init`
+    type: object
+    properties:
+      wallet_id:
+        type: string
+        x-go-name: WalletID
+      wallet_password:
+        type: string
+        x-go-name: WalletPassword
+    x-go-name: APIV1POSTWalletInitRequest
+    x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+  APIV1POSTWalletResponse:
+    description: 'APIV1POSTWalletResponse is the response to `POST /v1/wallet`
+
+      friendly:CreateWalletResponse'
+    type: object
+    properties:
+      error:
+        type: boolean
+        x-go-name: Error
+      message:
+        type: string
+        x-go-name: Message
+      wallet:
+        $ref: '#/definitions/APIV1Wallet'
+    x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+  APIV1POSTWalletInitResponse:
+    description: 'APIV1POSTWalletInitResponse is the response to `POST /v1/wallet/init`
+
+      friendly:InitWalletHandleTokenResponse'
+    type: object
+    properties:
+      error:
+        type: boolean
+        x-go-name: Error
+      message:
+        type: string
+        x-go-name: Message
+      wallet_handle_token:
+        type: string
+        x-go-name: WalletHandleToken
+    x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+  ReleaseWalletHandleTokenRequest:
+    description: APIV1POSTWalletReleaseRequest is the request for `POST /v1/wallet/release`
+    type: object
+    properties:
+      wallet_handle_token:
+        type: string
+        x-go-name: WalletHandleToken
+    x-go-name: APIV1POSTWalletReleaseRequest
+    x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+responses:
+  RenewWalletHandleTokenResponse:
+    description: Response `POST /v1/wallet/renew`
+    schema:
+      $ref: '#/definitions/APIV1POSTWalletRenewResponse'
+  RenameWalletResponse:
+    description: Response to `POST /v1/wallet/rename`
+    schema:
+      $ref: '#/definitions/APIV1POSTWalletRenameResponse'
+  ReleaseWalletHandleTokenResponse:
+    description: Response to `POST /v1/wallet/release`
+    schema:
+      $ref: '#/definitions/APIV1POSTWalletReleaseResponse'
+  InitWalletHandleTokenResponse:
+    description: Response to `POST /v1/wallet/init`
+    schema:
+      $ref: '#/definitions/APIV1POSTWalletInitResponse'
+  WalletInfoResponse:
+    description: Response to `POST /v1/wallet/info`
+    schema:
+      $ref: '#/definitions/APIV1POSTWalletInfoResponse'
+  CreateWalletResponse:
+    description: Response to `POST /v1/wallet`
+    schema:
+      $ref: '#/definitions/APIV1POSTWalletResponse'
+x-original-swagger-version: '2.0'

@@ -1,0 +1,102 @@
+openapi: 3.0.1
+info:
+  contact:
+    email: contact@algorand.com
+    name: algorand
+    url: https://www.algorand.com/get-in-touch/contact
+  description: API endpoint for algod operations.
+  title: Algod REST API. common Transaction API
+  version: 0.0.1
+servers:
+- url: http://localhost/
+- url: https://localhost/
+security:
+- api_key: []
+tags:
+- name: Transaction
+paths:
+  /v1/transaction/sign:
+    post:
+      description: 'Signs the passed transaction with a key from the wallet, determined by the sender encoded in the transaction.
+
+        '
+      produces:
+      - application/json
+      summary: Sign a transaction
+      operationId: SignTransaction
+      parameters:
+      - name: Sign Transaction Request
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/SignTransactionRequest'
+      responses:
+        '200':
+          $ref: '#/responses/SignTransactionResponse'
+      tags:
+      - Transaction
+components:
+  securitySchemes:
+    api_key:
+      description: Generated header parameter. This token can be generated using the Goal command line tool. Example value ='b7e384d0317b8050ce45900a94a1931e28540e1f69b2d242b424659c341b4697'
+      in: header
+      name: X-Algo-API-Token
+      type: apiKey
+definitions:
+  APIV1POSTTransactionSignResponse:
+    description: 'APIV1POSTTransactionSignResponse is the response to `POST /v1/transaction/sign`
+
+      friendly:SignTransactionResponse'
+    type: object
+    properties:
+      error:
+        type: boolean
+        x-go-name: Error
+      message:
+        type: string
+        x-go-name: Message
+      signed_transaction:
+        type: string
+        format: byte
+        x-go-name: SignedTransaction
+    x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+  SignTransactionRequest:
+    description: APIV1POSTTransactionSignRequest is the request for `POST /v1/transaction/sign`
+    type: object
+    properties:
+      public_key:
+        $ref: '#/definitions/PublicKey'
+      transaction:
+        description: 'Base64 encoding of msgpack encoding of a `Transaction` object
+
+          Note: SDK and goal usually generate `SignedTxn` objects
+
+          in that case, the field `txn` / `Transaction` of the
+
+          generated `SignedTxn` object needs to be used'
+        type: string
+        format: byte
+        x-go-name: Transaction
+      wallet_handle_token:
+        type: string
+        x-go-name: WalletHandleToken
+      wallet_password:
+        type: string
+        x-go-name: WalletPassword
+    x-go-name: APIV1POSTTransactionSignRequest
+    x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+  ed25519PublicKey:
+    type: array
+    items:
+      type: integer
+      format: uint8
+    x-go-package: github.com/algorand/go-algorand/crypto
+  PublicKey:
+    description: PublicKey is an exported ed25519PublicKey
+    $ref: '#/definitions/ed25519PublicKey'
+responses:
+  SignTransactionResponse:
+    description: Response to `POST /v1/transaction/sign`
+    schema:
+      $ref: '#/definitions/APIV1POSTTransactionSignResponse'
+x-original-swagger-version: '2.0'

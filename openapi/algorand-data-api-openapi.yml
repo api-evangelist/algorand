@@ -1,0 +1,168 @@
+openapi: 3.0.1
+info:
+  contact:
+    email: contact@algorand.com
+    name: algorand
+    url: https://www.algorand.com/get-in-touch/contact
+  description: API endpoint for algod operations.
+  title: Algod REST API. common data API
+  version: 0.0.1
+servers:
+- url: http://localhost/
+- url: https://localhost/
+security:
+- api_key: []
+tags:
+- name: data
+paths:
+  /v2/ledger/sync:
+    delete:
+      description: Unset the ledger sync round.
+      operationId: UnsetSyncRound
+      responses:
+        '200':
+          content: {}
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Sync round not set.
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Invalid API Token
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Internal Error
+        '503':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Service Temporarily Unavailable
+        default:
+          content: {}
+          description: Unknown Error
+      summary: Removes minimum sync round restriction from the ledger.
+      tags:
+      - data
+    get:
+      description: Gets the minimum sync round for the ledger.
+      operationId: GetSyncRound
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  round:
+                    description: The minimum sync round for the ledger.
+                    type: integer
+                    x-go-type: basics.Round
+                required:
+                - round
+                type: object
+          description: Response containing the ledger's minimum sync round
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Sync round not set.
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Invalid API Token
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Internal Error
+        '503':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Service Temporarily Unavailable
+        default:
+          content: {}
+          description: Unknown Error
+      summary: Returns the minimum sync round the ledger is keeping in cache.
+      tags:
+      - data
+  /v2/ledger/sync/{round}:
+    post:
+      description: Sets the minimum sync round on the ledger.
+      operationId: SetSyncRound
+      parameters:
+      - description: A round number.
+        in: path
+        name: round
+        required: true
+        schema:
+          minimum: 0
+          type: integer
+          x-go-type: basics.Round
+        x-go-type: basics.Round
+      responses:
+        '200':
+          content: {}
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Can not set sync round to an earlier round than the current round.
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Invalid API Token
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Internal Error
+        '503':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Service Temporarily Unavailable
+        default:
+          content: {}
+          description: Unknown Error
+      summary: Given a round, tells the ledger to keep that round in its cache.
+      tags:
+      - data
+components:
+  schemas:
+    ErrorResponse:
+      description: An error response with optional data field.
+      properties:
+        data:
+          properties: {}
+          type: object
+        message:
+          type: string
+      required:
+      - message
+      type: object
+  securitySchemes:
+    api_key:
+      description: Generated header parameter. This token can be generated using the Goal command line tool. Example value ='b7e384d0317b8050ce45900a94a1931e28540e1f69b2d242b424659c341b4697'
+      in: header
+      name: X-Algo-API-Token
+      type: apiKey
+x-original-swagger-version: '2.0'

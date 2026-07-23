@@ -1,0 +1,638 @@
+openapi: 3.0.1
+info:
+  contact:
+    email: contact@algorand.com
+    name: algorand
+    url: https://www.algorand.com/get-in-touch/contact
+  description: API endpoint for algod operations.
+  title: Algod REST API. common private API
+  version: 0.0.1
+servers:
+- url: http://localhost/
+- url: https://localhost/
+security:
+- api_key: []
+tags:
+- name: private
+paths:
+  /debug/settings/config:
+    get:
+      description: Returns the merged (defaults + overrides) config file in json.
+      operationId: GetConfig
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: string
+          description: The merged config file in json.
+        default:
+          content: {}
+          description: Unknown Error
+      summary: Gets the merged config file.
+      tags:
+      - private
+  /debug/settings/pprof:
+    get:
+      description: Retrieves the current settings for blocking and mutex profiles
+      operationId: GetDebugSettingsProf
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DebugSettingsProf'
+          description: DebugPprof is the response to the /debug/extra/pprof endpoint
+      tags:
+      - private
+    put:
+      description: Enables blocking and mutex profiles, and returns the old settings
+      operationId: PutDebugSettingsProf
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DebugSettingsProf'
+          description: DebugPprof is the response to the /debug/extra/pprof endpoint
+      tags:
+      - private
+  /v2/catchup/{catchpoint}:
+    delete:
+      description: Given a catchpoint, it aborts catching up to this catchpoint
+      operationId: AbortCatchup
+      parameters:
+      - description: A catch point
+        in: path
+        name: catchpoint
+        required: true
+        schema:
+          format: catchpoint
+          pattern: '[0-9]{1,10}#[A-Z0-9]{1,53}'
+          type: string
+          x-algorand-format: Catchpoint String
+        x-algorand-format: Catchpoint String
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: An catchpoint abort response.
+                properties:
+                  catchup-message:
+                    description: Catchup abort response string
+                    type: string
+                required:
+                - catchup-message
+                type: object
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Invalid API Token
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Internal Error
+        default:
+          content: {}
+          description: Unknown Error
+      summary: Aborts a catchpoint catchup.
+      tags:
+      - private
+    post:
+      description: Given a catchpoint, it starts catching up to this catchpoint
+      operationId: StartCatchup
+      parameters:
+      - description: A catch point
+        in: path
+        name: catchpoint
+        required: true
+        schema:
+          format: catchpoint
+          pattern: '[0-9]{1,10}#[A-Z0-9]{1,53}'
+          type: string
+          x-algorand-format: Catchpoint String
+        x-algorand-format: Catchpoint String
+      - description: Specify the minimum number of blocks which the ledger must be advanced by in order to start the catchup. This is useful for simplifying tools which support fast catchup, they can run the catchup unconditionally and the node will skip the catchup if it is not needed.
+        in: query
+        name: min
+        schema:
+          type: integer
+          x-go-type: basics.Round
+        x-go-type: basics.Round
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: An catchpoint start response.
+                properties:
+                  catchup-message:
+                    description: Catchup start response string
+                    type: string
+                required:
+                - catchup-message
+                type: object
+        '201':
+          content:
+            application/json:
+              schema:
+                description: An catchpoint start response.
+                properties:
+                  catchup-message:
+                    description: Catchup start response string
+                    type: string
+                required:
+                - catchup-message
+                type: object
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Invalid API Token
+        '408':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Request Timeout
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Internal Error
+        default:
+          content: {}
+          description: Unknown Error
+      summary: Starts a catchpoint catchup.
+      tags:
+      - private
+  /v2/participation:
+    get:
+      description: Return a list of participation keys
+      operationId: GetParticipationKeys
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ParticipationKey'
+                type: array
+          description: A list of participation keys
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Invalid API Token
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Participation Key Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Internal Error
+        default:
+          content: {}
+          description: Unknown Error
+      summary: Return a list of participation keys
+      tags:
+      - private
+    post:
+      operationId: AddParticipationKey
+      requestBody:
+        content:
+          application/msgpack:
+            schema:
+              format: binary
+              type: string
+        description: The participation key to add to the node
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  partId:
+                    description: encoding of the participation ID.
+                    type: string
+                required:
+                - partId
+                type: object
+          description: Participation ID of the submission
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Invalid API Token
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Participation Key Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Internal Error
+        '503':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Service Temporarily Unavailable
+        default:
+          content: {}
+          description: Unknown Error
+      summary: Add a participation key to the node
+      tags:
+      - private
+      x-codegen-request-body-name: participationkey
+  /v2/participation/generate/{address}:
+    post:
+      operationId: GenerateParticipationKeys
+      parameters:
+      - description: An account public key.
+        in: path
+        name: address
+        required: true
+        schema:
+          pattern: '[A-Z0-9]{58}'
+          type: string
+          x-go-type: basics.Address
+        x-go-type: basics.Address
+      - description: Key dilution for two-level participation keys (defaults to sqrt of validity window).
+        in: query
+        name: dilution
+        schema:
+          format: uint64
+          type: integer
+      - description: First round for participation key.
+        in: query
+        name: first
+        required: true
+        schema:
+          format: uint64
+          type: integer
+          x-go-type: basics.Round
+        x-go-type: basics.Round
+      - description: Last round for participation key.
+        in: query
+        name: last
+        required: true
+        schema:
+          format: uint64
+          type: integer
+          x-go-type: basics.Round
+        x-go-type: basics.Round
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: string
+          description: An empty JSON object is returned if the generation process was started. Currently no status is available.
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Invalid API Token
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Internal Error
+        '503':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Service Temporarily Unavailable
+        default:
+          content: {}
+          description: Unknown Error
+      summary: Generate and install participation keys to the node.
+      tags:
+      - private
+  /v2/participation/{participation-id}:
+    delete:
+      description: Delete a given participation key by ID
+      operationId: DeleteParticipationKeyByID
+      parameters:
+      - in: path
+        name: participation-id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content: {}
+          description: Participation key got deleted by ID
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Invalid API Token
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Participation Key Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Internal Error
+        default:
+          content: {}
+          description: Unknown Error
+      summary: Delete a given participation key by ID
+      tags:
+      - private
+    get:
+      description: Given a participation ID, return information about that participation key
+      operationId: GetParticipationKeyByID
+      parameters:
+      - in: path
+        name: participation-id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParticipationKey'
+          description: A detailed description of a participation ID
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Invalid API Token
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Participation Key Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Internal Error
+        default:
+          content: {}
+          description: Unknown Error
+      summary: Get participation key info given a participation ID
+      tags:
+      - private
+    post:
+      description: Given a participation ID, append state proof keys to a particular set of participation keys
+      operationId: AppendKeys
+      parameters:
+      - in: path
+        name: participation-id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/msgpack:
+            schema:
+              format: binary
+              type: string
+        description: The state proof keys to add to an existing participation ID
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParticipationKey'
+          description: A detailed description of a participation ID
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Invalid API Token
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Participation Key Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Internal Error
+        default:
+          content: {}
+          description: Unknown Error
+      summary: Append state proof keys to a participation key
+      tags:
+      - private
+      x-codegen-request-body-name: keymap
+  /v2/shutdown:
+    post:
+      description: Special management endpoint to shutdown the node. Optionally provide a timeout parameter to indicate that the node should begin shutting down after a number of seconds.
+      operationId: ShutdownNode
+      parameters:
+      - in: query
+        name: timeout
+        schema:
+          default: 0
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+      tags:
+      - private
+components:
+  schemas:
+    ParticipationKey:
+      description: Represents a participation key used by the node.
+      properties:
+        address:
+          description: Address the key was generated for.
+          type: string
+          x-algorand-format: Address
+        effective-first-valid:
+          description: When registered, this is the first round it may be used.
+          type: integer
+          x-algorand-format: uint64
+          x-go-type: basics.Round
+        effective-last-valid:
+          description: When registered, this is the last round it may be used.
+          type: integer
+          x-algorand-format: uint64
+          x-go-type: basics.Round
+        id:
+          description: The key's ParticipationID.
+          type: string
+        key:
+          $ref: '#/components/schemas/AccountParticipation'
+        last-block-proposal:
+          description: Round when this key was last used to propose a block.
+          type: integer
+          x-go-type: basics.Round
+        last-state-proof:
+          description: Round when this key was last used to generate a state proof.
+          type: integer
+          x-go-type: basics.Round
+        last-vote:
+          description: Round when this key was last used to vote.
+          type: integer
+          x-go-type: basics.Round
+      required:
+      - address
+      - id
+      - key
+      type: object
+    ErrorResponse:
+      description: An error response with optional data field.
+      properties:
+        data:
+          properties: {}
+          type: object
+        message:
+          type: string
+      required:
+      - message
+      type: object
+    DebugSettingsProf:
+      description: algod mutex and blocking profiling state.
+      properties:
+        block-rate:
+          description: The rate of blocking events. The profiler aims to sample an average of one blocking event per rate nanoseconds spent blocked. To turn off profiling entirely, pass rate 0.
+          example: 1000
+          format: uint64
+          type: integer
+        mutex-rate:
+          description: The rate of mutex events. On average 1/rate events are reported. To turn off profiling entirely, pass rate 0
+          example: 1000
+          format: uint64
+          type: integer
+      title: algod mutex and blocking profiling state.
+      type: object
+    AccountParticipation:
+      description: AccountParticipation describes the parameters used by this account in consensus protocol.
+      properties:
+        selection-participation-key:
+          description: \[sel\] Selection public key (if any) currently registered for this round.
+          format: byte
+          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          type: string
+        state-proof-key:
+          description: \[stprf\] Root of the state proof key (if any)
+          format: byte
+          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          type: string
+        vote-first-valid:
+          description: \[voteFst\] First round for which this participation is valid.
+          type: integer
+          x-go-type: basics.Round
+        vote-key-dilution:
+          description: \[voteKD\] Number of subkeys in each batch of participation keys.
+          type: integer
+          x-go-type: uint64
+        vote-last-valid:
+          description: \[voteLst\] Last round for which this participation is valid.
+          type: integer
+          x-go-type: basics.Round
+        vote-participation-key:
+          description: \[vote\] root participation public key (if any) currently registered for this round.
+          format: byte
+          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          type: string
+      required:
+      - selection-participation-key
+      - vote-first-valid
+      - vote-key-dilution
+      - vote-last-valid
+      - vote-participation-key
+      type: object
+  securitySchemes:
+    api_key:
+      description: Generated header parameter. This token can be generated using the Goal command line tool. Example value ='b7e384d0317b8050ce45900a94a1931e28540e1f69b2d242b424659c341b4697'
+      in: header
+      name: X-Algo-API-Token
+      type: apiKey
+x-original-swagger-version: '2.0'

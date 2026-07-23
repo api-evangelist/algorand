@@ -1,0 +1,101 @@
+openapi: 3.0.1
+info:
+  contact:
+    email: contact@algorand.com
+    name: algorand
+    url: https://www.algorand.com/get-in-touch/contact
+  description: API endpoint for algod operations.
+  title: Algod REST API. common Wallets API
+  version: 0.0.1
+servers:
+- url: http://localhost/
+- url: https://localhost/
+security:
+- api_key: []
+tags:
+- name: Wallets
+paths:
+  /v1/wallets:
+    get:
+      description: Lists all of the wallets that kmd is aware of.
+      produces:
+      - application/json
+      summary: List wallets
+      operationId: ListWallets
+      parameters:
+      - name: List Wallet Request
+        in: body
+        schema:
+          $ref: '#/definitions/ListWalletsRequest'
+      responses:
+        '200':
+          $ref: '#/responses/ListWalletsResponse'
+      tags:
+      - Wallets
+components:
+  securitySchemes:
+    api_key:
+      description: Generated header parameter. This token can be generated using the Goal command line tool. Example value ='b7e384d0317b8050ce45900a94a1931e28540e1f69b2d242b424659c341b4697'
+      in: header
+      name: X-Algo-API-Token
+      type: apiKey
+definitions:
+  ListWalletsRequest:
+    description: APIV1GETWalletsRequest is the request for `GET /v1/wallets`
+    type: object
+    x-go-name: APIV1GETWalletsRequest
+    x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+  TxType:
+    description: TxType is the type of the transaction written to the ledger
+    type: string
+    x-go-package: github.com/algorand/go-algorand/protocol
+  APIV1Wallet:
+    description: APIV1Wallet is the API's representation of a wallet
+    type: object
+    properties:
+      driver_name:
+        type: string
+        x-go-name: DriverName
+      driver_version:
+        type: integer
+        format: uint32
+        x-go-name: DriverVersion
+      id:
+        type: string
+        x-go-name: ID
+      mnemonic_ux:
+        type: boolean
+        x-go-name: SupportsMnemonicUX
+      name:
+        type: string
+        x-go-name: Name
+      supported_txs:
+        type: array
+        items:
+          $ref: '#/definitions/TxType'
+        x-go-name: SupportedTransactions
+    x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+  APIV1GETWalletsResponse:
+    description: 'APIV1GETWalletsResponse is the response to `GET /v1/wallets`
+
+      friendly:ListWalletsResponse'
+    type: object
+    properties:
+      error:
+        type: boolean
+        x-go-name: Error
+      message:
+        type: string
+        x-go-name: Message
+      wallets:
+        type: array
+        items:
+          $ref: '#/definitions/APIV1Wallet'
+        x-go-name: Wallets
+    x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+responses:
+  ListWalletsResponse:
+    description: Response to `GET /v1/wallets`
+    schema:
+      $ref: '#/definitions/APIV1GETWalletsResponse'
+x-original-swagger-version: '2.0'

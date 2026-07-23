@@ -1,0 +1,87 @@
+openapi: 3.0.1
+info:
+  contact:
+    email: contact@algorand.com
+    name: algorand
+    url: https://www.algorand.com/get-in-touch/contact
+  description: API endpoint for algod operations.
+  title: Algod REST API. common Program API
+  version: 0.0.1
+servers:
+- url: http://localhost/
+- url: https://localhost/
+security:
+- api_key: []
+tags:
+- name: Program
+paths:
+  /v1/program/sign:
+    post:
+      description: 'Signs the passed program with a key from the wallet, determined by the account named in the request.
+
+        '
+      produces:
+      - application/json
+      summary: Sign program
+      operationId: SignProgram
+      parameters:
+      - name: Sign Program Request
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/SignProgramRequest'
+      responses:
+        '200':
+          $ref: '#/responses/SignProgramResponse'
+      tags:
+      - Program
+components:
+  securitySchemes:
+    api_key:
+      description: Generated header parameter. This token can be generated using the Goal command line tool. Example value ='b7e384d0317b8050ce45900a94a1931e28540e1f69b2d242b424659c341b4697'
+      in: header
+      name: X-Algo-API-Token
+      type: apiKey
+definitions:
+  SignProgramRequest:
+    description: APIV1POSTProgramSignRequest is the request for `POST /v1/program/sign`
+    type: object
+    properties:
+      address:
+        type: string
+        x-go-name: Address
+      data:
+        type: string
+        format: byte
+        x-go-name: Program
+      wallet_handle_token:
+        type: string
+        x-go-name: WalletHandleToken
+      wallet_password:
+        type: string
+        x-go-name: WalletPassword
+    x-go-name: APIV1POSTProgramSignRequest
+    x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+  APIV1POSTProgramSignResponse:
+    description: 'APIV1POSTProgramSignResponse is the response to `POST /v1/data/sign`
+
+      friendly:SignProgramResponse'
+    type: object
+    properties:
+      error:
+        type: boolean
+        x-go-name: Error
+      message:
+        type: string
+        x-go-name: Message
+      sig:
+        type: string
+        format: byte
+        x-go-name: Signature
+    x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+responses:
+  SignProgramResponse:
+    description: Response to `POST /v1/data/sign`
+    schema:
+      $ref: '#/definitions/APIV1POSTProgramSignResponse'
+x-original-swagger-version: '2.0'

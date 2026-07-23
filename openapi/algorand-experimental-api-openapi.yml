@@ -1,0 +1,101 @@
+openapi: 3.0.1
+info:
+  contact:
+    email: contact@algorand.com
+    name: algorand
+    url: https://www.algorand.com/get-in-touch/contact
+  description: API endpoint for algod operations.
+  title: Algod REST API. common experimental API
+  version: 0.0.1
+servers:
+- url: http://localhost/
+- url: https://localhost/
+security:
+- api_key: []
+tags:
+- name: experimental
+paths:
+  /v2/experimental:
+    get:
+      operationId: ExperimentalCheck
+      responses:
+        '200':
+          content: {}
+          description: Experimental API enabled
+        '404':
+          content: {}
+          description: Experimental API not enabled
+        default:
+          content: {}
+          description: Unknown Error
+      summary: Returns OK if experimental API is enabled.
+      tags:
+      - experimental
+  /v2/transactions/async:
+    post:
+      operationId: RawTransactionAsync
+      requestBody:
+        content:
+          application/x-binary:
+            schema:
+              format: binary
+              type: string
+        description: The byte encoded signed transaction to broadcast to network
+        required: true
+      responses:
+        '200':
+          content: {}
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: 'Bad Request - Malformed Algorand transaction '
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Invalid API Token
+        '404':
+          content: {}
+          description: Developer or Experimental API not enabled
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Internal Error
+        '503':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Service Temporarily Unavailable
+        default:
+          content: {}
+          description: Unknown Error
+      summary: Fast track for broadcasting a raw transaction or transaction group to the network through the tx handler without performing most of the checks and reporting detailed errors. Should be only used for development and performance testing.
+      tags:
+      - experimental
+      x-codegen-request-body-name: rawtxn
+components:
+  schemas:
+    ErrorResponse:
+      description: An error response with optional data field.
+      properties:
+        data:
+          properties: {}
+          type: object
+        message:
+          type: string
+      required:
+      - message
+      type: object
+  securitySchemes:
+    api_key:
+      description: Generated header parameter. This token can be generated using the Goal command line tool. Example value ='b7e384d0317b8050ce45900a94a1931e28540e1f69b2d242b424659c341b4697'
+      in: header
+      name: X-Algo-API-Token
+      type: apiKey
+x-original-swagger-version: '2.0'

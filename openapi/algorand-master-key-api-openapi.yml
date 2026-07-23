@@ -1,0 +1,85 @@
+openapi: 3.0.1
+info:
+  contact:
+    email: contact@algorand.com
+    name: algorand
+    url: https://www.algorand.com/get-in-touch/contact
+  description: API endpoint for algod operations.
+  title: Algod REST API. common Master Key API
+  version: 0.0.1
+servers:
+- url: http://localhost/
+- url: https://localhost/
+security:
+- api_key: []
+tags:
+- name: Master Key
+paths:
+  /v1/master-key/export:
+    post:
+      description: 'Export the master derivation key from the wallet. This key is a master "backup" key for the underlying wallet. With it, you can regenerate all of the wallets that have been generated with this wallet''s `POST /v1/key` endpoint. This key will not allow you to recover keys imported from other wallets, however.
+
+        '
+      produces:
+      - application/json
+      summary: Export the master derivation key from a wallet
+      operationId: ExportMasterKey
+      parameters:
+      - name: Export Master Key Request
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/ExportMasterKeyRequest'
+      responses:
+        '200':
+          $ref: '#/responses/ExportMasterKeyResponse'
+      tags:
+      - Master Key
+components:
+  securitySchemes:
+    api_key:
+      description: Generated header parameter. This token can be generated using the Goal command line tool. Example value ='b7e384d0317b8050ce45900a94a1931e28540e1f69b2d242b424659c341b4697'
+      in: header
+      name: X-Algo-API-Token
+      type: apiKey
+definitions:
+  ExportMasterKeyRequest:
+    description: APIV1POSTMasterKeyExportRequest is the request for `POST /v1/master-key/export`
+    type: object
+    properties:
+      wallet_handle_token:
+        type: string
+        x-go-name: WalletHandleToken
+      wallet_password:
+        type: string
+        x-go-name: WalletPassword
+    x-go-name: APIV1POSTMasterKeyExportRequest
+    x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+  APIV1POSTMasterKeyExportResponse:
+    description: 'APIV1POSTMasterKeyExportResponse is the response to `POST /v1/master-key/export`
+
+      friendly:ExportMasterKeyResponse'
+    type: object
+    properties:
+      error:
+        type: boolean
+        x-go-name: Error
+      master_derivation_key:
+        $ref: '#/definitions/MasterDerivationKey'
+      message:
+        type: string
+        x-go-name: Message
+    x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+  MasterDerivationKey:
+    description: MasterDerivationKey is used to derive ed25519 keys for use in wallets
+    type: array
+    items:
+      type: integer
+      format: uint8
+    x-go-package: github.com/algorand/go-algorand/crypto
+responses:
+  ExportMasterKeyResponse:
+    description: Response to `POST /v1/master-key/export`
+    schema:
+      $ref: '#/definitions/APIV1POSTMasterKeyExportResponse'
+x-original-swagger-version: '2.0'

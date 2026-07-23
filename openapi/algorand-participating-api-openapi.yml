@@ -1,0 +1,886 @@
+openapi: 3.0.1
+info:
+  contact:
+    email: contact@algorand.com
+    name: algorand
+    url: https://www.algorand.com/get-in-touch/contact
+  description: API endpoint for algod operations.
+  title: Algod REST API. common participating API
+  version: 0.0.1
+servers:
+- url: http://localhost/
+- url: https://localhost/
+security:
+- api_key: []
+tags:
+- name: participating
+paths:
+  /v2/accounts/{address}/transactions/pending:
+    get:
+      description: Get the list of pending transactions by address, sorted by priority, in decreasing order, truncated at the end at MAX. If MAX = 0, returns all pending transactions.
+      operationId: GetPendingTransactionsByAddress
+      parameters:
+      - description: An account public key.
+        in: path
+        name: address
+        required: true
+        schema:
+          pattern: '[A-Z0-9]{58}'
+          type: string
+          x-go-type: basics.Address
+        x-go-type: basics.Address
+      - description: Truncated number of transactions to display. If max=0, returns all pending txns.
+        in: query
+        name: max
+        schema:
+          type: integer
+          x-go-type: uint64
+        x-go-type: uint64
+      - description: Configures whether the response object is JSON or MessagePack encoded. If not provided, defaults to JSON.
+        in: query
+        name: format
+        schema:
+          enum:
+          - json
+          - msgpack
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: PendingTransactions is an array of signed transactions exactly as they were submitted.
+                properties:
+                  top-transactions:
+                    description: An array of signed transaction objects.
+                    items:
+                      properties: {}
+                      type: object
+                      x-algorand-format: SignedTransaction
+                    type: array
+                  total-transactions:
+                    description: Total number of transactions in the pool.
+                    type: integer
+                required:
+                - top-transactions
+                - total-transactions
+                type: object
+            application/msgpack:
+              schema:
+                description: PendingTransactions is an array of signed transactions exactly as they were submitted.
+                properties:
+                  top-transactions:
+                    description: An array of signed transaction objects.
+                    items:
+                      properties: {}
+                      type: object
+                      x-algorand-format: SignedTransaction
+                    type: array
+                  total-transactions:
+                    description: Total number of transactions in the pool.
+                    type: integer
+                required:
+                - top-transactions
+                - total-transactions
+                type: object
+          description: A potentially truncated list of transactions currently in the node's transaction pool. You can compute whether or not the list is truncated if the number of elements in the **top-transactions** array is fewer than **total-transactions**.
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/msgpack:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Max must be a non-negative integer
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/msgpack:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Invalid API Token
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/msgpack:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Internal Error
+        '503':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/msgpack:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Service Temporarily Unavailable
+        default:
+          content: {}
+          description: Unknown Error
+      summary: Get a list of unconfirmed transactions currently in the transaction pool by address.
+      tags:
+      - participating
+  /v2/participation:
+    get:
+      description: Return a list of participation keys
+      operationId: GetParticipationKeys
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ParticipationKey'
+                type: array
+          description: A list of participation keys
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Invalid API Token
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Participation Key Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Internal Error
+        default:
+          content: {}
+          description: Unknown Error
+      summary: Return a list of participation keys
+      tags:
+      - participating
+    post:
+      operationId: AddParticipationKey
+      requestBody:
+        content:
+          application/msgpack:
+            schema:
+              format: binary
+              type: string
+        description: The participation key to add to the node
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  partId:
+                    description: encoding of the participation ID.
+                    type: string
+                required:
+                - partId
+                type: object
+          description: Participation ID of the submission
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Invalid API Token
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Participation Key Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Internal Error
+        '503':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Service Temporarily Unavailable
+        default:
+          content: {}
+          description: Unknown Error
+      summary: Add a participation key to the node
+      tags:
+      - participating
+      x-codegen-request-body-name: participationkey
+  /v2/participation/generate/{address}:
+    post:
+      operationId: GenerateParticipationKeys
+      parameters:
+      - description: An account public key.
+        in: path
+        name: address
+        required: true
+        schema:
+          pattern: '[A-Z0-9]{58}'
+          type: string
+          x-go-type: basics.Address
+        x-go-type: basics.Address
+      - description: Key dilution for two-level participation keys (defaults to sqrt of validity window).
+        in: query
+        name: dilution
+        schema:
+          format: uint64
+          type: integer
+      - description: First round for participation key.
+        in: query
+        name: first
+        required: true
+        schema:
+          format: uint64
+          type: integer
+          x-go-type: basics.Round
+        x-go-type: basics.Round
+      - description: Last round for participation key.
+        in: query
+        name: last
+        required: true
+        schema:
+          format: uint64
+          type: integer
+          x-go-type: basics.Round
+        x-go-type: basics.Round
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: string
+          description: An empty JSON object is returned if the generation process was started. Currently no status is available.
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Invalid API Token
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Internal Error
+        '503':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Service Temporarily Unavailable
+        default:
+          content: {}
+          description: Unknown Error
+      summary: Generate and install participation keys to the node.
+      tags:
+      - participating
+  /v2/participation/{participation-id}:
+    delete:
+      description: Delete a given participation key by ID
+      operationId: DeleteParticipationKeyByID
+      parameters:
+      - in: path
+        name: participation-id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content: {}
+          description: Participation key got deleted by ID
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Invalid API Token
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Participation Key Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Internal Error
+        default:
+          content: {}
+          description: Unknown Error
+      summary: Delete a given participation key by ID
+      tags:
+      - participating
+    get:
+      description: Given a participation ID, return information about that participation key
+      operationId: GetParticipationKeyByID
+      parameters:
+      - in: path
+        name: participation-id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParticipationKey'
+          description: A detailed description of a participation ID
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Invalid API Token
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Participation Key Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Internal Error
+        default:
+          content: {}
+          description: Unknown Error
+      summary: Get participation key info given a participation ID
+      tags:
+      - participating
+    post:
+      description: Given a participation ID, append state proof keys to a particular set of participation keys
+      operationId: AppendKeys
+      parameters:
+      - in: path
+        name: participation-id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/msgpack:
+            schema:
+              format: binary
+              type: string
+        description: The state proof keys to add to an existing participation ID
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParticipationKey'
+          description: A detailed description of a participation ID
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Invalid API Token
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Participation Key Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Internal Error
+        default:
+          content: {}
+          description: Unknown Error
+      summary: Append state proof keys to a participation key
+      tags:
+      - participating
+      x-codegen-request-body-name: keymap
+  /v2/transactions:
+    post:
+      operationId: RawTransaction
+      requestBody:
+        content:
+          application/x-binary:
+            schema:
+              format: binary
+              type: string
+        description: The byte encoded signed transaction to broadcast to network
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  txId:
+                    description: encoding of the transaction hash.
+                    type: string
+                required:
+                - txId
+                type: object
+          description: Transaction ID of the submission.
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: 'Bad Request - Malformed Algorand transaction '
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Invalid API Token
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Internal Error
+        '503':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Service Temporarily Unavailable
+        default:
+          content: {}
+          description: Unknown Error
+      summary: Broadcasts a raw transaction or transaction group to the network.
+      tags:
+      - participating
+      x-codegen-request-body-name: rawtxn
+  /v2/transactions/pending:
+    get:
+      description: Get the list of pending transactions, sorted by priority, in decreasing order, truncated at the end at MAX. If MAX = 0, returns all pending transactions.
+      operationId: GetPendingTransactions
+      parameters:
+      - description: Truncated number of transactions to display. If max=0, returns all pending txns.
+        in: query
+        name: max
+        schema:
+          type: integer
+          x-go-type: uint64
+        x-go-type: uint64
+      - description: Configures whether the response object is JSON or MessagePack encoded. If not provided, defaults to JSON.
+        in: query
+        name: format
+        schema:
+          enum:
+          - json
+          - msgpack
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: PendingTransactions is an array of signed transactions exactly as they were submitted.
+                properties:
+                  top-transactions:
+                    description: An array of signed transaction objects.
+                    items:
+                      properties: {}
+                      type: object
+                      x-algorand-format: SignedTransaction
+                    type: array
+                  total-transactions:
+                    description: Total number of transactions in the pool.
+                    type: integer
+                required:
+                - top-transactions
+                - total-transactions
+                type: object
+            application/msgpack:
+              schema:
+                description: PendingTransactions is an array of signed transactions exactly as they were submitted.
+                properties:
+                  top-transactions:
+                    description: An array of signed transaction objects.
+                    items:
+                      properties: {}
+                      type: object
+                      x-algorand-format: SignedTransaction
+                    type: array
+                  total-transactions:
+                    description: Total number of transactions in the pool.
+                    type: integer
+                required:
+                - top-transactions
+                - total-transactions
+                type: object
+          description: A potentially truncated list of transactions currently in the node's transaction pool. You can compute whether or not the list is truncated if the number of elements in the **top-transactions** array is fewer than **total-transactions**.
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/msgpack:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Invalid API Token
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/msgpack:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Internal Error
+        '503':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/msgpack:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Service Temporarily Unavailable
+        default:
+          content: {}
+          description: Unknown Error
+      summary: Get a list of unconfirmed transactions currently in the transaction pool.
+      tags:
+      - participating
+  /v2/transactions/pending/{txid}:
+    get:
+      description: 'Given a transaction ID of a recently submitted transaction, it returns information about it.  There are several cases when this might succeed:
+
+        - transaction committed (committed round > 0)
+
+        - transaction still in the pool (committed round = 0, pool error = "")
+
+        - transaction removed from pool due to error (committed round = 0, pool error != "")
+
+        Or the transaction may have happened sufficiently long ago that the node no longer remembers it, and this will return an error.'
+      operationId: PendingTransactionInformation
+      parameters:
+      - description: A transaction ID
+        in: path
+        name: txid
+        required: true
+        schema:
+          pattern: '[A-Z0-9]+'
+          type: string
+      - description: Configures whether the response object is JSON or MessagePack encoded. If not provided, defaults to JSON.
+        in: query
+        name: format
+        schema:
+          enum:
+          - json
+          - msgpack
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PendingTransactionResponse'
+            application/msgpack:
+              schema:
+                $ref: '#/components/schemas/PendingTransactionResponse'
+          description: 'Given a transaction ID of a recently submitted transaction, it returns information about it.  There are several cases when this might succeed:
+
+            - transaction committed (committed round > 0)
+
+            - transaction still in the pool (committed round = 0, pool error = "")
+
+            - transaction removed from pool due to error (committed round = 0, pool error != "")
+
+
+            Or the transaction may have happened sufficiently long ago that the node no longer remembers it, and this will return an error.'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/msgpack:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/msgpack:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Invalid API Token
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/msgpack:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Transaction Not Found
+        default:
+          content: {}
+          description: Unknown Error
+      summary: Get a specific pending transaction.
+      tags:
+      - participating
+components:
+  schemas:
+    EvalDelta:
+      description: Represents a TEAL value delta.
+      properties:
+        action:
+          description: \[at\] delta action.
+          format: uint64
+          type: integer
+        bytes:
+          description: \[bs\] bytes value.
+          type: string
+        uint:
+          description: \[ui\] uint value.
+          format: uint64
+          type: integer
+          x-algorand-format: uint64
+      required:
+      - action
+      type: object
+    ErrorResponse:
+      description: An error response with optional data field.
+      properties:
+        data:
+          properties: {}
+          type: object
+        message:
+          type: string
+      required:
+      - message
+      type: object
+    PendingTransactionResponse:
+      description: Details about a pending transaction. If the transaction was recently confirmed, includes confirmation details like the round and reward details.
+      properties:
+        application-index:
+          description: The application index if the transaction was found and it created an application.
+          type: integer
+          x-go-type: basics.AppIndex
+        asset-closing-amount:
+          description: The number of the asset's unit that were transferred to the close-to address.
+          type: integer
+          x-go-type: uint64
+        asset-index:
+          description: The asset index if the transaction was found and it created an asset.
+          type: integer
+          x-go-type: basics.AssetIndex
+        close-rewards:
+          description: Rewards in microalgos applied to the close remainder to account.
+          type: integer
+        closing-amount:
+          description: Closing amount for the transaction.
+          type: integer
+          x-go-type: uint64
+        confirmed-round:
+          description: The round where this transaction was confirmed, if present.
+          type: integer
+          x-go-type: basics.Round
+        global-state-delta:
+          $ref: '#/components/schemas/StateDelta'
+        inner-txns:
+          description: Inner transactions produced by application execution.
+          items:
+            $ref: '#/components/schemas/PendingTransactionResponse'
+          type: array
+        local-state-delta:
+          description: Local state key/value changes for the application being executed by this transaction.
+          items:
+            $ref: '#/components/schemas/AccountStateDelta'
+          type: array
+        logs:
+          description: Logs for the application being executed by this transaction.
+          items:
+            format: byte
+            pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+            type: string
+          type: array
+        pool-error:
+          description: 'Indicates that the transaction was kicked out of this node''s transaction pool (and specifies why that happened).  An empty string indicates the transaction wasn''t kicked out of this node''s txpool due to an error.
+
+            '
+          type: string
+        receiver-rewards:
+          description: Rewards in microalgos applied to the receiver account.
+          type: integer
+          x-go-type: uint64
+        sender-rewards:
+          description: Rewards in microalgos applied to the sender account.
+          type: integer
+          x-go-type: uint64
+        txn:
+          description: The raw signed transaction.
+          properties: {}
+          type: object
+          x-algorand-format: SignedTransaction
+      required:
+      - pool-error
+      - txn
+      type: object
+    AccountStateDelta:
+      description: Application state delta.
+      properties:
+        address:
+          type: string
+        delta:
+          $ref: '#/components/schemas/StateDelta'
+      required:
+      - address
+      - delta
+      type: object
+    AccountParticipation:
+      description: AccountParticipation describes the parameters used by this account in consensus protocol.
+      properties:
+        selection-participation-key:
+          description: \[sel\] Selection public key (if any) currently registered for this round.
+          format: byte
+          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          type: string
+        state-proof-key:
+          description: \[stprf\] Root of the state proof key (if any)
+          format: byte
+          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          type: string
+        vote-first-valid:
+          description: \[voteFst\] First round for which this participation is valid.
+          type: integer
+          x-go-type: basics.Round
+        vote-key-dilution:
+          description: \[voteKD\] Number of subkeys in each batch of participation keys.
+          type: integer
+          x-go-type: uint64
+        vote-last-valid:
+          description: \[voteLst\] Last round for which this participation is valid.
+          type: integer
+          x-go-type: basics.Round
+        vote-participation-key:
+          description: \[vote\] root participation public key (if any) currently registered for this round.
+          format: byte
+          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          type: string
+      required:
+      - selection-participation-key
+      - vote-first-valid
+      - vote-key-dilution
+      - vote-last-valid
+      - vote-participation-key
+      type: object
+    ParticipationKey:
+      description: Represents a participation key used by the node.
+      properties:
+        address:
+          description: Address the key was generated for.
+          type: string
+          x-algorand-format: Address
+        effective-first-valid:
+          description: When registered, this is the first round it may be used.
+          type: integer
+          x-algorand-format: uint64
+          x-go-type: basics.Round
+        effective-last-valid:
+          description: When registered, this is the last round it may be used.
+          type: integer
+          x-algorand-format: uint64
+          x-go-type: basics.Round
+        id:
+          description: The key's ParticipationID.
+          type: string
+        key:
+          $ref: '#/components/schemas/AccountParticipation'
+        last-block-proposal:
+          description: Round when this key was last used to propose a block.
+          type: integer
+          x-go-type: basics.Round
+        last-state-proof:
+          description: Round when this key was last used to generate a state proof.
+          type: integer
+          x-go-type: basics.Round
+        last-vote:
+          description: Round when this key was last used to vote.
+          type: integer
+          x-go-type: basics.Round
+      required:
+      - address
+      - id
+      - key
+      type: object
+    EvalDeltaKeyValue:
+      description: Key-value pairs for StateDelta.
+      properties:
+        key:
+          type: string
+        value:
+          $ref: '#/components/schemas/EvalDelta'
+      required:
+      - key
+      - value
+      type: object
+    StateDelta:
+      description: Application state delta.
+      items:
+        $ref: '#/components/schemas/EvalDeltaKeyValue'
+      type: array
+  securitySchemes:
+    api_key:
+      description: Generated header parameter. This token can be generated using the Goal command line tool. Example value ='b7e384d0317b8050ce45900a94a1931e28540e1f69b2d242b424659c341b4697'
+      in: header
+      name: X-Algo-API-Token
+      type: apiKey
+x-original-swagger-version: '2.0'

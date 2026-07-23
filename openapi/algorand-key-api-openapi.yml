@@ -1,0 +1,289 @@
+openapi: 3.0.1
+info:
+  contact:
+    email: contact@algorand.com
+    name: algorand
+    url: https://www.algorand.com/get-in-touch/contact
+  description: API endpoint for algod operations.
+  title: Algod REST API. common Key API
+  version: 0.0.1
+servers:
+- url: http://localhost/
+- url: https://localhost/
+security:
+- api_key: []
+tags:
+- name: Key
+paths:
+  /v1/key:
+    post:
+      description: 'Generates the next key in the deterministic key sequence (as determined by the master derivation key) and adds it to the wallet, returning the public key.
+
+        '
+      produces:
+      - application/json
+      summary: Generate a key
+      operationId: GenerateKey
+      parameters:
+      - name: Generate Key Request
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/GenerateKeyRequest'
+      responses:
+        '200':
+          $ref: '#/responses/GenerateKeyResponse'
+      tags:
+      - Key
+    delete:
+      description: Deletes the key with the passed public key from the wallet.
+      produces:
+      - application/json
+      summary: Delete a key
+      operationId: DeleteKey
+      parameters:
+      - name: Delete Key Request
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/DeleteKeyRequest'
+      responses:
+        '200':
+          $ref: '#/responses/DeleteKeyResponse'
+      tags:
+      - Key
+  /v1/key/export:
+    post:
+      description: Export the secret key associated with the passed public key.
+      produces:
+      - application/json
+      summary: Export a key
+      operationId: ExportKey
+      parameters:
+      - name: Export Key Request
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/ExportKeyRequest'
+      responses:
+        '200':
+          $ref: '#/responses/ExportKeyResponse'
+      tags:
+      - Key
+  /v1/key/import:
+    post:
+      description: 'Import an externally generated key into the wallet. Note that if you wish to back up the imported key, you must do so by backing up the entire wallet database, because imported keys were not derived from the wallet''s master derivation key.
+
+        '
+      produces:
+      - application/json
+      summary: Import a key
+      operationId: ImportKey
+      parameters:
+      - name: Import Key Request
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/ImportKeyRequest'
+      responses:
+        '200':
+          $ref: '#/responses/ImportKeyResponse'
+      tags:
+      - Key
+  /v1/key/list:
+    post:
+      description: Lists all of the public keys in this wallet. All of them have a stored private key.
+      produces:
+      - application/json
+      summary: List keys in wallet
+      operationId: ListKeysInWallet
+      parameters:
+      - name: List Keys Request
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/ListKeysRequest'
+      responses:
+        '200':
+          $ref: '#/responses/ListKeysResponse'
+      tags:
+      - Key
+components:
+  securitySchemes:
+    api_key:
+      description: Generated header parameter. This token can be generated using the Goal command line tool. Example value ='b7e384d0317b8050ce45900a94a1931e28540e1f69b2d242b424659c341b4697'
+      in: header
+      name: X-Algo-API-Token
+      type: apiKey
+definitions:
+  ed25519PrivateKey:
+    type: array
+    items:
+      type: integer
+      format: uint8
+    x-go-package: github.com/algorand/go-algorand/crypto
+  PrivateKey:
+    description: PrivateKey is an exported ed25519PrivateKey
+    $ref: '#/definitions/ed25519PrivateKey'
+  APIV1DELETEKeyResponse:
+    description: 'APIV1DELETEKeyResponse is the response to `DELETE /v1/key`
+
+      friendly:DeleteKeyResponse'
+    type: object
+    properties:
+      error:
+        type: boolean
+        x-go-name: Error
+      message:
+        type: string
+        x-go-name: Message
+    x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+  DeleteKeyRequest:
+    description: APIV1DELETEKeyRequest is the request for `DELETE /v1/key`
+    type: object
+    properties:
+      address:
+        type: string
+        x-go-name: Address
+      wallet_handle_token:
+        type: string
+        x-go-name: WalletHandleToken
+      wallet_password:
+        type: string
+        x-go-name: WalletPassword
+    x-go-name: APIV1DELETEKeyRequest
+    x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+  APIV1POSTKeyImportResponse:
+    description: 'APIV1POSTKeyImportResponse is the response to `POST /v1/key/import`
+
+      friendly:ImportKeyResponse'
+    type: object
+    properties:
+      address:
+        type: string
+        x-go-name: Address
+      error:
+        type: boolean
+        x-go-name: Error
+      message:
+        type: string
+        x-go-name: Message
+    x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+  APIV1POSTKeyExportResponse:
+    description: 'APIV1POSTKeyExportResponse is the response to `POST /v1/key/export`
+
+      friendly:ExportKeyResponse'
+    type: object
+    properties:
+      error:
+        type: boolean
+        x-go-name: Error
+      message:
+        type: string
+        x-go-name: Message
+      private_key:
+        $ref: '#/definitions/PrivateKey'
+    x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+  APIV1POSTKeyListResponse:
+    description: 'APIV1POSTKeyListResponse is the response to `POST /v1/key/list`
+
+      friendly:ListKeysResponse'
+    type: object
+    properties:
+      addresses:
+        type: array
+        items:
+          type: string
+        x-go-name: Addresses
+      error:
+        type: boolean
+        x-go-name: Error
+      message:
+        type: string
+        x-go-name: Message
+    x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+  APIV1POSTKeyResponse:
+    description: 'APIV1POSTKeyResponse is the response to `POST /v1/key`
+
+      friendly:GenerateKeyResponse'
+    type: object
+    properties:
+      address:
+        type: string
+        x-go-name: Address
+      error:
+        type: boolean
+        x-go-name: Error
+      message:
+        type: string
+        x-go-name: Message
+    x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+  ListKeysRequest:
+    description: APIV1POSTKeyListRequest is the request for `POST /v1/key/list`
+    type: object
+    properties:
+      wallet_handle_token:
+        type: string
+        x-go-name: WalletHandleToken
+    x-go-name: APIV1POSTKeyListRequest
+    x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+  ImportKeyRequest:
+    description: APIV1POSTKeyImportRequest is the request for `POST /v1/key/import`
+    type: object
+    properties:
+      private_key:
+        $ref: '#/definitions/PrivateKey'
+      wallet_handle_token:
+        type: string
+        x-go-name: WalletHandleToken
+    x-go-name: APIV1POSTKeyImportRequest
+    x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+  ExportKeyRequest:
+    description: APIV1POSTKeyExportRequest is the request for `POST /v1/key/export`
+    type: object
+    properties:
+      address:
+        type: string
+        x-go-name: Address
+      wallet_handle_token:
+        type: string
+        x-go-name: WalletHandleToken
+      wallet_password:
+        type: string
+        x-go-name: WalletPassword
+    x-go-name: APIV1POSTKeyExportRequest
+    x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+  GenerateKeyRequest:
+    description: APIV1POSTKeyRequest is the request for `POST /v1/key`
+    type: object
+    properties:
+      display_mnemonic:
+        type: boolean
+        x-go-name: DisplayMnemonic
+      wallet_handle_token:
+        type: string
+        x-go-name: WalletHandleToken
+    x-go-name: APIV1POSTKeyRequest
+    x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+responses:
+  DeleteKeyResponse:
+    description: Response to `DELETE /v1/key`
+    schema:
+      $ref: '#/definitions/APIV1DELETEKeyResponse'
+  ImportKeyResponse:
+    description: Response to `POST /v1/key/import`
+    schema:
+      $ref: '#/definitions/APIV1POSTKeyImportResponse'
+  ExportKeyResponse:
+    description: Response to `POST /v1/key/export`
+    schema:
+      $ref: '#/definitions/APIV1POSTKeyExportResponse'
+  ListKeysResponse:
+    description: Response to `POST /v1/key/list`
+    schema:
+      $ref: '#/definitions/APIV1POSTKeyListResponse'
+  GenerateKeyResponse:
+    description: Response to `POST /v1/key`
+    schema:
+      $ref: '#/definitions/APIV1POSTKeyResponse'
+x-original-swagger-version: '2.0'
