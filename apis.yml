@@ -2,7 +2,20 @@ aid: algorand
 url: https://raw.githubusercontent.com/api-evangelist/algorand/refs/heads/main/apis.yml
 name: Algorand
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: open
+  trial: false
+  try_now: true
+  public: true
+  label: Freemium · Open access
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/algorand.png
 tags:
 - Blockchain
 - Cryptocurrency
@@ -23,58 +36,6 @@ created: '2026-06-13'
 modified: '2026-06-13'
 specificationVersion: '0.19'
 apis:
-- aid: algorand:algorand-algod-api
-  name: Algorand Algod REST API
-  tags:
-  - Blockchain
-  - Accounts
-  - Assets
-  - Transactions
-  - Blocks
-  - Smart Contracts
-  - State Proofs
-  humanURL: https://dev.algorand.co/reference/rest-api/algod/
-  baseURL: https://mainnet-api.4160.nodely.dev
-  properties:
-  - url: https://dev.algorand.co/reference/rest-api/algod/
-    type: Documentation
-  - url: https://raw.githubusercontent.com/algorand/go-algorand/master/daemon/algod/api/algod.oas3.yml
-    type: OpenAPI
-  - url: graphql/algorand-graphql.md
-    type: GraphQL
-  description: The Algod REST API is the primary interface for interacting with a
-    live Algorand node. It exposes endpoints for querying account information, asset
-    details, application (smart contract) state, pending and confirmed transactions,
-    blocks, and state proofs. Developers can submit signed raw transactions, simulate
-    transaction groups, compile and disassemble TEAL programs, manage catchpoint catchups,
-    and inspect ledger supply. Authentication uses an X-Algo-API-Token header. Public
-    archival nodes (e.g. mainnet-api.4160.nodely.dev) are freely accessible without
-    a token on the free tier.
-- aid: algorand:algorand-indexer-api
-  name: Algorand Indexer REST API
-  tags:
-  - Blockchain
-  - Analytics
-  - Accounts
-  - Assets
-  - Transactions
-  - Blocks
-  - Applications
-  humanURL: https://dev.algorand.co/reference/rest-api/indexer/
-  baseURL: https://mainnet-idx.4160.nodely.dev
-  properties:
-  - url: https://dev.algorand.co/reference/rest-api/indexer/
-    type: Documentation
-  - url: https://raw.githubusercontent.com/algorand/indexer/main/api/indexer.oas3.yml
-    type: OpenAPI
-  description: The Algorand Indexer 2.0 API is a ledger analytics REST API backed
-    by a PostgreSQL database populated by the algorand-indexer daemon. It provides
-    rich historical search across transactions, accounts, assets, applications, blocks,
-    and block headers with flexible query parameters including address, asset ID,
-    application ID, round ranges, note prefixes, and more. Responses include cursor-based
-    pagination for traversing large result sets. Public archival indexer nodes are
-    available at mainnet-idx.4160.nodely.dev (and legacy algonode.cloud endpoints)
-    free of charge.
 - aid: algorand:algorand-kmd-api
   name: Algorand KMD REST API
   tags:
@@ -87,14 +48,303 @@ apis:
   properties:
   - url: https://dev.algorand.co/reference/rest-api/overview/
     type: Documentation
-  description: The Key Management Daemon (KMD) REST API provides local key storage
-    and transaction signing for Algorand nodes. It exposes wallet management, key
-    generation, and signing endpoints through a locally-running daemon. Authentication
-    uses an X-KMD-API-Token header with a token stored in the node's data directory.
-    KMD is intended for node operators and local development workflows; production
-    applications typically use external signing solutions or the AlgoKit SDK utilities
-    instead.
+  description: >-
+    The Key Management Daemon (KMD) REST API provides local key storage and transaction signing for Algorand
+    nodes. It exposes wallet management, key generation, and signing endpoints through a locally-running
+    daemon. Authentication uses an X-KMD-API-Token header with a token stored in the node's data directory.
+    KMD is intended for node operators and local development workflows; production applications typically
+    use external signing solutions or the AlgoKit SDK utilities instead.
+- aid: algorand:algorand-common-api
+  name: Algorand common API
+  description: The common API from Algorand — 6 operation(s) for common.
+  humanURL: https://dev.algorand.co/reference/rest-api/algod/
+  baseURL: https://mainnet-api.4160.nodely.dev
+  tags:
+  - common
+  properties:
+  - type: OpenAPI
+    url: openapi/algorand-common-api-openapi.yml
+  - type: Documentation
+    url: https://dev.algorand.co/reference/rest-api/algod/
+  - type: GraphQL
+    url: graphql/algorand-graphql.md
+  - type: Documentation
+    url: https://dev.algorand.co/reference/rest-api/indexer/
+- aid: algorand:algorand-data-api
+  name: Algorand data API
+  description: The data API from Algorand — 2 operation(s) for data.
+  humanURL: https://dev.algorand.co/reference/rest-api/algod/
+  baseURL: https://mainnet-api.4160.nodely.dev
+  tags:
+  - data
+  properties:
+  - type: OpenAPI
+    url: openapi/algorand-data-api-openapi.yml
+  - type: Documentation
+    url: https://dev.algorand.co/reference/rest-api/algod/
+  - type: GraphQL
+    url: graphql/algorand-graphql.md
+  - type: Documentation
+    url: https://dev.algorand.co/reference/rest-api/indexer/
+- aid: algorand:algorand-experimental-api
+  name: Algorand experimental API
+  description: The experimental API from Algorand — 2 operation(s) for experimental.
+  humanURL: https://dev.algorand.co/reference/rest-api/algod/
+  baseURL: https://mainnet-api.4160.nodely.dev
+  tags:
+  - experimental
+  properties:
+  - type: OpenAPI
+    url: openapi/algorand-experimental-api-openapi.yml
+  - type: Documentation
+    url: https://dev.algorand.co/reference/rest-api/algod/
+  - type: GraphQL
+    url: graphql/algorand-graphql.md
+  - type: Documentation
+    url: https://dev.algorand.co/reference/rest-api/indexer/
+- aid: algorand:algorand-key-api
+  name: Algorand Key API
+  description: The Key API from Algorand — 4 operation(s) for key.
+  humanURL: https://dev.algorand.co/reference/rest-api/algod/
+  baseURL: https://mainnet-api.4160.nodely.dev
+  tags:
+  - Key
+  properties:
+  - type: OpenAPI
+    url: openapi/algorand-key-api-openapi.yml
+  - type: Documentation
+    url: https://dev.algorand.co/reference/rest-api/algod/
+  - type: GraphQL
+    url: graphql/algorand-graphql.md
+  - type: Documentation
+    url: https://dev.algorand.co/reference/rest-api/indexer/
+- aid: algorand:algorand-lookup-api
+  name: Algorand lookup API
+  description: The lookup API from Algorand — 14 operation(s) for lookup.
+  humanURL: https://dev.algorand.co/reference/rest-api/algod/
+  baseURL: https://mainnet-api.4160.nodely.dev
+  tags:
+  - lookup
+  properties:
+  - type: OpenAPI
+    url: openapi/algorand-lookup-api-openapi.yml
+  - type: Documentation
+    url: https://dev.algorand.co/reference/rest-api/algod/
+  - type: GraphQL
+    url: graphql/algorand-graphql.md
+  - type: Documentation
+    url: https://dev.algorand.co/reference/rest-api/indexer/
+- aid: algorand:algorand-master-key-api
+  name: Algorand Master Key API
+  description: The Master Key API from Algorand — 1 operation(s) for master key.
+  humanURL: https://dev.algorand.co/reference/rest-api/algod/
+  baseURL: https://mainnet-api.4160.nodely.dev
+  tags:
+  - Master Key
+  properties:
+  - type: OpenAPI
+    url: openapi/algorand-master-key-api-openapi.yml
+  - type: Documentation
+    url: https://dev.algorand.co/reference/rest-api/algod/
+  - type: GraphQL
+    url: graphql/algorand-graphql.md
+  - type: Documentation
+    url: https://dev.algorand.co/reference/rest-api/indexer/
+- aid: algorand:algorand-multisig-api
+  name: Algorand Multisig API
+  description: The Multisig API from Algorand — 6 operation(s) for multisig.
+  humanURL: https://dev.algorand.co/reference/rest-api/algod/
+  baseURL: https://mainnet-api.4160.nodely.dev
+  tags:
+  - Multisig
+  properties:
+  - type: OpenAPI
+    url: openapi/algorand-multisig-api-openapi.yml
+  - type: Documentation
+    url: https://dev.algorand.co/reference/rest-api/algod/
+  - type: GraphQL
+    url: graphql/algorand-graphql.md
+  - type: Documentation
+    url: https://dev.algorand.co/reference/rest-api/indexer/
+- aid: algorand:algorand-nonparticipating-api
+  name: Algorand nonparticipating API
+  description: The nonparticipating API from Algorand — 31 operation(s) for nonparticipating.
+  humanURL: https://dev.algorand.co/reference/rest-api/algod/
+  baseURL: https://mainnet-api.4160.nodely.dev
+  tags:
+  - nonparticipating
+  properties:
+  - type: OpenAPI
+    url: openapi/algorand-nonparticipating-api-openapi.yml
+  - type: Documentation
+    url: https://dev.algorand.co/reference/rest-api/algod/
+  - type: GraphQL
+    url: graphql/algorand-graphql.md
+  - type: Documentation
+    url: https://dev.algorand.co/reference/rest-api/indexer/
+- aid: algorand:algorand-participating-api
+  name: Algorand participating API
+  description: The participating API from Algorand — 7 operation(s) for participating.
+  humanURL: https://dev.algorand.co/reference/rest-api/algod/
+  baseURL: https://mainnet-api.4160.nodely.dev
+  tags:
+  - participating
+  properties:
+  - type: OpenAPI
+    url: openapi/algorand-participating-api-openapi.yml
+  - type: Documentation
+    url: https://dev.algorand.co/reference/rest-api/algod/
+  - type: GraphQL
+    url: graphql/algorand-graphql.md
+  - type: Documentation
+    url: https://dev.algorand.co/reference/rest-api/indexer/
+- aid: algorand:algorand-private-api
+  name: Algorand private API
+  description: The private API from Algorand — 7 operation(s) for private.
+  humanURL: https://dev.algorand.co/reference/rest-api/algod/
+  baseURL: https://mainnet-api.4160.nodely.dev
+  tags:
+  - private
+  properties:
+  - type: OpenAPI
+    url: openapi/algorand-private-api-openapi.yml
+  - type: Documentation
+    url: https://dev.algorand.co/reference/rest-api/algod/
+  - type: GraphQL
+    url: graphql/algorand-graphql.md
+  - type: Documentation
+    url: https://dev.algorand.co/reference/rest-api/indexer/
+- aid: algorand:algorand-program-api
+  name: Algorand Program API
+  description: The Program API from Algorand — 1 operation(s) for program.
+  humanURL: https://dev.algorand.co/reference/rest-api/algod/
+  baseURL: https://mainnet-api.4160.nodely.dev
+  tags:
+  - Program
+  properties:
+  - type: OpenAPI
+    url: openapi/algorand-program-api-openapi.yml
+  - type: Documentation
+    url: https://dev.algorand.co/reference/rest-api/algod/
+  - type: GraphQL
+    url: graphql/algorand-graphql.md
+  - type: Documentation
+    url: https://dev.algorand.co/reference/rest-api/indexer/
+- aid: algorand:algorand-public-api
+  name: Algorand public API
+  description: The public API from Algorand — 43 operation(s) for public.
+  humanURL: https://dev.algorand.co/reference/rest-api/algod/
+  baseURL: https://mainnet-api.4160.nodely.dev
+  tags:
+  - public
+  properties:
+  - type: OpenAPI
+    url: openapi/algorand-public-api-openapi.yml
+  - type: Documentation
+    url: https://dev.algorand.co/reference/rest-api/algod/
+  - type: GraphQL
+    url: graphql/algorand-graphql.md
+  - type: Documentation
+    url: https://dev.algorand.co/reference/rest-api/indexer/
+- aid: algorand:algorand-search-api
+  name: Algorand search API
+  description: The search API from Algorand — 6 operation(s) for search.
+  humanURL: https://dev.algorand.co/reference/rest-api/algod/
+  baseURL: https://mainnet-api.4160.nodely.dev
+  tags:
+  - search
+  properties:
+  - type: OpenAPI
+    url: openapi/algorand-search-api-openapi.yml
+  - type: Documentation
+    url: https://dev.algorand.co/reference/rest-api/algod/
+  - type: GraphQL
+    url: graphql/algorand-graphql.md
+  - type: Documentation
+    url: https://dev.algorand.co/reference/rest-api/indexer/
+- aid: algorand:algorand-swagger-json-api
+  name: Algorand Swagger.json API
+  description: The Swagger.json API from Algorand — 1 operation(s) for swagger.json.
+  humanURL: https://dev.algorand.co/reference/rest-api/algod/
+  baseURL: https://mainnet-api.4160.nodely.dev
+  tags:
+  - Swagger.json
+  properties:
+  - type: OpenAPI
+    url: openapi/algorand-swagger-json-api-openapi.yml
+  - type: Documentation
+    url: https://dev.algorand.co/reference/rest-api/algod/
+  - type: GraphQL
+    url: graphql/algorand-graphql.md
+  - type: Documentation
+    url: https://dev.algorand.co/reference/rest-api/indexer/
+- aid: algorand:algorand-transaction-api
+  name: Algorand Transaction API
+  description: The Transaction API from Algorand — 1 operation(s) for transaction.
+  humanURL: https://dev.algorand.co/reference/rest-api/algod/
+  baseURL: https://mainnet-api.4160.nodely.dev
+  tags:
+  - Transaction
+  properties:
+  - type: OpenAPI
+    url: openapi/algorand-transaction-api-openapi.yml
+  - type: Documentation
+    url: https://dev.algorand.co/reference/rest-api/algod/
+  - type: GraphQL
+    url: graphql/algorand-graphql.md
+  - type: Documentation
+    url: https://dev.algorand.co/reference/rest-api/indexer/
+- aid: algorand:algorand-versions-api
+  name: Algorand Versions API
+  description: The Versions API from Algorand — 1 operation(s) for versions.
+  humanURL: https://dev.algorand.co/reference/rest-api/algod/
+  baseURL: https://mainnet-api.4160.nodely.dev
+  tags:
+  - Versions
+  properties:
+  - type: OpenAPI
+    url: openapi/algorand-versions-api-openapi.yml
+  - type: Documentation
+    url: https://dev.algorand.co/reference/rest-api/algod/
+  - type: GraphQL
+    url: graphql/algorand-graphql.md
+  - type: Documentation
+    url: https://dev.algorand.co/reference/rest-api/indexer/
+- aid: algorand:algorand-wallet-api
+  name: Algorand Wallet API
+  description: The Wallet API from Algorand — 6 operation(s) for wallet.
+  humanURL: https://dev.algorand.co/reference/rest-api/algod/
+  baseURL: https://mainnet-api.4160.nodely.dev
+  tags:
+  - Wallet
+  properties:
+  - type: OpenAPI
+    url: openapi/algorand-wallet-api-openapi.yml
+  - type: Documentation
+    url: https://dev.algorand.co/reference/rest-api/algod/
+  - type: GraphQL
+    url: graphql/algorand-graphql.md
+  - type: Documentation
+    url: https://dev.algorand.co/reference/rest-api/indexer/
+- aid: algorand:algorand-wallets-api
+  name: Algorand Wallets API
+  description: The Wallets API from Algorand — 1 operation(s) for wallets.
+  humanURL: https://dev.algorand.co/reference/rest-api/algod/
+  baseURL: https://mainnet-api.4160.nodely.dev
+  tags:
+  - Wallets
+  properties:
+  - type: OpenAPI
+    url: openapi/algorand-wallets-api-openapi.yml
+  - type: Documentation
+    url: https://dev.algorand.co/reference/rest-api/algod/
+  - type: GraphQL
+    url: graphql/algorand-graphql.md
+  - type: Documentation
+    url: https://dev.algorand.co/reference/rest-api/indexer/
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/algorand/overview
 - type: AgenticAccess
   url: agentic-access/algorand-agentic-access.yml
 - type: DomainSecurity
