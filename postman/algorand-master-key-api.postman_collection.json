@@ -1,0 +1,130 @@
+{
+  "info": {
+    "_postman_id": "e5c9be9b-f23e-4ab2-be61-01da85e67f8e",
+    "name": "Algod REST API. common Master Key API",
+    "description": "API endpoint for algod operations.\n\nContact Support:\n Name: algorand\n Email: contact@algorand.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T00:25:44.000Z",
+    "updatedAt": "2026-07-28T00:25:45.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e5c9be9b-f23e-4ab2-be61-01da85e67f8e"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "master-key",
+          "item": [
+            {
+              "name": "export",
+              "item": [
+                {
+                  "name": "Export the master derivation key from a wallet",
+                  "id": "749a0b1c-5cab-4e22-a7d4-490e7fdb99c7",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/master-key/export",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "master-key",
+                        "export"
+                      ]
+                    },
+                    "description": "Export the master derivation key from the wallet. This key is a master \"backup\" key for the underlying wallet. With it, you can regenerate all of the wallets that have been generated with this wallet's `POST /v1/key` endpoint. This key will not allow you to recover keys imported from other wallets, however.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "6a2d6bbf-7b20-4efa-abb0-452420369a5b",
+                      "name": "200 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Algo-API-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/master-key/export",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "master-key",
+                            "export"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:25:45.000Z",
+                      "updatedAt": "2026-07-28T00:25:45.000Z",
+                      "uid": "35240-6a2d6bbf-7b20-4efa-abb0-452420369a5b"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T00:25:45.000Z",
+                  "updatedAt": "2026-07-28T00:25:45.000Z",
+                  "uid": "35240-749a0b1c-5cab-4e22-a7d4-490e7fdb99c7"
+                }
+              ],
+              "id": "c313112d-9826-4372-9334-053a6b6edd12",
+              "createdAt": "2026-07-28T00:25:45.000Z",
+              "updatedAt": "2026-07-28T00:25:45.000Z",
+              "uid": "35240-c313112d-9826-4372-9334-053a6b6edd12"
+            }
+          ],
+          "id": "d4cd67be-b557-4a2c-9f0d-7a042e8ea51e",
+          "createdAt": "2026-07-28T00:25:45.000Z",
+          "updatedAt": "2026-07-28T00:25:45.000Z",
+          "uid": "35240-d4cd67be-b557-4a2c-9f0d-7a042e8ea51e"
+        }
+      ],
+      "id": "b975d37b-ed87-4aea-8dd9-df5f2d03a23f",
+      "createdAt": "2026-07-28T00:25:45.000Z",
+      "updatedAt": "2026-07-28T00:25:45.000Z",
+      "uid": "35240-b975d37b-ed87-4aea-8dd9-df5f2d03a23f"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Algo-API-Token",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost/"
+    }
+  ]
+}

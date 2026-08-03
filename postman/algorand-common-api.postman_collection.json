@@ -1,0 +1,718 @@
+{
+  "info": {
+    "_postman_id": "033d7967-60d2-494f-a024-45e7efdcd2c1",
+    "name": "Algod REST API. common API",
+    "description": "API endpoint for algod operations.\n\nContact Support:\n Name: algorand\n Email: contact@algorand.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T00:25:38.000Z",
+    "updatedAt": "2026-07-28T00:25:38.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-033d7967-60d2-494f-a024-45e7efdcd2c1"
+  },
+  "item": [
+    {
+      "name": "genesis",
+      "item": [
+        {
+          "name": "Gets the genesis information.",
+          "id": "66e04963-8d3b-4e50-bdf8-fe7a388002d9",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/genesis",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "genesis"
+              ]
+            },
+            "description": "Returns the entire genesis file in json."
+          },
+          "response": [
+            {
+              "id": "d57e03b0-7fea-42c1-9369-17423b1105bb",
+              "name": "The genesis file in json.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Algo-API-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/genesis",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "genesis"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"alloc\": [\n    {\n      \"addr\": \"<string>\",\n      \"comment\": \"<string>\",\n      \"state\": {\n        \"algo\": \"<integer>\",\n        \"onl\": \"<integer>\",\n        \"sel\": \"<string>\",\n        \"stprf\": \"<string>\",\n        \"vote\": \"<string>\",\n        \"voteFst\": \"<integer>\",\n        \"voteKD\": \"<integer>\",\n        \"voteLst\": \"<integer>\"\n      }\n    },\n    {\n      \"addr\": \"<string>\",\n      \"comment\": \"<string>\",\n      \"state\": {\n        \"algo\": \"<integer>\",\n        \"onl\": \"<integer>\",\n        \"sel\": \"<string>\",\n        \"stprf\": \"<string>\",\n        \"vote\": \"<string>\",\n        \"voteFst\": \"<integer>\",\n        \"voteKD\": \"<integer>\",\n        \"voteLst\": \"<integer>\"\n      }\n    }\n  ],\n  \"fees\": \"<string>\",\n  \"id\": \"<string>\",\n  \"network\": \"<string>\",\n  \"proto\": \"<string>\",\n  \"rwd\": \"<string>\",\n  \"timestamp\": \"<long>\",\n  \"comment\": \"<string>\",\n  \"devmode\": \"<boolean>\"\n}",
+              "createdAt": "2026-07-28T00:25:38.000Z",
+              "updatedAt": "2026-07-28T00:25:38.000Z",
+              "uid": "35240-d57e03b0-7fea-42c1-9369-17423b1105bb"
+            },
+            {
+              "id": "05567f11-fe1d-4806-9ede-cb1706661367",
+              "name": "Unknown Error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Algo-API-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/genesis",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "genesis"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T00:25:38.000Z",
+              "updatedAt": "2026-07-28T00:25:38.000Z",
+              "uid": "35240-05567f11-fe1d-4806-9ede-cb1706661367"
+            }
+          ],
+          "createdAt": "2026-07-28T00:25:38.000Z",
+          "updatedAt": "2026-07-28T00:25:38.000Z",
+          "uid": "35240-66e04963-8d3b-4e50-bdf8-fe7a388002d9"
+        }
+      ],
+      "id": "ab630fee-1b61-4e11-b818-63df923f528f",
+      "createdAt": "2026-07-28T00:25:38.000Z",
+      "updatedAt": "2026-07-28T00:25:38.000Z",
+      "uid": "35240-ab630fee-1b61-4e11-b818-63df923f528f"
+    },
+    {
+      "name": "health",
+      "item": [
+        {
+          "name": "Returns OK if healthy.",
+          "id": "a7890d78-0693-426f-88b2-90cf6522b038",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/health",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "health"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "53cde795-abb1-4b6b-b164-9d326f6a61fa",
+              "name": "OK.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Algo-API-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/health",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "health"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T00:25:38.000Z",
+              "updatedAt": "2026-07-28T00:25:38.000Z",
+              "uid": "35240-53cde795-abb1-4b6b-b164-9d326f6a61fa"
+            },
+            {
+              "id": "fa30d5ca-e186-4025-aa9e-3856298ab36d",
+              "name": "Unknown Error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Algo-API-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/health",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "health"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T00:25:38.000Z",
+              "updatedAt": "2026-07-28T00:25:38.000Z",
+              "uid": "35240-fa30d5ca-e186-4025-aa9e-3856298ab36d"
+            }
+          ],
+          "createdAt": "2026-07-28T00:25:38.000Z",
+          "updatedAt": "2026-07-28T00:25:38.000Z",
+          "uid": "35240-a7890d78-0693-426f-88b2-90cf6522b038"
+        }
+      ],
+      "id": "caf8c607-afb9-408b-9b4a-10d187614584",
+      "createdAt": "2026-07-28T00:25:38.000Z",
+      "updatedAt": "2026-07-28T00:25:38.000Z",
+      "uid": "35240-caf8c607-afb9-408b-9b4a-10d187614584"
+    },
+    {
+      "name": "metrics",
+      "item": [
+        {
+          "name": "Return metrics about algod functioning.",
+          "id": "a08d2ab8-a948-4df4-b6e5-434e55fd1a2e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/metrics",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "metrics"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b1671bb6-c210-4676-a6ac-a9b3263b970b",
+              "name": "text with \\#-comments and key:value lines",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Algo-API-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/metrics",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "metrics"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T00:25:38.000Z",
+              "updatedAt": "2026-07-28T00:25:38.000Z",
+              "uid": "35240-b1671bb6-c210-4676-a6ac-a9b3263b970b"
+            },
+            {
+              "id": "980642f2-848d-4af2-8f7d-9a35a877dd4a",
+              "name": "metrics were compiled out",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Algo-API-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/metrics",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "metrics"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T00:25:38.000Z",
+              "updatedAt": "2026-07-28T00:25:38.000Z",
+              "uid": "35240-980642f2-848d-4af2-8f7d-9a35a877dd4a"
+            }
+          ],
+          "createdAt": "2026-07-28T00:25:38.000Z",
+          "updatedAt": "2026-07-28T00:25:38.000Z",
+          "uid": "35240-a08d2ab8-a948-4df4-b6e5-434e55fd1a2e"
+        }
+      ],
+      "id": "4cb68d9f-74f5-413c-a2fb-62dbee32b717",
+      "createdAt": "2026-07-28T00:25:38.000Z",
+      "updatedAt": "2026-07-28T00:25:38.000Z",
+      "uid": "35240-4cb68d9f-74f5-413c-a2fb-62dbee32b717"
+    },
+    {
+      "name": "ready",
+      "item": [
+        {
+          "name": "Returns OK if healthy and fully caught up.",
+          "id": "76feabac-b583-4367-a0bc-dcf123c444d7",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/ready",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "ready"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3ccdd7c9-151d-4280-9eb6-bfd868d15473",
+              "name": "OK.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Algo-API-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/ready",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "ready"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T00:25:38.000Z",
+              "updatedAt": "2026-07-28T00:25:38.000Z",
+              "uid": "35240-3ccdd7c9-151d-4280-9eb6-bfd868d15473"
+            },
+            {
+              "id": "b6aa5b69-d35d-42a9-ae40-4660cbbbaf22",
+              "name": "Internal Error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Algo-API-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/ready",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "ready"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T00:25:38.000Z",
+              "updatedAt": "2026-07-28T00:25:38.000Z",
+              "uid": "35240-b6aa5b69-d35d-42a9-ae40-4660cbbbaf22"
+            },
+            {
+              "id": "74c4e100-3380-44d4-aedb-b19d78cd911b",
+              "name": "Node not ready yet",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Algo-API-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/ready",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "ready"
+                  ]
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T00:25:38.000Z",
+              "updatedAt": "2026-07-28T00:25:38.000Z",
+              "uid": "35240-74c4e100-3380-44d4-aedb-b19d78cd911b"
+            },
+            {
+              "id": "d09fca13-75e6-4f45-88c9-03678821989f",
+              "name": "Unknown Error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Algo-API-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/ready",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "ready"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T00:25:38.000Z",
+              "updatedAt": "2026-07-28T00:25:38.000Z",
+              "uid": "35240-d09fca13-75e6-4f45-88c9-03678821989f"
+            }
+          ],
+          "createdAt": "2026-07-28T00:25:38.000Z",
+          "updatedAt": "2026-07-28T00:25:38.000Z",
+          "uid": "35240-76feabac-b583-4367-a0bc-dcf123c444d7"
+        }
+      ],
+      "id": "602503f0-cbc0-47df-b5d7-06eab2c909dd",
+      "createdAt": "2026-07-28T00:25:38.000Z",
+      "updatedAt": "2026-07-28T00:25:38.000Z",
+      "uid": "35240-602503f0-cbc0-47df-b5d7-06eab2c909dd"
+    },
+    {
+      "name": "swagger.json",
+      "item": [
+        {
+          "name": "Gets the current swagger spec.",
+          "id": "0cc9f429-36c9-4da4-8111-399c4e53e031",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/swagger.json",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "swagger.json"
+              ]
+            },
+            "description": "Returns the entire swagger spec in json."
+          },
+          "response": [
+            {
+              "id": "af65a44b-6fc1-4820-ba91-3102d2048bdc",
+              "name": "The current swagger spec",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Algo-API-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/swagger.json",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "swagger.json"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<string>",
+              "createdAt": "2026-07-28T00:25:38.000Z",
+              "updatedAt": "2026-07-28T00:25:38.000Z",
+              "uid": "35240-af65a44b-6fc1-4820-ba91-3102d2048bdc"
+            },
+            {
+              "id": "dbab7748-78ad-4f89-912e-10d7bafdb3d1",
+              "name": "Unknown Error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Algo-API-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/swagger.json",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "swagger.json"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T00:25:38.000Z",
+              "updatedAt": "2026-07-28T00:25:38.000Z",
+              "uid": "35240-dbab7748-78ad-4f89-912e-10d7bafdb3d1"
+            }
+          ],
+          "createdAt": "2026-07-28T00:25:38.000Z",
+          "updatedAt": "2026-07-28T00:25:38.000Z",
+          "uid": "35240-0cc9f429-36c9-4da4-8111-399c4e53e031"
+        }
+      ],
+      "id": "8d18c2bf-e0b3-4204-bda0-1125cb0377ef",
+      "createdAt": "2026-07-28T00:25:38.000Z",
+      "updatedAt": "2026-07-28T00:25:38.000Z",
+      "uid": "35240-8d18c2bf-e0b3-4204-bda0-1125cb0377ef"
+    },
+    {
+      "name": "versions",
+      "item": [
+        {
+          "name": "Get Version",
+          "id": "86bbf7f1-3ac9-4599-8f47-30a56c3fb37c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/versions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "versions"
+              ]
+            },
+            "description": "Retrieves the supported API versions, binary build versions, and genesis information."
+          },
+          "response": [
+            {
+              "id": "fc89b4ba-043a-4d56-a4a1-adb438cfa246",
+              "name": "VersionsResponse is the response to 'GET /versions'",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Algo-API-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/versions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "versions"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"build\": {\n    \"branch\": \"<string>\",\n    \"build_number\": \"<integer>\",\n    \"channel\": \"<string>\",\n    \"commit_hash\": \"<string>\",\n    \"major\": \"<integer>\",\n    \"minor\": \"<integer>\"\n  },\n  \"genesis_hash_b64\": \"jM/t2k==\",\n  \"genesis_id\": \"<string>\",\n  \"versions\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "createdAt": "2026-07-28T00:25:38.000Z",
+              "updatedAt": "2026-07-28T00:25:38.000Z",
+              "uid": "35240-fc89b4ba-043a-4d56-a4a1-adb438cfa246"
+            }
+          ],
+          "createdAt": "2026-07-28T00:25:38.000Z",
+          "updatedAt": "2026-07-28T00:25:38.000Z",
+          "uid": "35240-86bbf7f1-3ac9-4599-8f47-30a56c3fb37c"
+        }
+      ],
+      "id": "301de022-4c3a-4d0e-b7f0-6ab4f9085527",
+      "createdAt": "2026-07-28T00:25:38.000Z",
+      "updatedAt": "2026-07-28T00:25:38.000Z",
+      "uid": "35240-301de022-4c3a-4d0e-b7f0-6ab4f9085527"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Algo-API-Token",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost/"
+    }
+  ]
+}

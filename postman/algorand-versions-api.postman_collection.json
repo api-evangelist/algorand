@@ -1,0 +1,107 @@
+{
+  "info": {
+    "_postman_id": "df63b661-c9f3-4c63-a4d3-d2b9bb212aba",
+    "name": "Algod REST API. common Versions API",
+    "description": "API endpoint for algod operations.\n\nContact Support:\n Name: algorand\n Email: contact@algorand.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T00:26:25.000Z",
+    "updatedAt": "2026-07-28T00:26:26.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-df63b661-c9f3-4c63-a4d3-d2b9bb212aba"
+  },
+  "item": [
+    {
+      "name": "versions",
+      "item": [
+        {
+          "name": "Retrieves the current version",
+          "id": "f6923a93-4e0b-44c7-a3ae-5892886844a3",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/versions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "versions"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ecd42c7c-1d0a-4042-a90c-833dc8115c95",
+              "name": "200 response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Algo-API-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/versions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "versions"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T00:26:26.000Z",
+              "updatedAt": "2026-07-28T00:26:26.000Z",
+              "uid": "35240-ecd42c7c-1d0a-4042-a90c-833dc8115c95"
+            }
+          ],
+          "createdAt": "2026-07-28T00:26:26.000Z",
+          "updatedAt": "2026-07-28T00:26:26.000Z",
+          "uid": "35240-f6923a93-4e0b-44c7-a3ae-5892886844a3"
+        }
+      ],
+      "id": "406ba034-cb48-4f4e-867d-24265b26ba45",
+      "createdAt": "2026-07-28T00:26:26.000Z",
+      "updatedAt": "2026-07-28T00:26:26.000Z",
+      "uid": "35240-406ba034-cb48-4f4e-867d-24265b26ba45"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Algo-API-Token",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost/"
+    }
+  ]
+}

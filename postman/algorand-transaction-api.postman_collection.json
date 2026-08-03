@@ -1,0 +1,130 @@
+{
+  "info": {
+    "_postman_id": "d6b6def8-4abc-4071-bece-605bc24d1438",
+    "name": "Algod REST API. common Transaction API",
+    "description": "API endpoint for algod operations.\n\nContact Support:\n Name: algorand\n Email: contact@algorand.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T00:26:19.000Z",
+    "updatedAt": "2026-07-28T00:26:19.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d6b6def8-4abc-4071-bece-605bc24d1438"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "transaction",
+          "item": [
+            {
+              "name": "sign",
+              "item": [
+                {
+                  "name": "Sign a transaction",
+                  "id": "781d79c2-fe05-4bbb-aa0f-d11eebc89c2c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/transaction/sign",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "transaction",
+                        "sign"
+                      ]
+                    },
+                    "description": "Signs the passed transaction with a key from the wallet, determined by the sender encoded in the transaction.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "b147db65-79ba-46f9-bfef-f53f7af609ca",
+                      "name": "200 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Algo-API-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/transaction/sign",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "transaction",
+                            "sign"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:26:20.000Z",
+                      "updatedAt": "2026-07-28T00:26:20.000Z",
+                      "uid": "35240-b147db65-79ba-46f9-bfef-f53f7af609ca"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T00:26:20.000Z",
+                  "updatedAt": "2026-07-28T00:26:20.000Z",
+                  "uid": "35240-781d79c2-fe05-4bbb-aa0f-d11eebc89c2c"
+                }
+              ],
+              "id": "8e297239-c14c-459d-b7f0-d678a5cddb28",
+              "createdAt": "2026-07-28T00:26:20.000Z",
+              "updatedAt": "2026-07-28T00:26:20.000Z",
+              "uid": "35240-8e297239-c14c-459d-b7f0-d678a5cddb28"
+            }
+          ],
+          "id": "2e2ce130-ba2f-4884-864e-979c94edddda",
+          "createdAt": "2026-07-28T00:26:20.000Z",
+          "updatedAt": "2026-07-28T00:26:20.000Z",
+          "uid": "35240-2e2ce130-ba2f-4884-864e-979c94edddda"
+        }
+      ],
+      "id": "d5b19f1e-3e01-41a7-8ff5-e881cf0f313c",
+      "createdAt": "2026-07-28T00:26:20.000Z",
+      "updatedAt": "2026-07-28T00:26:20.000Z",
+      "uid": "35240-d5b19f1e-3e01-41a7-8ff5-e881cf0f313c"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Algo-API-Token",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost/"
+    }
+  ]
+}

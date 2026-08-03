@@ -1,0 +1,3353 @@
+{
+  "info": {
+    "_postman_id": "a43ab46f-e9e9-43c5-8111-ecc7b48f72cd",
+    "name": "Algod REST API. common private API",
+    "description": "API endpoint for algod operations.\n\nContact Support:\n Name: algorand\n Email: contact@algorand.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T00:25:52.000Z",
+    "updatedAt": "2026-07-28T00:25:52.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a43ab46f-e9e9-43c5-8111-ecc7b48f72cd"
+  },
+  "item": [
+    {
+      "name": "debug",
+      "item": [
+        {
+          "name": "settings",
+          "item": [
+            {
+              "name": "config",
+              "item": [
+                {
+                  "name": "Gets the merged config file.",
+                  "id": "5914a89b-8e62-4d09-a758-f862e3464202",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/debug/settings/config",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "debug",
+                        "settings",
+                        "config"
+                      ]
+                    },
+                    "description": "Returns the merged (defaults + overrides) config file in json."
+                  },
+                  "response": [
+                    {
+                      "id": "96cc481a-9999-4e91-bf4b-8a57fac0c0aa",
+                      "name": "The merged config file in json.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Algo-API-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/debug/settings/config",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "debug",
+                            "settings",
+                            "config"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<string>",
+                      "createdAt": "2026-07-28T00:25:52.000Z",
+                      "updatedAt": "2026-07-28T00:25:52.000Z",
+                      "uid": "35240-96cc481a-9999-4e91-bf4b-8a57fac0c0aa"
+                    },
+                    {
+                      "id": "2bfcd4cf-ebf9-4378-bc35-a5c265037829",
+                      "name": "Unknown Error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Algo-API-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/debug/settings/config",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "debug",
+                            "settings",
+                            "config"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:25:52.000Z",
+                      "updatedAt": "2026-07-28T00:25:52.000Z",
+                      "uid": "35240-2bfcd4cf-ebf9-4378-bc35-a5c265037829"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T00:25:52.000Z",
+                  "updatedAt": "2026-07-28T00:25:52.000Z",
+                  "uid": "35240-5914a89b-8e62-4d09-a758-f862e3464202"
+                }
+              ],
+              "id": "08f04d69-293d-4dcf-af5c-54fe49b6d46d",
+              "createdAt": "2026-07-28T00:25:52.000Z",
+              "updatedAt": "2026-07-28T00:25:52.000Z",
+              "uid": "35240-08f04d69-293d-4dcf-af5c-54fe49b6d46d"
+            },
+            {
+              "name": "pprof",
+              "item": [
+                {
+                  "name": "Get Debug Settings Prof",
+                  "id": "c2d1a081-ebbd-45b7-97fe-1a32444677e8",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/debug/settings/pprof",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "debug",
+                        "settings",
+                        "pprof"
+                      ]
+                    },
+                    "description": "Retrieves the current settings for blocking and mutex profiles"
+                  },
+                  "response": [
+                    {
+                      "id": "8cf4e6d0-ec92-4861-8dfd-8ce4385cd4a2",
+                      "name": "DebugPprof is the response to the /debug/extra/pprof endpoint",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Algo-API-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/debug/settings/pprof",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "debug",
+                            "settings",
+                            "pprof"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"block-rate\": \"<integer>\",\n  \"mutex-rate\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T00:25:52.000Z",
+                      "updatedAt": "2026-07-28T00:25:52.000Z",
+                      "uid": "35240-8cf4e6d0-ec92-4861-8dfd-8ce4385cd4a2"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T00:25:52.000Z",
+                  "updatedAt": "2026-07-28T00:25:52.000Z",
+                  "uid": "35240-c2d1a081-ebbd-45b7-97fe-1a32444677e8"
+                },
+                {
+                  "name": "Put Debug Settings Prof",
+                  "id": "612a6906-ec09-42fc-8cf6-3983717f291e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/debug/settings/pprof",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "debug",
+                        "settings",
+                        "pprof"
+                      ]
+                    },
+                    "description": "Enables blocking and mutex profiles, and returns the old settings"
+                  },
+                  "response": [
+                    {
+                      "id": "ca0f418b-ca70-404d-9df3-786fdb89a40b",
+                      "name": "DebugPprof is the response to the /debug/extra/pprof endpoint",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Algo-API-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/debug/settings/pprof",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "debug",
+                            "settings",
+                            "pprof"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"block-rate\": \"<integer>\",\n  \"mutex-rate\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T00:25:52.000Z",
+                      "updatedAt": "2026-07-28T00:25:52.000Z",
+                      "uid": "35240-ca0f418b-ca70-404d-9df3-786fdb89a40b"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T00:25:52.000Z",
+                  "updatedAt": "2026-07-28T00:25:52.000Z",
+                  "uid": "35240-612a6906-ec09-42fc-8cf6-3983717f291e"
+                }
+              ],
+              "id": "05f9598a-98e0-4a84-959b-b5db6f197d60",
+              "createdAt": "2026-07-28T00:25:52.000Z",
+              "updatedAt": "2026-07-28T00:25:52.000Z",
+              "uid": "35240-05f9598a-98e0-4a84-959b-b5db6f197d60"
+            }
+          ],
+          "id": "eb7cf4d4-4a93-4c49-bec7-0cfd051ee351",
+          "createdAt": "2026-07-28T00:25:52.000Z",
+          "updatedAt": "2026-07-28T00:25:52.000Z",
+          "uid": "35240-eb7cf4d4-4a93-4c49-bec7-0cfd051ee351"
+        }
+      ],
+      "id": "fabc7d76-9eb2-443e-8dc2-e5058c3ae51c",
+      "createdAt": "2026-07-28T00:25:52.000Z",
+      "updatedAt": "2026-07-28T00:25:52.000Z",
+      "uid": "35240-fabc7d76-9eb2-443e-8dc2-e5058c3ae51c"
+    },
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "catchup",
+          "item": [
+            {
+              "name": "{catchpoint}",
+              "item": [
+                {
+                  "name": "Aborts a catchpoint catchup.",
+                  "id": "446ed104-0629-4fb9-92bb-c869b27bf330",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/catchup/:catchpoint",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "catchup",
+                        ":catchpoint"
+                      ],
+                      "variable": [
+                        {
+                          "id": "d65d1bc4-8214-459b-8939-97af115e31d8",
+                          "key": "catchpoint",
+                          "value": "8689740421#MI1J",
+                          "description": "(Required) A catch point"
+                        }
+                      ]
+                    },
+                    "description": "Given a catchpoint, it aborts catching up to this catchpoint"
+                  },
+                  "response": [
+                    {
+                      "id": "b45cd434-87c4-46ec-bef4-1bfc7fe36c7c",
+                      "name": "200 response",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Algo-API-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/catchup/:catchpoint",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "catchup",
+                            ":catchpoint"
+                          ],
+                          "variable": [
+                            {
+                              "key": "catchpoint"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"catchup-message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T00:25:52.000Z",
+                      "updatedAt": "2026-07-28T00:25:52.000Z",
+                      "uid": "35240-b45cd434-87c4-46ec-bef4-1bfc7fe36c7c"
+                    },
+                    {
+                      "id": "a093d06a-afc9-492e-853a-58f91721f1c6",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Algo-API-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/catchup/:catchpoint",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "catchup",
+                            ":catchpoint"
+                          ],
+                          "variable": [
+                            {
+                              "key": "catchpoint"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T00:25:52.000Z",
+                      "updatedAt": "2026-07-28T00:25:52.000Z",
+                      "uid": "35240-a093d06a-afc9-492e-853a-58f91721f1c6"
+                    },
+                    {
+                      "id": "83f76cf4-2ba3-44ac-af38-a7bcf800d6cf",
+                      "name": "Invalid API Token",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Algo-API-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/catchup/:catchpoint",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "catchup",
+                            ":catchpoint"
+                          ],
+                          "variable": [
+                            {
+                              "key": "catchpoint"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T00:25:52.000Z",
+                      "updatedAt": "2026-07-28T00:25:52.000Z",
+                      "uid": "35240-83f76cf4-2ba3-44ac-af38-a7bcf800d6cf"
+                    },
+                    {
+                      "id": "569067b8-d8b2-47a9-a1ff-4e30fa1c1d7a",
+                      "name": "Internal Error",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Algo-API-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/catchup/:catchpoint",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "catchup",
+                            ":catchpoint"
+                          ],
+                          "variable": [
+                            {
+                              "key": "catchpoint"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T00:25:52.000Z",
+                      "updatedAt": "2026-07-28T00:25:52.000Z",
+                      "uid": "35240-569067b8-d8b2-47a9-a1ff-4e30fa1c1d7a"
+                    },
+                    {
+                      "id": "83425012-f15d-4f47-bc2c-4bffdcd7d537",
+                      "name": "Unknown Error",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Algo-API-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/catchup/:catchpoint",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "catchup",
+                            ":catchpoint"
+                          ],
+                          "variable": [
+                            {
+                              "key": "catchpoint"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:25:52.000Z",
+                      "updatedAt": "2026-07-28T00:25:52.000Z",
+                      "uid": "35240-83425012-f15d-4f47-bc2c-4bffdcd7d537"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T00:25:52.000Z",
+                  "updatedAt": "2026-07-28T00:25:52.000Z",
+                  "uid": "35240-446ed104-0629-4fb9-92bb-c869b27bf330"
+                },
+                {
+                  "name": "Starts a catchpoint catchup.",
+                  "id": "25731556-89d8-4497-a76a-e602036ae2d3",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/catchup/:catchpoint?min=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "catchup",
+                        ":catchpoint"
+                      ],
+                      "query": [
+                        {
+                          "description": "Specify the minimum number of blocks which the ledger must be advanced by in order to start the catchup. This is useful for simplifying tools which support fast catchup, they can run the catchup unconditionally and the node will skip the catchup if it is not needed.",
+                          "key": "min",
+                          "value": "<integer>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "d1f7fe07-1f36-4c37-8644-478c1744afc7",
+                          "key": "catchpoint",
+                          "value": "8689740421#MI1J",
+                          "description": "(Required) A catch point"
+                        }
+                      ]
+                    },
+                    "description": "Given a catchpoint, it starts catching up to this catchpoint"
+                  },
+                  "response": [
+                    {
+                      "id": "84652077-02ba-4e6f-bd6e-779a8ab70f2e",
+                      "name": "200 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Algo-API-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/catchup/:catchpoint?min=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "catchup",
+                            ":catchpoint"
+                          ],
+                          "query": [
+                            {
+                              "description": "Specify the minimum number of blocks which the ledger must be advanced by in order to start the catchup. This is useful for simplifying tools which support fast catchup, they can run the catchup unconditionally and the node will skip the catchup if it is not needed.",
+                              "key": "min",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "catchpoint"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"catchup-message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T00:25:52.000Z",
+                      "updatedAt": "2026-07-28T00:25:52.000Z",
+                      "uid": "35240-84652077-02ba-4e6f-bd6e-779a8ab70f2e"
+                    },
+                    {
+                      "id": "f19721e2-a1bf-4494-989f-08142254293f",
+                      "name": "201 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Algo-API-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/catchup/:catchpoint?min=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "catchup",
+                            ":catchpoint"
+                          ],
+                          "query": [
+                            {
+                              "description": "Specify the minimum number of blocks which the ledger must be advanced by in order to start the catchup. This is useful for simplifying tools which support fast catchup, they can run the catchup unconditionally and the node will skip the catchup if it is not needed.",
+                              "key": "min",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "catchpoint"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"catchup-message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T00:25:52.000Z",
+                      "updatedAt": "2026-07-28T00:25:52.000Z",
+                      "uid": "35240-f19721e2-a1bf-4494-989f-08142254293f"
+                    },
+                    {
+                      "id": "e6a2c9e4-a98d-4081-a00b-0fff6d37cab3",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Algo-API-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/catchup/:catchpoint?min=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "catchup",
+                            ":catchpoint"
+                          ],
+                          "query": [
+                            {
+                              "description": "Specify the minimum number of blocks which the ledger must be advanced by in order to start the catchup. This is useful for simplifying tools which support fast catchup, they can run the catchup unconditionally and the node will skip the catchup if it is not needed.",
+                              "key": "min",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "catchpoint"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T00:25:52.000Z",
+                      "updatedAt": "2026-07-28T00:25:52.000Z",
+                      "uid": "35240-e6a2c9e4-a98d-4081-a00b-0fff6d37cab3"
+                    },
+                    {
+                      "id": "2f15bc19-aa10-47fe-b456-0b6b5c2a08e1",
+                      "name": "Invalid API Token",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Algo-API-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/catchup/:catchpoint?min=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "catchup",
+                            ":catchpoint"
+                          ],
+                          "query": [
+                            {
+                              "description": "Specify the minimum number of blocks which the ledger must be advanced by in order to start the catchup. This is useful for simplifying tools which support fast catchup, they can run the catchup unconditionally and the node will skip the catchup if it is not needed.",
+                              "key": "min",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "catchpoint"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T00:25:52.000Z",
+                      "updatedAt": "2026-07-28T00:25:52.000Z",
+                      "uid": "35240-2f15bc19-aa10-47fe-b456-0b6b5c2a08e1"
+                    },
+                    {
+                      "id": "db133442-1ccb-4eec-a7df-434b45ef710d",
+                      "name": "Request Timeout",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Algo-API-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/catchup/:catchpoint?min=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "catchup",
+                            ":catchpoint"
+                          ],
+                          "query": [
+                            {
+                              "description": "Specify the minimum number of blocks which the ledger must be advanced by in order to start the catchup. This is useful for simplifying tools which support fast catchup, they can run the catchup unconditionally and the node will skip the catchup if it is not needed.",
+                              "key": "min",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "catchpoint"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Request Timeout",
+                      "code": 408,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T00:25:52.000Z",
+                      "updatedAt": "2026-07-28T00:25:52.000Z",
+                      "uid": "35240-db133442-1ccb-4eec-a7df-434b45ef710d"
+                    },
+                    {
+                      "id": "0e01bdc2-1b57-4ec2-9357-c638d462472a",
+                      "name": "Internal Error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Algo-API-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/catchup/:catchpoint?min=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "catchup",
+                            ":catchpoint"
+                          ],
+                          "query": [
+                            {
+                              "description": "Specify the minimum number of blocks which the ledger must be advanced by in order to start the catchup. This is useful for simplifying tools which support fast catchup, they can run the catchup unconditionally and the node will skip the catchup if it is not needed.",
+                              "key": "min",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "catchpoint"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T00:25:52.000Z",
+                      "updatedAt": "2026-07-28T00:25:52.000Z",
+                      "uid": "35240-0e01bdc2-1b57-4ec2-9357-c638d462472a"
+                    },
+                    {
+                      "id": "f81ec68e-eedd-4b46-bbd6-59c3e8e97f38",
+                      "name": "Unknown Error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Algo-API-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/catchup/:catchpoint?min=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "catchup",
+                            ":catchpoint"
+                          ],
+                          "query": [
+                            {
+                              "description": "Specify the minimum number of blocks which the ledger must be advanced by in order to start the catchup. This is useful for simplifying tools which support fast catchup, they can run the catchup unconditionally and the node will skip the catchup if it is not needed.",
+                              "key": "min",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "catchpoint"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:25:52.000Z",
+                      "updatedAt": "2026-07-28T00:25:52.000Z",
+                      "uid": "35240-f81ec68e-eedd-4b46-bbd6-59c3e8e97f38"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T00:25:52.000Z",
+                  "updatedAt": "2026-07-28T00:25:52.000Z",
+                  "uid": "35240-25731556-89d8-4497-a76a-e602036ae2d3"
+                }
+              ],
+              "id": "82250d04-20b5-4ea2-89ab-527ddd4b0c6f",
+              "createdAt": "2026-07-28T00:25:52.000Z",
+              "updatedAt": "2026-07-28T00:25:52.000Z",
+              "uid": "35240-82250d04-20b5-4ea2-89ab-527ddd4b0c6f"
+            }
+          ],
+          "id": "1758eda7-98b3-4429-b45a-cf63cef8590e",
+          "createdAt": "2026-07-28T00:25:52.000Z",
+          "updatedAt": "2026-07-28T00:25:52.000Z",
+          "uid": "35240-1758eda7-98b3-4429-b45a-cf63cef8590e"
+        },
+        {
+          "name": "participation",
+          "item": [
+            {
+              "name": "generate",
+              "item": [
+                {
+                  "name": "{address}",
+                  "item": [
+                    {
+                      "name": "Generate and install participation keys to the node.",
+                      "id": "6e465258-edfe-4a0a-8e8a-07093d9e67f8",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/participation/generate/:address?dilution=<integer>&first=<integer>&last=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "participation",
+                            "generate",
+                            ":address"
+                          ],
+                          "query": [
+                            {
+                              "description": "Key dilution for two-level participation keys (defaults to sqrt of validity window).",
+                              "key": "dilution",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "(Required) First round for participation key.",
+                              "key": "first",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "(Required) Last round for participation key.",
+                              "key": "last",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "ba54587f-4460-4c9d-bec8-9e42df4507fe",
+                              "key": "address",
+                              "value": "DOOIUW5PIFWEHAJQDU6VHB8BZ1778PE6IAQPPJ3Z908Y53JQVABFTJ76ZG",
+                              "description": "(Required) An account public key."
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "cea97276-ff2e-4f2c-b932-99e49b30f63a",
+                          "name": "An empty JSON object is returned if the generation process was started. Currently no status is available.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Algo-API-Token",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/participation/generate/:address?dilution=<integer>&first=<integer>&last=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "participation",
+                                "generate",
+                                ":address"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Key dilution for two-level participation keys (defaults to sqrt of validity window).",
+                                  "key": "dilution",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "(Required) First round for participation key.",
+                                  "key": "first",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "(Required) Last round for participation key.",
+                                  "key": "last",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "address"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<string>",
+                          "createdAt": "2026-07-28T00:25:52.000Z",
+                          "updatedAt": "2026-07-28T00:25:52.000Z",
+                          "uid": "35240-cea97276-ff2e-4f2c-b932-99e49b30f63a"
+                        },
+                        {
+                          "id": "a55b6bf9-c37c-4378-aa53-9e0f0b669568",
+                          "name": "Bad Request",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Algo-API-Token",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/participation/generate/:address?dilution=<integer>&first=<integer>&last=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "participation",
+                                "generate",
+                                ":address"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Key dilution for two-level participation keys (defaults to sqrt of validity window).",
+                                  "key": "dilution",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "(Required) First round for participation key.",
+                                  "key": "first",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "(Required) Last round for participation key.",
+                                  "key": "last",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "address"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                          "createdAt": "2026-07-28T00:25:52.000Z",
+                          "updatedAt": "2026-07-28T00:25:52.000Z",
+                          "uid": "35240-a55b6bf9-c37c-4378-aa53-9e0f0b669568"
+                        },
+                        {
+                          "id": "a2822040-86b1-4cee-8be8-a87340ab9d6d",
+                          "name": "Invalid API Token",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Algo-API-Token",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/participation/generate/:address?dilution=<integer>&first=<integer>&last=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "participation",
+                                "generate",
+                                ":address"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Key dilution for two-level participation keys (defaults to sqrt of validity window).",
+                                  "key": "dilution",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "(Required) First round for participation key.",
+                                  "key": "first",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "(Required) Last round for participation key.",
+                                  "key": "last",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "address"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                          "createdAt": "2026-07-28T00:25:52.000Z",
+                          "updatedAt": "2026-07-28T00:25:52.000Z",
+                          "uid": "35240-a2822040-86b1-4cee-8be8-a87340ab9d6d"
+                        },
+                        {
+                          "id": "0ee2b1f2-e5b5-4850-bfc0-295c92c21b2b",
+                          "name": "Internal Error",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Algo-API-Token",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/participation/generate/:address?dilution=<integer>&first=<integer>&last=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "participation",
+                                "generate",
+                                ":address"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Key dilution for two-level participation keys (defaults to sqrt of validity window).",
+                                  "key": "dilution",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "(Required) First round for participation key.",
+                                  "key": "first",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "(Required) Last round for participation key.",
+                                  "key": "last",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "address"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                          "createdAt": "2026-07-28T00:25:52.000Z",
+                          "updatedAt": "2026-07-28T00:25:52.000Z",
+                          "uid": "35240-0ee2b1f2-e5b5-4850-bfc0-295c92c21b2b"
+                        },
+                        {
+                          "id": "c93e7d4d-e523-4621-9d84-a937d3dda020",
+                          "name": "Service Temporarily Unavailable",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Algo-API-Token",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/participation/generate/:address?dilution=<integer>&first=<integer>&last=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "participation",
+                                "generate",
+                                ":address"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Key dilution for two-level participation keys (defaults to sqrt of validity window).",
+                                  "key": "dilution",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "(Required) First round for participation key.",
+                                  "key": "first",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "(Required) Last round for participation key.",
+                                  "key": "last",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "address"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Service Unavailable",
+                          "code": 503,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                          "createdAt": "2026-07-28T00:25:52.000Z",
+                          "updatedAt": "2026-07-28T00:25:52.000Z",
+                          "uid": "35240-c93e7d4d-e523-4621-9d84-a937d3dda020"
+                        },
+                        {
+                          "id": "2807a42e-e5ca-4c54-9df0-bcc23a50f268",
+                          "name": "Unknown Error",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Algo-API-Token",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/participation/generate/:address?dilution=<integer>&first=<integer>&last=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "participation",
+                                "generate",
+                                ":address"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Key dilution for two-level participation keys (defaults to sqrt of validity window).",
+                                  "key": "dilution",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "(Required) First round for participation key.",
+                                  "key": "first",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "(Required) Last round for participation key.",
+                                  "key": "last",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "address"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T00:25:52.000Z",
+                          "updatedAt": "2026-07-28T00:25:52.000Z",
+                          "uid": "35240-2807a42e-e5ca-4c54-9df0-bcc23a50f268"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T00:25:52.000Z",
+                      "updatedAt": "2026-07-28T00:25:52.000Z",
+                      "uid": "35240-6e465258-edfe-4a0a-8e8a-07093d9e67f8"
+                    }
+                  ],
+                  "id": "24c59775-69b7-4dc6-a898-589a6bc9d4bb",
+                  "createdAt": "2026-07-28T00:25:52.000Z",
+                  "updatedAt": "2026-07-28T00:25:52.000Z",
+                  "uid": "35240-24c59775-69b7-4dc6-a898-589a6bc9d4bb"
+                }
+              ],
+              "id": "4061c0f7-4e15-4c65-b039-a1b04440e5a0",
+              "createdAt": "2026-07-28T00:25:52.000Z",
+              "updatedAt": "2026-07-28T00:25:52.000Z",
+              "uid": "35240-4061c0f7-4e15-4c65-b039-a1b04440e5a0"
+            },
+            {
+              "name": "{participation-id}",
+              "item": [
+                {
+                  "name": "Delete a given participation key by ID",
+                  "id": "061fbd13-c468-4b0a-846f-6c47c9460e05",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/participation/:participation-id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "participation",
+                        ":participation-id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "fc733688-20e5-4b82-bfcf-d33908bf377a",
+                          "key": "participation-id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Delete a given participation key by ID"
+                  },
+                  "response": [
+                    {
+                      "id": "ff310d9a-4ae4-4c3c-993b-d7c444d55802",
+                      "name": "Participation key got deleted by ID",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Algo-API-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/participation/:participation-id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "participation",
+                            ":participation-id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "participation-id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:25:52.000Z",
+                      "updatedAt": "2026-07-28T00:25:52.000Z",
+                      "uid": "35240-ff310d9a-4ae4-4c3c-993b-d7c444d55802"
+                    },
+                    {
+                      "id": "b0aa0e33-07cc-4a73-8078-e20c33f42090",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Algo-API-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/participation/:participation-id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "participation",
+                            ":participation-id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "participation-id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T00:25:52.000Z",
+                      "updatedAt": "2026-07-28T00:25:52.000Z",
+                      "uid": "35240-b0aa0e33-07cc-4a73-8078-e20c33f42090"
+                    },
+                    {
+                      "id": "0fdeb12c-c790-48bd-85d4-71e0568075cd",
+                      "name": "Invalid API Token",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Algo-API-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/participation/:participation-id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "participation",
+                            ":participation-id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "participation-id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T00:25:52.000Z",
+                      "updatedAt": "2026-07-28T00:25:52.000Z",
+                      "uid": "35240-0fdeb12c-c790-48bd-85d4-71e0568075cd"
+                    },
+                    {
+                      "id": "345d7d14-6d9d-4f69-bfc0-2427ce295a74",
+                      "name": "Participation Key Not Found",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Algo-API-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/participation/:participation-id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "participation",
+                            ":participation-id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "participation-id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T00:25:52.000Z",
+                      "updatedAt": "2026-07-28T00:25:52.000Z",
+                      "uid": "35240-345d7d14-6d9d-4f69-bfc0-2427ce295a74"
+                    },
+                    {
+                      "id": "66b90265-4ea2-4e09-956a-d79f58a3f850",
+                      "name": "Internal Error",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Algo-API-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/participation/:participation-id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "participation",
+                            ":participation-id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "participation-id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T00:25:52.000Z",
+                      "updatedAt": "2026-07-28T00:25:52.000Z",
+                      "uid": "35240-66b90265-4ea2-4e09-956a-d79f58a3f850"
+                    },
+                    {
+                      "id": "2e0da9ba-4497-478e-80b9-771a468be240",
+                      "name": "Unknown Error",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Algo-API-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/participation/:participation-id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "participation",
+                            ":participation-id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "participation-id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:25:52.000Z",
+                      "updatedAt": "2026-07-28T00:25:52.000Z",
+                      "uid": "35240-2e0da9ba-4497-478e-80b9-771a468be240"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T00:25:52.000Z",
+                  "updatedAt": "2026-07-28T00:25:52.000Z",
+                  "uid": "35240-061fbd13-c468-4b0a-846f-6c47c9460e05"
+                },
+                {
+                  "name": "Get participation key info given a participation ID",
+                  "id": "de9bb0b6-745c-423a-a1f4-063058d24c9a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/participation/:participation-id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "participation",
+                        ":participation-id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "df576c27-450f-4bc9-86f6-b99ac888460a",
+                          "key": "participation-id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Given a participation ID, return information about that participation key"
+                  },
+                  "response": [
+                    {
+                      "id": "71a84c93-ef2e-4cdd-bda5-11982f5fb233",
+                      "name": "A detailed description of a participation ID",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Algo-API-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/participation/:participation-id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "participation",
+                            ":participation-id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "participation-id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"address\": \"<string>\",\n  \"id\": \"<string>\",\n  \"key\": {\n    \"selection-participation-key\": \"myl+\",\n    \"vote-first-valid\": \"<integer>\",\n    \"vote-key-dilution\": \"<integer>\",\n    \"vote-last-valid\": \"<integer>\",\n    \"vote-participation-key\": \"Sv9CzFCqYeqYyjfhdie9\",\n    \"state-proof-key\": \"S7MRmxJw\"\n  },\n  \"effective-first-valid\": \"<integer>\",\n  \"effective-last-valid\": \"<integer>\",\n  \"last-block-proposal\": \"<integer>\",\n  \"last-state-proof\": \"<integer>\",\n  \"last-vote\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T00:25:52.000Z",
+                      "updatedAt": "2026-07-28T00:25:52.000Z",
+                      "uid": "35240-71a84c93-ef2e-4cdd-bda5-11982f5fb233"
+                    },
+                    {
+                      "id": "2eca92ed-791e-473a-a77e-4a5bf53660bb",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Algo-API-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/participation/:participation-id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "participation",
+                            ":participation-id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "participation-id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T00:25:52.000Z",
+                      "updatedAt": "2026-07-28T00:25:52.000Z",
+                      "uid": "35240-2eca92ed-791e-473a-a77e-4a5bf53660bb"
+                    },
+                    {
+                      "id": "54819290-18ab-48f8-b225-2d9f6aca0d40",
+                      "name": "Invalid API Token",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Algo-API-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/participation/:participation-id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "participation",
+                            ":participation-id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "participation-id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T00:25:52.000Z",
+                      "updatedAt": "2026-07-28T00:25:52.000Z",
+                      "uid": "35240-54819290-18ab-48f8-b225-2d9f6aca0d40"
+                    },
+                    {
+                      "id": "f6e8ce52-c015-455a-b604-79bd755467f2",
+                      "name": "Participation Key Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Algo-API-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/participation/:participation-id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "participation",
+                            ":participation-id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "participation-id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T00:25:52.000Z",
+                      "updatedAt": "2026-07-28T00:25:52.000Z",
+                      "uid": "35240-f6e8ce52-c015-455a-b604-79bd755467f2"
+                    },
+                    {
+                      "id": "18d315b3-ae2e-4017-8b8e-01f6834c2f5c",
+                      "name": "Internal Error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Algo-API-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/participation/:participation-id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "participation",
+                            ":participation-id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "participation-id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T00:25:52.000Z",
+                      "updatedAt": "2026-07-28T00:25:52.000Z",
+                      "uid": "35240-18d315b3-ae2e-4017-8b8e-01f6834c2f5c"
+                    },
+                    {
+                      "id": "18a5c729-e9a8-4815-b0f3-5110aa629b68",
+                      "name": "Unknown Error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Algo-API-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/participation/:participation-id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "participation",
+                            ":participation-id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "participation-id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:25:52.000Z",
+                      "updatedAt": "2026-07-28T00:25:52.000Z",
+                      "uid": "35240-18a5c729-e9a8-4815-b0f3-5110aa629b68"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T00:25:52.000Z",
+                  "updatedAt": "2026-07-28T00:25:52.000Z",
+                  "uid": "35240-de9bb0b6-745c-423a-a1f4-063058d24c9a"
+                },
+                {
+                  "name": "Append state proof keys to a participation key",
+                  "id": "dff138cc-0326-4a26-86be-360901e50354",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/msgpack"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "file",
+                      "file": {}
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/participation/:participation-id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "participation",
+                        ":participation-id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "d656982e-75ba-426e-b0cb-24a47386783e",
+                          "key": "participation-id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Given a participation ID, append state proof keys to a particular set of participation keys"
+                  },
+                  "response": [
+                    {
+                      "id": "b91a0e97-917b-4245-89e8-bce8aea4247a",
+                      "name": "A detailed description of a participation ID",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/msgpack"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Algo-API-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "file",
+                          "file": {}
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/participation/:participation-id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "participation",
+                            ":participation-id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "participation-id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"address\": \"<string>\",\n  \"id\": \"<string>\",\n  \"key\": {\n    \"selection-participation-key\": \"myl+\",\n    \"vote-first-valid\": \"<integer>\",\n    \"vote-key-dilution\": \"<integer>\",\n    \"vote-last-valid\": \"<integer>\",\n    \"vote-participation-key\": \"Sv9CzFCqYeqYyjfhdie9\",\n    \"state-proof-key\": \"S7MRmxJw\"\n  },\n  \"effective-first-valid\": \"<integer>\",\n  \"effective-last-valid\": \"<integer>\",\n  \"last-block-proposal\": \"<integer>\",\n  \"last-state-proof\": \"<integer>\",\n  \"last-vote\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T00:25:52.000Z",
+                      "updatedAt": "2026-07-28T00:25:52.000Z",
+                      "uid": "35240-b91a0e97-917b-4245-89e8-bce8aea4247a"
+                    },
+                    {
+                      "id": "2524b19c-f0d2-4836-a629-f909f30041ab",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/msgpack"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Algo-API-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "file",
+                          "file": {}
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/participation/:participation-id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "participation",
+                            ":participation-id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "participation-id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T00:25:52.000Z",
+                      "updatedAt": "2026-07-28T00:25:52.000Z",
+                      "uid": "35240-2524b19c-f0d2-4836-a629-f909f30041ab"
+                    },
+                    {
+                      "id": "0c0ad0c5-284e-4d70-8dc6-5a7edb5e241a",
+                      "name": "Invalid API Token",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/msgpack"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Algo-API-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "file",
+                          "file": {}
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/participation/:participation-id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "participation",
+                            ":participation-id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "participation-id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T00:25:52.000Z",
+                      "updatedAt": "2026-07-28T00:25:52.000Z",
+                      "uid": "35240-0c0ad0c5-284e-4d70-8dc6-5a7edb5e241a"
+                    },
+                    {
+                      "id": "c687b219-608b-49bd-8182-fb2b3302abec",
+                      "name": "Participation Key Not Found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/msgpack"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Algo-API-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "file",
+                          "file": {}
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/participation/:participation-id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "participation",
+                            ":participation-id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "participation-id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T00:25:52.000Z",
+                      "updatedAt": "2026-07-28T00:25:52.000Z",
+                      "uid": "35240-c687b219-608b-49bd-8182-fb2b3302abec"
+                    },
+                    {
+                      "id": "ebb2b48c-a966-459e-850f-56b521899995",
+                      "name": "Internal Error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/msgpack"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Algo-API-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "file",
+                          "file": {}
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/participation/:participation-id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "participation",
+                            ":participation-id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "participation-id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T00:25:52.000Z",
+                      "updatedAt": "2026-07-28T00:25:52.000Z",
+                      "uid": "35240-ebb2b48c-a966-459e-850f-56b521899995"
+                    },
+                    {
+                      "id": "64060f12-4569-4f25-a144-fa5dbf618e2c",
+                      "name": "Unknown Error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/msgpack"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Algo-API-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "file",
+                          "file": {}
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/participation/:participation-id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "participation",
+                            ":participation-id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "participation-id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:25:52.000Z",
+                      "updatedAt": "2026-07-28T00:25:52.000Z",
+                      "uid": "35240-64060f12-4569-4f25-a144-fa5dbf618e2c"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T00:25:52.000Z",
+                  "updatedAt": "2026-07-28T00:25:52.000Z",
+                  "uid": "35240-dff138cc-0326-4a26-86be-360901e50354"
+                }
+              ],
+              "id": "33a39039-9136-43d5-88bc-606596baa035",
+              "createdAt": "2026-07-28T00:25:52.000Z",
+              "updatedAt": "2026-07-28T00:25:52.000Z",
+              "uid": "35240-33a39039-9136-43d5-88bc-606596baa035"
+            },
+            {
+              "name": "Return a list of participation keys",
+              "id": "0a691398-d2ef-4525-a9b2-00b8c11a5791",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/participation",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "participation"
+                  ]
+                },
+                "description": "Return a list of participation keys"
+              },
+              "response": [
+                {
+                  "id": "1a3d4750-f85f-4817-bcd8-47ce41d71e05",
+                  "name": "A list of participation keys",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Algo-API-Token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/participation",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "participation"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"address\": \"<string>\",\n    \"id\": \"<string>\",\n    \"key\": {\n      \"selection-participation-key\": \"2and7Jn+Je2m\",\n      \"vote-first-valid\": \"<integer>\",\n      \"vote-key-dilution\": \"<integer>\",\n      \"vote-last-valid\": \"<integer>\",\n      \"vote-participation-key\": \"fqGo+S==\",\n      \"state-proof-key\": \"pkzGcY8W\"\n    },\n    \"effective-first-valid\": \"<integer>\",\n    \"effective-last-valid\": \"<integer>\",\n    \"last-block-proposal\": \"<integer>\",\n    \"last-state-proof\": \"<integer>\",\n    \"last-vote\": \"<integer>\"\n  },\n  {\n    \"address\": \"<string>\",\n    \"id\": \"<string>\",\n    \"key\": {\n      \"selection-participation-key\": \"/p9Ftg6E3t3TJWwpNaxNTGUNlGyCYcrmIQ3f2zOxPXg=\",\n      \"vote-first-valid\": \"<integer>\",\n      \"vote-key-dilution\": \"<integer>\",\n      \"vote-last-valid\": \"<integer>\",\n      \"vote-participation-key\": \"bJmP5Js6rOFdsF+OincIoGCYMlsIhDpO7zhJ6Nj=\",\n      \"state-proof-key\": \"z6Q4gbmZ4U2tc/S/yPy/8zi/ID==\"\n    },\n    \"effective-first-valid\": \"<integer>\",\n    \"effective-last-valid\": \"<integer>\",\n    \"last-block-proposal\": \"<integer>\",\n    \"last-state-proof\": \"<integer>\",\n    \"last-vote\": \"<integer>\"\n  }\n]",
+                  "createdAt": "2026-07-28T00:25:52.000Z",
+                  "updatedAt": "2026-07-28T00:25:52.000Z",
+                  "uid": "35240-1a3d4750-f85f-4817-bcd8-47ce41d71e05"
+                },
+                {
+                  "id": "bb811211-9c10-4224-88e8-bba860b8c6a2",
+                  "name": "Bad Request",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Algo-API-Token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/participation",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "participation"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T00:25:52.000Z",
+                  "updatedAt": "2026-07-28T00:25:52.000Z",
+                  "uid": "35240-bb811211-9c10-4224-88e8-bba860b8c6a2"
+                },
+                {
+                  "id": "9a7de459-e1b6-4ac0-9476-9ba2e0b0ea5f",
+                  "name": "Invalid API Token",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Algo-API-Token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/participation",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "participation"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T00:25:52.000Z",
+                  "updatedAt": "2026-07-28T00:25:52.000Z",
+                  "uid": "35240-9a7de459-e1b6-4ac0-9476-9ba2e0b0ea5f"
+                },
+                {
+                  "id": "0abe5f9d-7d44-4f7c-8030-13e8a6daca35",
+                  "name": "Participation Key Not Found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Algo-API-Token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/participation",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "participation"
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T00:25:52.000Z",
+                  "updatedAt": "2026-07-28T00:25:52.000Z",
+                  "uid": "35240-0abe5f9d-7d44-4f7c-8030-13e8a6daca35"
+                },
+                {
+                  "id": "46452441-d596-4e87-9e16-c0c141d0cb1d",
+                  "name": "Internal Error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Algo-API-Token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/participation",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "participation"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T00:25:52.000Z",
+                  "updatedAt": "2026-07-28T00:25:52.000Z",
+                  "uid": "35240-46452441-d596-4e87-9e16-c0c141d0cb1d"
+                },
+                {
+                  "id": "5ec08b68-b2f1-4794-b9a2-4ab8c5e56f97",
+                  "name": "Unknown Error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Algo-API-Token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/participation",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "participation"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T00:25:52.000Z",
+                  "updatedAt": "2026-07-28T00:25:52.000Z",
+                  "uid": "35240-5ec08b68-b2f1-4794-b9a2-4ab8c5e56f97"
+                }
+              ],
+              "createdAt": "2026-07-28T00:25:52.000Z",
+              "updatedAt": "2026-07-28T00:25:52.000Z",
+              "uid": "35240-0a691398-d2ef-4525-a9b2-00b8c11a5791"
+            },
+            {
+              "name": "Add a participation key to the node",
+              "id": "0c08e682-401e-4520-96d0-f2c8a34c3567",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/msgpack"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "file",
+                  "file": {}
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/participation",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "participation"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "8287721d-9dfe-41b5-9a31-df6e7ee46e37",
+                  "name": "Participation ID of the submission",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/msgpack"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Algo-API-Token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "file",
+                      "file": {}
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/participation",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "participation"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"partId\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T00:25:52.000Z",
+                  "updatedAt": "2026-07-28T00:25:52.000Z",
+                  "uid": "35240-8287721d-9dfe-41b5-9a31-df6e7ee46e37"
+                },
+                {
+                  "id": "c1fa7e43-1fdf-4819-9f8b-b014ddffa714",
+                  "name": "Bad Request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/msgpack"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Algo-API-Token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "file",
+                      "file": {}
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/participation",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "participation"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T00:25:52.000Z",
+                  "updatedAt": "2026-07-28T00:25:52.000Z",
+                  "uid": "35240-c1fa7e43-1fdf-4819-9f8b-b014ddffa714"
+                },
+                {
+                  "id": "dd30f6d4-17d8-417a-bcab-90f60635d2b9",
+                  "name": "Invalid API Token",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/msgpack"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Algo-API-Token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "file",
+                      "file": {}
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/participation",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "participation"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T00:25:52.000Z",
+                  "updatedAt": "2026-07-28T00:25:52.000Z",
+                  "uid": "35240-dd30f6d4-17d8-417a-bcab-90f60635d2b9"
+                },
+                {
+                  "id": "06060e39-2338-43c4-b98f-dc180932235f",
+                  "name": "Participation Key Not Found",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/msgpack"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Algo-API-Token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "file",
+                      "file": {}
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/participation",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "participation"
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T00:25:52.000Z",
+                  "updatedAt": "2026-07-28T00:25:52.000Z",
+                  "uid": "35240-06060e39-2338-43c4-b98f-dc180932235f"
+                },
+                {
+                  "id": "44be79ed-34ab-475b-a927-ba8aee8af95b",
+                  "name": "Internal Error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/msgpack"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Algo-API-Token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "file",
+                      "file": {}
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/participation",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "participation"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T00:25:52.000Z",
+                  "updatedAt": "2026-07-28T00:25:52.000Z",
+                  "uid": "35240-44be79ed-34ab-475b-a927-ba8aee8af95b"
+                },
+                {
+                  "id": "00b53a98-01ad-4c3b-b346-4a875631fe58",
+                  "name": "Service Temporarily Unavailable",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/msgpack"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Algo-API-Token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "file",
+                      "file": {}
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/participation",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "participation"
+                      ]
+                    }
+                  },
+                  "status": "Service Unavailable",
+                  "code": 503,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T00:25:52.000Z",
+                  "updatedAt": "2026-07-28T00:25:52.000Z",
+                  "uid": "35240-00b53a98-01ad-4c3b-b346-4a875631fe58"
+                },
+                {
+                  "id": "fcbdb39d-c614-4738-95cd-7fd99d6a3bf3",
+                  "name": "Unknown Error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/msgpack"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Algo-API-Token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "file",
+                      "file": {}
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/participation",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "participation"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T00:25:52.000Z",
+                  "updatedAt": "2026-07-28T00:25:52.000Z",
+                  "uid": "35240-fcbdb39d-c614-4738-95cd-7fd99d6a3bf3"
+                }
+              ],
+              "createdAt": "2026-07-28T00:25:52.000Z",
+              "updatedAt": "2026-07-28T00:25:52.000Z",
+              "uid": "35240-0c08e682-401e-4520-96d0-f2c8a34c3567"
+            }
+          ],
+          "id": "479ddaf8-b287-41b7-b88e-768f4d67f404",
+          "createdAt": "2026-07-28T00:25:52.000Z",
+          "updatedAt": "2026-07-28T00:25:52.000Z",
+          "uid": "35240-479ddaf8-b287-41b7-b88e-768f4d67f404"
+        },
+        {
+          "name": "shutdown",
+          "item": [
+            {
+              "name": "Shutdown Node",
+              "id": "e7e35525-35d2-4fa3-8acc-8440a4939f63",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/shutdown?timeout=0",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "shutdown"
+                  ],
+                  "query": [
+                    {
+                      "key": "timeout",
+                      "value": "0"
+                    }
+                  ]
+                },
+                "description": "Special management endpoint to shutdown the node. Optionally provide a timeout parameter to indicate that the node should begin shutting down after a number of seconds."
+              },
+              "response": [
+                {
+                  "id": "44e3fcba-b18a-483d-aa1b-97c0f40658c5",
+                  "name": "200 response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Algo-API-Token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/shutdown?timeout=0",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "shutdown"
+                      ],
+                      "query": [
+                        {
+                          "key": "timeout",
+                          "value": "0"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T00:25:52.000Z",
+                  "updatedAt": "2026-07-28T00:25:52.000Z",
+                  "uid": "35240-44e3fcba-b18a-483d-aa1b-97c0f40658c5"
+                }
+              ],
+              "createdAt": "2026-07-28T00:25:52.000Z",
+              "updatedAt": "2026-07-28T00:25:52.000Z",
+              "uid": "35240-e7e35525-35d2-4fa3-8acc-8440a4939f63"
+            }
+          ],
+          "id": "0cab2b44-54ab-4101-9731-c0437ee28f3c",
+          "createdAt": "2026-07-28T00:25:52.000Z",
+          "updatedAt": "2026-07-28T00:25:52.000Z",
+          "uid": "35240-0cab2b44-54ab-4101-9731-c0437ee28f3c"
+        }
+      ],
+      "id": "ecc86e9b-0e41-4ec0-935c-3764cdf69ab4",
+      "createdAt": "2026-07-28T00:25:52.000Z",
+      "updatedAt": "2026-07-28T00:25:52.000Z",
+      "uid": "35240-ecc86e9b-0e41-4ec0-935c-3764cdf69ab4"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Algo-API-Token",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost/"
+    }
+  ]
+}

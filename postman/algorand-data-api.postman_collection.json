@@ -1,0 +1,967 @@
+{
+  "info": {
+    "_postman_id": "7382d406-d743-477c-9b50-c85399a9663a",
+    "name": "Algod REST API. common data API",
+    "description": "API endpoint for algod operations.\n\nContact Support:\n Name: algorand\n Email: contact@algorand.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T00:25:39.000Z",
+    "updatedAt": "2026-07-28T00:25:39.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-7382d406-d743-477c-9b50-c85399a9663a"
+  },
+  "item": [
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "ledger",
+          "item": [
+            {
+              "name": "sync",
+              "item": [
+                {
+                  "name": "{round}",
+                  "item": [
+                    {
+                      "name": "Given a round, tells the ledger to keep that round in its cache.",
+                      "id": "51018d47-5f13-45c2-a80e-8ee5ba27bee2",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/ledger/sync/:round",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "ledger",
+                            "sync",
+                            ":round"
+                          ],
+                          "variable": [
+                            {
+                              "id": "80b0b167-244f-4a8b-89ed-1ccc86efce96",
+                              "key": "round",
+                              "value": "<integer>",
+                              "description": "(Required) A round number."
+                            }
+                          ]
+                        },
+                        "description": "Sets the minimum sync round on the ledger."
+                      },
+                      "response": [
+                        {
+                          "id": "adafd048-8696-4885-84a3-88e0720d9c4a",
+                          "name": "200 response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Algo-API-Token",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/ledger/sync/:round",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "ledger",
+                                "sync",
+                                ":round"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "round"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T00:25:40.000Z",
+                          "updatedAt": "2026-07-28T00:25:40.000Z",
+                          "uid": "35240-adafd048-8696-4885-84a3-88e0720d9c4a"
+                        },
+                        {
+                          "id": "860213f8-9e40-4f96-b72a-3386d13980ff",
+                          "name": "Can not set sync round to an earlier round than the current round.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Algo-API-Token",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/ledger/sync/:round",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "ledger",
+                                "sync",
+                                ":round"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "round"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                          "createdAt": "2026-07-28T00:25:40.000Z",
+                          "updatedAt": "2026-07-28T00:25:40.000Z",
+                          "uid": "35240-860213f8-9e40-4f96-b72a-3386d13980ff"
+                        },
+                        {
+                          "id": "99792bc6-9589-4626-9778-886bf6446acc",
+                          "name": "Invalid API Token",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Algo-API-Token",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/ledger/sync/:round",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "ledger",
+                                "sync",
+                                ":round"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "round"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                          "createdAt": "2026-07-28T00:25:40.000Z",
+                          "updatedAt": "2026-07-28T00:25:40.000Z",
+                          "uid": "35240-99792bc6-9589-4626-9778-886bf6446acc"
+                        },
+                        {
+                          "id": "23924c7f-c669-41c1-bce8-14ad3540e659",
+                          "name": "Internal Error",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Algo-API-Token",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/ledger/sync/:round",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "ledger",
+                                "sync",
+                                ":round"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "round"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                          "createdAt": "2026-07-28T00:25:40.000Z",
+                          "updatedAt": "2026-07-28T00:25:40.000Z",
+                          "uid": "35240-23924c7f-c669-41c1-bce8-14ad3540e659"
+                        },
+                        {
+                          "id": "105a54af-7e5b-4555-b200-96bf86c8c59c",
+                          "name": "Service Temporarily Unavailable",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Algo-API-Token",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/ledger/sync/:round",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "ledger",
+                                "sync",
+                                ":round"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "round"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Service Unavailable",
+                          "code": 503,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                          "createdAt": "2026-07-28T00:25:40.000Z",
+                          "updatedAt": "2026-07-28T00:25:40.000Z",
+                          "uid": "35240-105a54af-7e5b-4555-b200-96bf86c8c59c"
+                        },
+                        {
+                          "id": "5c3366e2-9385-4056-b116-e3c5c1ca0230",
+                          "name": "Unknown Error",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Algo-API-Token",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/ledger/sync/:round",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "ledger",
+                                "sync",
+                                ":round"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "round"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T00:25:40.000Z",
+                          "updatedAt": "2026-07-28T00:25:40.000Z",
+                          "uid": "35240-5c3366e2-9385-4056-b116-e3c5c1ca0230"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T00:25:40.000Z",
+                      "updatedAt": "2026-07-28T00:25:40.000Z",
+                      "uid": "35240-51018d47-5f13-45c2-a80e-8ee5ba27bee2"
+                    }
+                  ],
+                  "id": "fc78c855-98f2-46cc-bbf6-0b452081c3ed",
+                  "createdAt": "2026-07-28T00:25:40.000Z",
+                  "updatedAt": "2026-07-28T00:25:40.000Z",
+                  "uid": "35240-fc78c855-98f2-46cc-bbf6-0b452081c3ed"
+                },
+                {
+                  "name": "Removes minimum sync round restriction from the ledger.",
+                  "id": "a8464e20-f584-49ac-8159-cb28a3e9a81a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/ledger/sync",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "ledger",
+                        "sync"
+                      ]
+                    },
+                    "description": "Unset the ledger sync round."
+                  },
+                  "response": [
+                    {
+                      "id": "e645e113-910b-4ef7-988c-e26a043ae111",
+                      "name": "200 response",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Algo-API-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/ledger/sync",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "ledger",
+                            "sync"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:25:40.000Z",
+                      "updatedAt": "2026-07-28T00:25:40.000Z",
+                      "uid": "35240-e645e113-910b-4ef7-988c-e26a043ae111"
+                    },
+                    {
+                      "id": "0f0e4596-acad-41b2-8d76-1927997ba6a8",
+                      "name": "Sync round not set.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Algo-API-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/ledger/sync",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "ledger",
+                            "sync"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T00:25:40.000Z",
+                      "updatedAt": "2026-07-28T00:25:40.000Z",
+                      "uid": "35240-0f0e4596-acad-41b2-8d76-1927997ba6a8"
+                    },
+                    {
+                      "id": "4a4270b1-9a6d-46af-b774-0b6b7edf5b39",
+                      "name": "Invalid API Token",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Algo-API-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/ledger/sync",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "ledger",
+                            "sync"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T00:25:40.000Z",
+                      "updatedAt": "2026-07-28T00:25:40.000Z",
+                      "uid": "35240-4a4270b1-9a6d-46af-b774-0b6b7edf5b39"
+                    },
+                    {
+                      "id": "18ba868d-55b8-4c19-82a4-d9652724ae4e",
+                      "name": "Internal Error",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Algo-API-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/ledger/sync",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "ledger",
+                            "sync"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T00:25:40.000Z",
+                      "updatedAt": "2026-07-28T00:25:40.000Z",
+                      "uid": "35240-18ba868d-55b8-4c19-82a4-d9652724ae4e"
+                    },
+                    {
+                      "id": "50ed9b79-9761-4cbf-9ee6-699532e08a3a",
+                      "name": "Service Temporarily Unavailable",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Algo-API-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/ledger/sync",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "ledger",
+                            "sync"
+                          ]
+                        }
+                      },
+                      "status": "Service Unavailable",
+                      "code": 503,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T00:25:40.000Z",
+                      "updatedAt": "2026-07-28T00:25:40.000Z",
+                      "uid": "35240-50ed9b79-9761-4cbf-9ee6-699532e08a3a"
+                    },
+                    {
+                      "id": "9a346afc-77de-4f43-a8b2-395542d72ae5",
+                      "name": "Unknown Error",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Algo-API-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/ledger/sync",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "ledger",
+                            "sync"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:25:40.000Z",
+                      "updatedAt": "2026-07-28T00:25:40.000Z",
+                      "uid": "35240-9a346afc-77de-4f43-a8b2-395542d72ae5"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T00:25:40.000Z",
+                  "updatedAt": "2026-07-28T00:25:40.000Z",
+                  "uid": "35240-a8464e20-f584-49ac-8159-cb28a3e9a81a"
+                },
+                {
+                  "name": "Returns the minimum sync round the ledger is keeping in cache.",
+                  "id": "74dc9c46-0aa9-4c2d-a9e5-4c2bd8ad1cc2",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/ledger/sync",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "ledger",
+                        "sync"
+                      ]
+                    },
+                    "description": "Gets the minimum sync round for the ledger."
+                  },
+                  "response": [
+                    {
+                      "id": "4b77d7d5-3833-4621-b1ab-470d40f6ba84",
+                      "name": "Response containing the ledger's minimum sync round",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Algo-API-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/ledger/sync",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "ledger",
+                            "sync"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"round\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T00:25:40.000Z",
+                      "updatedAt": "2026-07-28T00:25:40.000Z",
+                      "uid": "35240-4b77d7d5-3833-4621-b1ab-470d40f6ba84"
+                    },
+                    {
+                      "id": "7112c5b5-415a-4a8a-ade5-4c6a9467d5e5",
+                      "name": "Sync round not set.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Algo-API-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/ledger/sync",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "ledger",
+                            "sync"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T00:25:40.000Z",
+                      "updatedAt": "2026-07-28T00:25:40.000Z",
+                      "uid": "35240-7112c5b5-415a-4a8a-ade5-4c6a9467d5e5"
+                    },
+                    {
+                      "id": "cd6e44f1-d36d-4680-bee5-8aa061b9bec3",
+                      "name": "Invalid API Token",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Algo-API-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/ledger/sync",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "ledger",
+                            "sync"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T00:25:40.000Z",
+                      "updatedAt": "2026-07-28T00:25:40.000Z",
+                      "uid": "35240-cd6e44f1-d36d-4680-bee5-8aa061b9bec3"
+                    },
+                    {
+                      "id": "c7ef5fd4-7c66-4af8-af04-4e51843326fc",
+                      "name": "Internal Error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Algo-API-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/ledger/sync",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "ledger",
+                            "sync"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T00:25:40.000Z",
+                      "updatedAt": "2026-07-28T00:25:40.000Z",
+                      "uid": "35240-c7ef5fd4-7c66-4af8-af04-4e51843326fc"
+                    },
+                    {
+                      "id": "611d1d23-c4aa-4006-b1f4-42ffbfd5447c",
+                      "name": "Service Temporarily Unavailable",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Algo-API-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/ledger/sync",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "ledger",
+                            "sync"
+                          ]
+                        }
+                      },
+                      "status": "Service Unavailable",
+                      "code": 503,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T00:25:40.000Z",
+                      "updatedAt": "2026-07-28T00:25:40.000Z",
+                      "uid": "35240-611d1d23-c4aa-4006-b1f4-42ffbfd5447c"
+                    },
+                    {
+                      "id": "fa67408b-a3a6-4214-a0b5-03bb1df40048",
+                      "name": "Unknown Error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Algo-API-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/ledger/sync",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "ledger",
+                            "sync"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:25:40.000Z",
+                      "updatedAt": "2026-07-28T00:25:40.000Z",
+                      "uid": "35240-fa67408b-a3a6-4214-a0b5-03bb1df40048"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T00:25:40.000Z",
+                  "updatedAt": "2026-07-28T00:25:40.000Z",
+                  "uid": "35240-74dc9c46-0aa9-4c2d-a9e5-4c2bd8ad1cc2"
+                }
+              ],
+              "id": "e394962e-8370-4cbc-b03d-b00060443974",
+              "createdAt": "2026-07-28T00:25:40.000Z",
+              "updatedAt": "2026-07-28T00:25:40.000Z",
+              "uid": "35240-e394962e-8370-4cbc-b03d-b00060443974"
+            }
+          ],
+          "id": "e93af8d0-9928-440a-be6d-2ff75d838675",
+          "createdAt": "2026-07-28T00:25:40.000Z",
+          "updatedAt": "2026-07-28T00:25:40.000Z",
+          "uid": "35240-e93af8d0-9928-440a-be6d-2ff75d838675"
+        }
+      ],
+      "id": "7a787b79-7161-4272-9e0f-4604b079b155",
+      "createdAt": "2026-07-28T00:25:40.000Z",
+      "updatedAt": "2026-07-28T00:25:40.000Z",
+      "uid": "35240-7a787b79-7161-4272-9e0f-4604b079b155"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Algo-API-Token",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost/"
+    }
+  ]
+}
