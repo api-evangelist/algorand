@@ -1,0 +1,92 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Algod REST API. common Wallet API",
+    "version": "0.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Algo-API-Token",
+      "value": "{{X-Algo-API-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Wallet",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a wallet",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/v1/wallet"
+          },
+          "docs": "Create a new wallet (collection of keys) with the given parameters."
+        },
+        {
+          "info": {
+            "name": "Get wallet info",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/v1/wallet/info"
+          },
+          "docs": "Returns information about the wallet associated with the passed wallet handle token. Additionally returns expiration information about the token itself.\n"
+        },
+        {
+          "info": {
+            "name": "Initialize a wallet handle token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/v1/wallet/init"
+          },
+          "docs": "Unlock the wallet and return a wallet handle token that can be used for subsequent operations. These tokens expire periodically and must be renewed. You can `POST` the token to `/v1/wallet/info` to see how much time remains until expiration, and renew it with `/v1/wallet/renew`. When you're done, you can invalidate the token with `/v1/wallet/release`.\n"
+        },
+        {
+          "info": {
+            "name": "Release a wallet handle token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/v1/wallet/release"
+          },
+          "docs": "Invalidate the passed wallet handle token, making it invalid for use in subsequent requests."
+        },
+        {
+          "info": {
+            "name": "Rename a wallet",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/v1/wallet/rename"
+          },
+          "docs": "Rename the underlying wallet to something else"
+        },
+        {
+          "info": {
+            "name": "Renew a wallet handle token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/v1/wallet/renew"
+          },
+          "docs": "Renew a wallet handle token, increasing its expiration duration to its initial value"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

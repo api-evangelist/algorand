@@ -1,0 +1,92 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Algod REST API. common Multisig API",
+    "version": "0.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Algo-API-Token",
+      "value": "{{X-Algo-API-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Multisig",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Delete a multisig",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost/v1/multisig"
+          },
+          "docs": "Deletes multisig preimage information for the passed address from the wallet.\n"
+        },
+        {
+          "info": {
+            "name": "Export multisig address metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/v1/multisig/export"
+          },
+          "docs": "Given a multisig address whose preimage this wallet stores, returns the information used to generate the address, including public keys, threshold, and multisig version.\n"
+        },
+        {
+          "info": {
+            "name": "Import a multisig account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/v1/multisig/import"
+          },
+          "docs": "Generates a multisig account from the passed public keys array and multisig metadata, and stores all of this in the wallet.\n"
+        },
+        {
+          "info": {
+            "name": "List multisig accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/v1/multisig/list"
+          },
+          "docs": "Lists all of the multisig accounts whose preimages this wallet stores"
+        },
+        {
+          "info": {
+            "name": "Sign a multisig transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/v1/multisig/sign"
+          },
+          "docs": "Start a multisig signature, or add a signature to a partially completed multisig signature object.\n"
+        },
+        {
+          "info": {
+            "name": "Sign a program for a multisig account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/v1/multisig/signprogram"
+          },
+          "docs": "Start a multisig signature, or add a signature to a partially completed multisig signature object.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Algod REST API. common experimental API",
+    "version": "0.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Algo-API-Token",
+      "value": "{{X-Algo-API-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "experimental",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns OK if experimental API is enabled.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/v2/experimental"
+          },
+          "docs": "Returns OK if experimental API is enabled."
+        },
+        {
+          "info": {
+            "name": "Fast track for broadcasting a raw transaction or transaction group to the network through the tx handler without performing most of the checks and reporting detailed errors. Should be only used for development and performance testing.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/v2/transactions/async"
+          },
+          "docs": "Fast track for broadcasting a raw transaction or transaction group to the network through the tx handler without performing most of the checks and reporting detailed errors. Should be only used for development and performance testing."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

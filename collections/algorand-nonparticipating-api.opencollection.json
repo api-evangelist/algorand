@@ -1,0 +1,755 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Algod REST API. common nonparticipating API",
+    "version": "0.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Algo-API-Token",
+      "value": "{{X-Algo-API-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "nonparticipating",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get account information.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/v2/accounts/:address",
+            "params": [
+              {
+                "name": "address",
+                "value": "",
+                "type": "path",
+                "description": "An account public key."
+              },
+              {
+                "name": "exclude",
+                "value": "",
+                "type": "query",
+                "description": "Exclude additional items from the account. Use `all` to exclude asset holdings, application local state, created asset parameters, and created application parameters. Use `created-apps-params` to exclude only the parameters of created applications (returns only application IDs). Use `created-assets-params` to exclude only the parameters of created assets (returns only asset IDs). Multiple values can be comma-separated (e.g., `created-apps-params,created-assets-params`). Note: `all` and `none` cannot be combined with other values. Defaults to `none`."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Configures whether the response object is JSON or MessagePack encoded. If not provided, defaults to JSON."
+              }
+            ]
+          },
+          "docs": "Given a specific account public key, this call returns the account's status, balance and spendable amounts"
+        },
+        {
+          "info": {
+            "name": "Get a list of applications held by an account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/v2/accounts/:address/applications",
+            "params": [
+              {
+                "name": "address",
+                "value": "",
+                "type": "path",
+                "description": "An account public key."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return."
+              },
+              {
+                "name": "next",
+                "value": "",
+                "type": "query",
+                "description": "The next page of results. Use the next token provided by the previous results."
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "Include additional items in the response. Use `params` to include full application parameters (global state, schema, etc.). Multiple values can be comma-separated. Defaults to returning only application IDs and local state."
+              }
+            ]
+          },
+          "docs": "Lookup an account's application holdings (local state and params if the account is the creator)."
+        },
+        {
+          "info": {
+            "name": "Get account information about a given app.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/v2/accounts/:address/applications/:application-id",
+            "params": [
+              {
+                "name": "address",
+                "value": "",
+                "type": "path",
+                "description": "An account public key."
+              },
+              {
+                "name": "application-id",
+                "value": "",
+                "type": "path",
+                "description": "An application identifier."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Configures whether the response object is JSON or MessagePack encoded. If not provided, defaults to JSON."
+              }
+            ]
+          },
+          "docs": "Given a specific account public key and application ID, this call returns the account's application local state and global state (AppLocalState and AppParams, if either exists). Global state will only be returned if the provided address is the application's creator."
+        },
+        {
+          "info": {
+            "name": "Get a list of assets held by an account, inclusive of asset params.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/v2/accounts/:address/assets",
+            "params": [
+              {
+                "name": "address",
+                "value": "",
+                "type": "path",
+                "description": "An account public key."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return."
+              },
+              {
+                "name": "next",
+                "value": "",
+                "type": "query",
+                "description": "The next page of results. Use the next token provided by the previous results."
+              }
+            ]
+          },
+          "docs": "Lookup an account's asset holdings."
+        },
+        {
+          "info": {
+            "name": "Get account information about a given asset.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/v2/accounts/:address/assets/:asset-id",
+            "params": [
+              {
+                "name": "address",
+                "value": "",
+                "type": "path",
+                "description": "An account public key."
+              },
+              {
+                "name": "asset-id",
+                "value": "",
+                "type": "path",
+                "description": "An asset identifier."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Configures whether the response object is JSON or MessagePack encoded. If not provided, defaults to JSON."
+              }
+            ]
+          },
+          "docs": "Given a specific account public key and asset ID, this call returns the account's asset holding and asset parameters (if either exist). Asset parameters will only be returned if the provided address is the asset's creator."
+        },
+        {
+          "info": {
+            "name": "Get application information.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/v2/applications/:application-id",
+            "params": [
+              {
+                "name": "application-id",
+                "value": "",
+                "type": "path",
+                "description": "An application identifier."
+              }
+            ]
+          },
+          "docs": "Given a application ID, it returns application information including creator, approval and clear programs, global and local schemas, and global state."
+        },
+        {
+          "info": {
+            "name": "Get box information for a given application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/v2/applications/:application-id/box",
+            "params": [
+              {
+                "name": "application-id",
+                "value": "",
+                "type": "path",
+                "description": "An application identifier."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "A box name, in the goal app call arg form 'encoding:value'. For ints, use the form 'int:1234'. For raw bytes, use the form 'b64:A=='. For printable strings, use the form 'str:hello'. For addresses, use the form 'addr:XYZ...'."
+              }
+            ]
+          },
+          "docs": "Given an application ID and box name, it returns the round, box name, and value (each base64 encoded). Box names must be in the goal app call arg encoding form 'encoding:value'. For ints, use the form 'int:1234'. For raw bytes, use the form 'b64:A=='. For printable strings, use the form 'str:hello'. For addresses, use the form 'addr:XYZ...'."
+        },
+        {
+          "info": {
+            "name": "Get all box names for a given application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/v2/applications/:application-id/boxes",
+            "params": [
+              {
+                "name": "application-id",
+                "value": "",
+                "type": "path",
+                "description": "An application identifier."
+              },
+              {
+                "name": "max",
+                "value": "",
+                "type": "query",
+                "description": "Max number of box names to return. If max is not set, or max == 0, returns all box-names."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of boxes to return per page."
+              },
+              {
+                "name": "next",
+                "value": "",
+                "type": "query",
+                "description": "A box name, in the goal app call arg form 'encoding:value', representing the earliest box name to include in results. Use the next-token from a previous response."
+              },
+              {
+                "name": "prefix",
+                "value": "",
+                "type": "query",
+                "description": "A box name prefix, in the goal app call arg form 'encoding:value', to filter results by. Only boxes whose names start with this prefix will be returned."
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "Include additional items in the response. Use `values` to include box values. Multiple values can be comma-separated."
+              },
+              {
+                "name": "round",
+                "value": "",
+                "type": "query",
+                "description": "Return box data from the given round. The round must be within the node's available range."
+              }
+            ]
+          },
+          "docs": "Given an application ID, return all box names. No particular ordering is guaranteed. Request fails when client or server-side configured limits prevent returning all box names.\n\nPagination mode is enabled when any of the following parameters are provided: limit, next, prefix, include, or round. In pagination mode box values can be requested and results are returned in sorted order.\n\nTo paginate: use the next-token from a previous response as the next parameter in the following request. Pin the r"
+        },
+        {
+          "info": {
+            "name": "Get asset information.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/v2/assets/:asset-id",
+            "params": [
+              {
+                "name": "asset-id",
+                "value": "",
+                "type": "path",
+                "description": "An asset identifier."
+              }
+            ]
+          },
+          "docs": "Given a asset ID, it returns asset information including creator, name, total supply and special addresses."
+        },
+        {
+          "info": {
+            "name": "Get the block for the given round.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/v2/blocks/:round",
+            "params": [
+              {
+                "name": "round",
+                "value": "",
+                "type": "path",
+                "description": "A round number."
+              },
+              {
+                "name": "header-only",
+                "value": "",
+                "type": "query",
+                "description": "If true, only the block header (exclusive of payset or certificate) may be included in response."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Configures whether the response object is JSON or MessagePack encoded. If not provided, defaults to JSON."
+              }
+            ]
+          },
+          "docs": "Get the block for the given round."
+        },
+        {
+          "info": {
+            "name": "Get the block hash for the block on the given round.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/v2/blocks/:round/hash",
+            "params": [
+              {
+                "name": "round",
+                "value": "",
+                "type": "path",
+                "description": "A round number."
+              }
+            ]
+          },
+          "docs": "Get the block hash for the block on the given round."
+        },
+        {
+          "info": {
+            "name": "Gets a proof for a given light block header inside a state proof commitment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/v2/blocks/:round/lightheader/proof",
+            "params": [
+              {
+                "name": "round",
+                "value": "",
+                "type": "path",
+                "description": "A round number."
+              }
+            ]
+          },
+          "docs": "Gets a proof for a given light block header inside a state proof commitment"
+        },
+        {
+          "info": {
+            "name": "Get all of the logs from outer and inner app calls in the given round",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/v2/blocks/:round/logs",
+            "params": [
+              {
+                "name": "round",
+                "value": "",
+                "type": "path",
+                "description": "A round number."
+              }
+            ]
+          },
+          "docs": "Get all of the logs from outer and inner app calls in the given round"
+        },
+        {
+          "info": {
+            "name": "Get a proof for a transaction in a block.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/v2/blocks/:round/transactions/:txid/proof",
+            "params": [
+              {
+                "name": "round",
+                "value": "",
+                "type": "path",
+                "description": "A round number."
+              },
+              {
+                "name": "txid",
+                "value": "",
+                "type": "path",
+                "description": "The transaction ID for which to generate a proof."
+              },
+              {
+                "name": "hashtype",
+                "value": "",
+                "type": "query",
+                "description": "The type of hash function used to create the proof, must be one of: \n* sha512_256 \n* sha256"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Configures whether the response object is JSON or MessagePack encoded. If not provided, defaults to JSON."
+              }
+            ]
+          },
+          "docs": "Get a proof for a transaction in a block."
+        },
+        {
+          "info": {
+            "name": "Get the top level transaction IDs for the block on the given round.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/v2/blocks/:round/txids",
+            "params": [
+              {
+                "name": "round",
+                "value": "",
+                "type": "path",
+                "description": "A round number."
+              }
+            ]
+          },
+          "docs": "Get the top level transaction IDs for the block on the given round."
+        },
+        {
+          "info": {
+            "name": "Starts a catchpoint catchup.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/v2/catchup/:catchpoint",
+            "params": [
+              {
+                "name": "catchpoint",
+                "value": "",
+                "type": "path",
+                "description": "A catch point"
+              },
+              {
+                "name": "min",
+                "value": "",
+                "type": "query",
+                "description": "Specify the minimum number of blocks which the ledger must be advanced by in order to start the catchup. This is useful for simplifying tools which support fast catchup, they can run the catchup unconditionally and the node will skip the catchup if it is not needed."
+              }
+            ]
+          },
+          "docs": "Given a catchpoint, it starts catching up to this catchpoint"
+        },
+        {
+          "info": {
+            "name": "Aborts a catchpoint catchup.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost/v2/catchup/:catchpoint",
+            "params": [
+              {
+                "name": "catchpoint",
+                "value": "",
+                "type": "path",
+                "description": "A catch point"
+              }
+            ]
+          },
+          "docs": "Given a catchpoint, it aborts catching up to this catchpoint"
+        },
+        {
+          "info": {
+            "name": "Get a LedgerStateDelta object for a given transaction group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/v2/deltas/txn/group/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "A transaction ID, or transaction group ID"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Configures whether the response object is JSON or MessagePack encoded. If not provided, defaults to JSON."
+              }
+            ]
+          },
+          "docs": "Get a ledger delta for a given transaction group."
+        },
+        {
+          "info": {
+            "name": "Get a LedgerStateDelta object for a given round",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/v2/deltas/:round",
+            "params": [
+              {
+                "name": "round",
+                "value": "",
+                "type": "path",
+                "description": "A round number."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Configures whether the response object is JSON or MessagePack encoded. If not provided, defaults to JSON."
+              }
+            ]
+          },
+          "docs": "Get ledger deltas for a round."
+        },
+        {
+          "info": {
+            "name": "Get LedgerStateDelta objects for all transaction groups in a given round",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/v2/deltas/:round/txn/group",
+            "params": [
+              {
+                "name": "round",
+                "value": "",
+                "type": "path",
+                "description": "A round number."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Configures whether the response object is JSON or MessagePack encoded. If not provided, defaults to JSON."
+              }
+            ]
+          },
+          "docs": "Get ledger deltas for transaction groups in a given round."
+        },
+        {
+          "info": {
+            "name": "Returns the timestamp offset. Timestamp offsets can only be set in dev mode.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/v2/devmode/blocks/offset"
+          },
+          "docs": "Gets the current timestamp offset."
+        },
+        {
+          "info": {
+            "name": "Given a timestamp offset in seconds, adds the offset to every subsequent block header's timestamp.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/v2/devmode/blocks/offset/:offset",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "path",
+                "description": "The timestamp offset for blocks in dev mode."
+              }
+            ]
+          },
+          "docs": "Sets the timestamp offset (seconds) for blocks in dev mode. Providing an offset of 0 will unset this value and try to use the real clock for the timestamp."
+        },
+        {
+          "info": {
+            "name": "Get the current supply reported by the ledger.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/v2/ledger/supply"
+          },
+          "docs": "Get the current supply reported by the ledger."
+        },
+        {
+          "info": {
+            "name": "ShutdownNode",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/v2/shutdown",
+            "params": [
+              {
+                "name": "timeout",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Special management endpoint to shutdown the node. Optionally provide a timeout parameter to indicate that the node should begin shutting down after a number of seconds."
+        },
+        {
+          "info": {
+            "name": "Get a state proof that covers a given round",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/v2/stateproofs/:round",
+            "params": [
+              {
+                "name": "round",
+                "value": "",
+                "type": "path",
+                "description": "A round number."
+              }
+            ]
+          },
+          "docs": "Get a state proof that covers a given round"
+        },
+        {
+          "info": {
+            "name": "Gets the current node status.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/v2/status"
+          },
+          "docs": "Gets the current node status."
+        },
+        {
+          "info": {
+            "name": "Gets the node status after waiting for a round after the given round.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/v2/status/wait-for-block-after/:round",
+            "params": [
+              {
+                "name": "round",
+                "value": "",
+                "type": "path",
+                "description": "A round number."
+              }
+            ]
+          },
+          "docs": "Waits for a block to appear after round {round} and returns the node's status at the time. There is a 1 minute timeout, when reached the current status is returned regardless of whether or not it is the round after the given round."
+        },
+        {
+          "info": {
+            "name": "Compile TEAL source code to binary, produce its hash",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/v2/teal/compile",
+            "params": [
+              {
+                "name": "sourcemap",
+                "value": "",
+                "type": "query",
+                "description": "When set to `true`, returns the source map of the program as a JSON. Defaults to `false`."
+              }
+            ]
+          },
+          "docs": "Given TEAL source code in plain text, return base64 encoded program bytes and base32 SHA512_256 hash of program bytes (Address style). This endpoint is only enabled when a node's configuration file sets EnableDeveloperAPI to true."
+        },
+        {
+          "info": {
+            "name": "Disassemble program bytes into the TEAL source code.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/v2/teal/disassemble"
+          },
+          "docs": "Given the program bytes, return the TEAL source code in plain text. This endpoint is only enabled when a node's configuration file sets EnableDeveloperAPI to true."
+        },
+        {
+          "info": {
+            "name": "Provide debugging information for a transaction (or group).",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/v2/teal/dryrun",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Executes TEAL program(s) in context and returns debugging information about the execution. This endpoint is only enabled when a node's configuration file sets EnableDeveloperAPI to true."
+        },
+        {
+          "info": {
+            "name": "Get parameters for constructing a new transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/v2/transactions/params"
+          },
+          "docs": "Get parameters for constructing a new transaction"
+        },
+        {
+          "info": {
+            "name": "Simulates a raw transaction or transaction group as it would be evaluated on the network. The simulation will use blockchain state from the latest committed round.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/v2/transactions/simulate",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Configures whether the response object is JSON or MessagePack encoded. If not provided, defaults to JSON."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Simulates a raw transaction or transaction group as it would be evaluated on the network. The simulation will use blockchain state from the latest committed round."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

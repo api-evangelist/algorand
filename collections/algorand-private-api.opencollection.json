@@ -1,0 +1,234 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Algod REST API. common private API",
+    "version": "0.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Algo-API-Token",
+      "value": "{{X-Algo-API-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "private",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gets the merged config file.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/debug/settings/config"
+          },
+          "docs": "Returns the merged (defaults + overrides) config file in json."
+        },
+        {
+          "info": {
+            "name": "GetDebugSettingsProf",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/debug/settings/pprof"
+          },
+          "docs": "Retrieves the current settings for blocking and mutex profiles"
+        },
+        {
+          "info": {
+            "name": "PutDebugSettingsProf",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/debug/settings/pprof"
+          },
+          "docs": "Enables blocking and mutex profiles, and returns the old settings"
+        },
+        {
+          "info": {
+            "name": "Starts a catchpoint catchup.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/v2/catchup/:catchpoint",
+            "params": [
+              {
+                "name": "catchpoint",
+                "value": "",
+                "type": "path",
+                "description": "A catch point"
+              },
+              {
+                "name": "min",
+                "value": "",
+                "type": "query",
+                "description": "Specify the minimum number of blocks which the ledger must be advanced by in order to start the catchup. This is useful for simplifying tools which support fast catchup, they can run the catchup unconditionally and the node will skip the catchup if it is not needed."
+              }
+            ]
+          },
+          "docs": "Given a catchpoint, it starts catching up to this catchpoint"
+        },
+        {
+          "info": {
+            "name": "Aborts a catchpoint catchup.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost/v2/catchup/:catchpoint",
+            "params": [
+              {
+                "name": "catchpoint",
+                "value": "",
+                "type": "path",
+                "description": "A catch point"
+              }
+            ]
+          },
+          "docs": "Given a catchpoint, it aborts catching up to this catchpoint"
+        },
+        {
+          "info": {
+            "name": "Return a list of participation keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/v2/participation"
+          },
+          "docs": "Return a list of participation keys"
+        },
+        {
+          "info": {
+            "name": "Add a participation key to the node",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/v2/participation"
+          },
+          "docs": "Add a participation key to the node"
+        },
+        {
+          "info": {
+            "name": "Generate and install participation keys to the node.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/v2/participation/generate/:address",
+            "params": [
+              {
+                "name": "address",
+                "value": "",
+                "type": "path",
+                "description": "An account public key."
+              },
+              {
+                "name": "dilution",
+                "value": "",
+                "type": "query",
+                "description": "Key dilution for two-level participation keys (defaults to sqrt of validity window)."
+              },
+              {
+                "name": "first",
+                "value": "",
+                "type": "query",
+                "description": "First round for participation key."
+              },
+              {
+                "name": "last",
+                "value": "",
+                "type": "query",
+                "description": "Last round for participation key."
+              }
+            ]
+          },
+          "docs": "Generate and install participation keys to the node."
+        },
+        {
+          "info": {
+            "name": "Get participation key info given a participation ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/v2/participation/:participation-id",
+            "params": [
+              {
+                "name": "participation-id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Given a participation ID, return information about that participation key"
+        },
+        {
+          "info": {
+            "name": "Append state proof keys to a participation key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/v2/participation/:participation-id",
+            "params": [
+              {
+                "name": "participation-id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Given a participation ID, append state proof keys to a particular set of participation keys"
+        },
+        {
+          "info": {
+            "name": "Delete a given participation key by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost/v2/participation/:participation-id",
+            "params": [
+              {
+                "name": "participation-id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a given participation key by ID"
+        },
+        {
+          "info": {
+            "name": "ShutdownNode",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/v2/shutdown",
+            "params": [
+              {
+                "name": "timeout",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Special management endpoint to shutdown the node. Optionally provide a timeout parameter to indicate that the node should begin shutting down after a number of seconds."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

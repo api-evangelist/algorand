@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Algod REST API. common data API",
+    "version": "0.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Algo-API-Token",
+      "value": "{{X-Algo-API-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns the minimum sync round the ledger is keeping in cache.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/v2/ledger/sync"
+          },
+          "docs": "Gets the minimum sync round for the ledger."
+        },
+        {
+          "info": {
+            "name": "Removes minimum sync round restriction from the ledger.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost/v2/ledger/sync"
+          },
+          "docs": "Unset the ledger sync round."
+        },
+        {
+          "info": {
+            "name": "Given a round, tells the ledger to keep that round in its cache.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/v2/ledger/sync/:round",
+            "params": [
+              {
+                "name": "round",
+                "value": "",
+                "type": "path",
+                "description": "A round number."
+              }
+            ]
+          },
+          "docs": "Sets the minimum sync round on the ledger."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

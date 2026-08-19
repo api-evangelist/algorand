@@ -1,0 +1,2090 @@
+{
+  "item": [
+    {
+      "id": "d32980a1-9b14-4043-bfd0-1652f53b2df8",
+      "name": "search",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "756557e4-93c1-440b-8cde-1114b61b553f",
+          "name": "search For Accounts",
+          "request": {
+            "name": "search For Accounts",
+            "description": {
+              "content": "Search for accounts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "asset-id",
+                  "value": "<integer>",
+                  "description": "Asset ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of results to return. There could be additional pages even if the limit is not reached."
+                },
+                {
+                  "disabled": false,
+                  "key": "next",
+                  "value": "<string>",
+                  "description": "The next page of results. Use the next token provided by the previous results."
+                },
+                {
+                  "disabled": false,
+                  "key": "currency-greater-than",
+                  "value": "<integer>",
+                  "description": "Results should have an amount greater than this value. MicroAlgos are the default currency unless an asset-id is provided, in which case the asset will be used."
+                },
+                {
+                  "disabled": false,
+                  "key": "include-all",
+                  "value": "<boolean>",
+                  "description": "Include all items including closed accounts, deleted applications, destroyed assets, opted-out asset holdings, and closed-out application localstates."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude",
+                  "value": "<string>,<string>",
+                  "description": "Exclude additional items such as asset holdings, application local data stored for this account, asset parameters created by this account, and application parameters created by this account."
+                },
+                {
+                  "disabled": false,
+                  "key": "currency-less-than",
+                  "value": "<integer>",
+                  "description": "Results should have an amount less than this value. MicroAlgos are the default currency unless an asset-id is provided, in which case the asset will be used."
+                },
+                {
+                  "disabled": false,
+                  "key": "auth-addr",
+                  "value": "<string>",
+                  "description": "Include accounts configured to use this spending key."
+                },
+                {
+                  "disabled": false,
+                  "key": "round",
+                  "value": "<integer>",
+                  "description": "Include results for the specified round. For performance reasons, this parameter may be disabled on some configurations. Using application-id or asset-id filters will return both creator and opt-in accounts. Filtering by include-all will return creator and opt-in accounts for deleted assets and accounts. Non-opt-in managers are not included in the results when asset-id is used."
+                },
+                {
+                  "disabled": false,
+                  "key": "application-id",
+                  "value": "<integer>",
+                  "description": "Application ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "online-only",
+                  "value": "<boolean>",
+                  "description": "When this is set to true, return only accounts whose participation status is currently online."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5b4f86e9-e515-436c-bb0a-e77b87989011",
+              "name": "(empty)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "asset-id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "next",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "currency-greater-than",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "include-all",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "exclude",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "currency-less-than",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "auth-addr",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "round",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "application-id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "online-only",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Algo-API-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"accounts\": [\n    {\n      \"address\": \"string\",\n      \"amount\": 3007,\n      \"amount-without-pending-rewards\": 4920,\n      \"min-balance\": 2263,\n      \"pending-rewards\": 7585,\n      \"rewards\": 8425,\n      \"round\": 3517,\n      \"status\": \"string\",\n      \"total-apps-opted-in\": 7245,\n      \"total-assets-opted-in\": 9629,\n      \"total-box-bytes\": 629,\n      \"total-boxes\": 6702,\n      \"total-created-apps\": 7837,\n      \"total-created-assets\": 9038,\n      \"apps-local-state\": [\n        {\n          \"id\": 8657,\n          \"schema\": {\n            \"num-byte-slice\": 532,\n            \"num-uint\": 3692\n          },\n          \"closed-out-at-round\": 623,\n          \"deleted\": false,\n          \"key-value\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"opted-in-at-round\": 3452\n        },\n        {\n          \"id\": 4524,\n          \"schema\": {\n            \"num-byte-slice\": 7676,\n            \"num-uint\": 1633\n          },\n          \"closed-out-at-round\": 748,\n          \"deleted\": true,\n          \"key-value\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"opted-in-at-round\": 6979\n        }\n      ],\n      \"apps-total-extra-pages\": 6260,\n      \"apps-total-schema\": {\n        \"num-byte-slice\": 2335,\n        \"num-uint\": 4929\n      },\n      \"assets\": [\n        {\n          \"amount\": 4794,\n          \"asset-id\": 1270,\n          \"is-frozen\": false,\n          \"deleted\": false,\n          \"opted-in-at-round\": 5297,\n          \"opted-out-at-round\": 6428\n        },\n        {\n          \"amount\": 1683,\n          \"asset-id\": 1444,\n          \"is-frozen\": false,\n          \"deleted\": true,\n          \"opted-in-at-round\": 6327,\n          \"opted-out-at-round\": 2616\n        }\n      ],\n      \"auth-addr\": \"string\",\n      \"closed-at-round\": 6316,\n      \"created-apps\": [\n        {\n          \"id\": 342,\n          \"params\": {\n            \"approval-program\": \"YCxVcY/3Ism0CaKQ\",\n            \"clear-state-program\": \"r5Qv\",\n            \"creator\": \"string\",\n            \"extra-program-pages\": 2105,\n            \"global-state\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"global-state-schema\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"local-state-schema\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"version\": 4249\n          },\n          \"created-at-round\": 5529,\n          \"deleted\": false,\n          \"deleted-at-round\": 6647\n        },\n        {\n          \"id\": 9697,\n          \"params\": {\n            \"approval-program\": \"eeh7nclVSF9pZih5h+/nqpnDwAbChQ8+\",\n            \"clear-state-program\": \"\",\n            \"creator\": \"string\",\n            \"extra-program-pages\": 8480,\n            \"global-state\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"global-state-schema\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"local-state-schema\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"version\": 1073\n          },\n          \"created-at-round\": 4684,\n          \"deleted\": false,\n          \"deleted-at-round\": 624\n        }\n      ],\n      \"created-assets\": [\n        {\n          \"index\": 4152,\n          \"params\": {\n            \"creator\": \"string\",\n            \"decimals\": 15,\n            \"total\": 6105,\n            \"clawback\": \"string\",\n            \"default-frozen\": false,\n            \"freeze\": \"string\",\n            \"manager\": \"string\",\n            \"metadata-hash\": \"cqIc0ioT6rKqiLWKn/6yyv97a4SFGtD+Qk2=\",\n            \"name\": \"string\",\n            \"name-b64\": \"+QTjZMzd\",\n            \"reserve\": \"string\",\n            \"unit-name\": \"string\",\n            \"unit-name-b64\": \"wx==\",\n            \"url\": \"string\",\n            \"url-b64\": \"\"\n          },\n          \"created-at-round\": 8395,\n          \"deleted\": true,\n          \"destroyed-at-round\": 9056\n        },\n        {\n          \"index\": 2459,\n          \"params\": {\n            \"creator\": \"string\",\n            \"decimals\": 3,\n            \"total\": 4016,\n            \"clawback\": \"string\",\n            \"default-frozen\": true,\n            \"freeze\": \"string\",\n            \"manager\": \"string\",\n            \"metadata-hash\": \"ghGd8hlCn791zzpLrllN\",\n            \"name\": \"string\",\n            \"name-b64\": \"R4Z=\",\n            \"reserve\": \"string\",\n            \"unit-name\": \"string\",\n            \"unit-name-b64\": \"uNcX0+8ZqeM66Jy5yrc81pW4CGJua1B9XEvZrZzm\",\n            \"url\": \"string\",\n            \"url-b64\": \"j5/DtJCx7gl//4h=\"\n          },\n          \"created-at-round\": 8,\n          \"deleted\": false,\n          \"destroyed-at-round\": 4048\n        }\n      ],\n      \"created-at-round\": 9802,\n      \"deleted\": false,\n      \"incentive-eligible\": false,\n      \"last-heartbeat\": 6858,\n      \"last-proposed\": 4282,\n      \"participation\": {\n        \"selection-participation-key\": \"PDpetVrUueUJ\",\n        \"vote-first-valid\": 9805,\n        \"vote-key-dilution\": 9541,\n        \"vote-last-valid\": 8230,\n        \"vote-participation-key\": \"Q4zT1XK4mxLD9IB+oKN2Nxwc5rFit1GqJs==\",\n        \"state-proof-key\": \"Ci==\"\n      },\n      \"reward-base\": 394,\n      \"sig-type\": \"msig\"\n    },\n    {\n      \"address\": \"string\",\n      \"amount\": 5121,\n      \"amount-without-pending-rewards\": 2342,\n      \"min-balance\": 7193,\n      \"pending-rewards\": 4793,\n      \"rewards\": 174,\n      \"round\": 2040,\n      \"status\": \"string\",\n      \"total-apps-opted-in\": 4622,\n      \"total-assets-opted-in\": 2653,\n      \"total-box-bytes\": 9133,\n      \"total-boxes\": 5361,\n      \"total-created-apps\": 4663,\n      \"total-created-assets\": 3887,\n      \"apps-local-state\": [\n        {\n          \"id\": 8492,\n          \"schema\": {\n            \"num-byte-slice\": 4267,\n            \"num-uint\": 6907\n          },\n          \"closed-out-at-round\": 5652,\n          \"deleted\": true,\n          \"key-value\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"opted-in-at-round\": 3941\n        },\n        {\n          \"id\": 2556,\n          \"schema\": {\n            \"num-byte-slice\": 5464,\n            \"num-uint\": 1676\n          },\n          \"closed-out-at-round\": 8769,\n          \"deleted\": false,\n          \"key-value\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"opted-in-at-round\": 1558\n        }\n      ],\n      \"apps-total-extra-pages\": 6145,\n      \"apps-total-schema\": {\n        \"num-byte-slice\": 3242,\n        \"num-uint\": 2517\n      },\n      \"assets\": [\n        {\n          \"amount\": 4149,\n          \"asset-id\": 7316,\n          \"is-frozen\": false,\n          \"deleted\": false,\n          \"opted-in-at-round\": 5298,\n          \"opted-out-at-round\": 6825\n        },\n        {\n          \"amount\": 1636,\n          \"asset-id\": 1311,\n          \"is-frozen\": false,\n          \"deleted\": true,\n          \"opted-in-at-round\": 5316,\n          \"opted-out-at-round\": 9684\n        }\n      ],\n      \"auth-addr\": \"string\",\n      \"closed-at-round\": 2905,\n      \"created-apps\": [\n        {\n          \"id\": 601,\n          \"params\": {\n            \"approval-program\": \"8rVOll2ch5Y1TIBQZPd1\",\n            \"clear-state-program\": \"SSewsFg3Em==\",\n            \"creator\": \"string\",\n            \"extra-program-pages\": 3287,\n            \"global-state\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"global-state-schema\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"local-state-schema\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"version\": 2676\n          },\n          \"created-at-round\": 7348,\n          \"deleted\": false,\n          \"deleted-at-round\": 9529\n        },\n        {\n          \"id\": 2529,\n          \"params\": {\n            \"approval-program\": \"\",\n            \"clear-state-program\": \"nh==\",\n            \"creator\": \"string\",\n            \"extra-program-pages\": 9296,\n            \"global-state\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"global-state-schema\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"local-state-schema\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"version\": 9444\n          },\n          \"created-at-round\": 7130,\n          \"deleted\": false,\n          \"deleted-at-round\": 9404\n        }\n      ],\n      \"created-assets\": [\n        {\n          \"index\": 2407,\n          \"params\": {\n            \"creator\": \"string\",\n            \"decimals\": 3,\n            \"total\": 8487,\n            \"clawback\": \"string\",\n            \"default-frozen\": false,\n            \"freeze\": \"string\",\n            \"manager\": \"string\",\n            \"metadata-hash\": \"DN==\",\n            \"name\": \"string\",\n            \"name-b64\": \"lpIu/9hx\",\n            \"reserve\": \"string\",\n            \"unit-name\": \"string\",\n            \"unit-name-b64\": \"hTrVIRmquB1SNwgMbQFFuATtayiZo6h=\",\n            \"url\": \"string\",\n            \"url-b64\": \"5mFX8HGedP0raA==\"\n          },\n          \"created-at-round\": 1753,\n          \"deleted\": false,\n          \"destroyed-at-round\": 6310\n        },\n        {\n          \"index\": 4095,\n          \"params\": {\n            \"creator\": \"string\",\n            \"decimals\": 10,\n            \"total\": 4076,\n            \"clawback\": \"string\",\n            \"default-frozen\": true,\n            \"freeze\": \"string\",\n            \"manager\": \"string\",\n            \"metadata-hash\": \"oJdPUOC4M0RYhTbU2d22ySq+0Gy22NGU2EZ1Xr==\",\n            \"name\": \"string\",\n            \"name-b64\": \"JDbbVnpCdTFKWYAhOUDaQJFCzUXyuqgR\",\n            \"reserve\": \"string\",\n            \"unit-name\": \"string\",\n            \"unit-name-b64\": \"tZJMhkdzunk52ZhfuWSuBqdE\",\n            \"url\": \"string\",\n            \"url-b64\": \"j1nzT/GNY8dmGRZ+ZF==\"\n          },\n          \"created-at-round\": 2517,\n          \"deleted\": true,\n          \"destroyed-at-round\": 3688\n        }\n      ],\n      \"created-at-round\": 2611,\n      \"deleted\": true,\n      \"incentive-eligible\": true,\n      \"last-heartbeat\": 1857,\n      \"last-proposed\": 4569,\n      \"participation\": {\n        \"selection-participation-key\": \"9Z==\",\n        \"vote-first-valid\": 2663,\n        \"vote-key-dilution\": 5412,\n        \"vote-last-valid\": 8067,\n        \"vote-participation-key\": \"A9MJlSs+24pTK3uUQ1Hh\",\n        \"state-proof-key\": \"s2lJdsmF0mc/Bi3jsts5xV0=\"\n      },\n      \"reward-base\": 5185,\n      \"sig-type\": \"sig\"\n    }\n  ],\n  \"current-round\": 8009,\n  \"next-token\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3f88da9e-75e7-4e46-abba-966ef1a5a19f",
+              "name": "Response for errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "asset-id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "next",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "currency-greater-than",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "include-all",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "exclude",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "currency-less-than",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "auth-addr",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "round",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "application-id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "online-only",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Algo-API-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c1e88b67-0f95-4a11-b6ec-1d5afe9fcfce",
+              "name": "Response for errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "asset-id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "next",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "currency-greater-than",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "include-all",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "exclude",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "currency-less-than",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "auth-addr",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "round",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "application-id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "online-only",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Algo-API-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "02e9938a-cfe3-4c1a-b421-2e704ac3d690",
+          "name": "search For Applications",
+          "request": {
+            "name": "search For Applications",
+            "description": {
+              "content": "Search for applications",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "applications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "application-id",
+                  "value": "<integer>",
+                  "description": "Application ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "creator",
+                  "value": "<string>",
+                  "description": "Filter just applications with the given creator address."
+                },
+                {
+                  "disabled": false,
+                  "key": "include-all",
+                  "value": "<boolean>",
+                  "description": "Include all items including closed accounts, deleted applications, destroyed assets, opted-out asset holdings, and closed-out application localstates."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of results to return. There could be additional pages even if the limit is not reached."
+                },
+                {
+                  "disabled": false,
+                  "key": "next",
+                  "value": "<string>",
+                  "description": "The next page of results. Use the next token provided by the previous results."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b9dc1d82-fbe0-401e-b17d-699b67f6e3c5",
+              "name": "(empty)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "application-id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "creator",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "include-all",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "next",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Algo-API-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"applications\": [\n    {\n      \"id\": 3694,\n      \"params\": {\n        \"approval-program\": \"31C8DgVpZj==\",\n        \"clear-state-program\": \"+5fBbds+GrDag5bb\",\n        \"creator\": \"string\",\n        \"extra-program-pages\": 9905,\n        \"global-state\": [\n          {\n            \"key\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"key\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"global-state-schema\": {\n          \"num-byte-slice\": 4989,\n          \"num-uint\": 1743\n        },\n        \"local-state-schema\": {\n          \"num-byte-slice\": 3354,\n          \"num-uint\": 9349\n        },\n        \"version\": 2041\n      },\n      \"created-at-round\": 3788,\n      \"deleted\": true,\n      \"deleted-at-round\": 9880\n    },\n    {\n      \"id\": 353,\n      \"params\": {\n        \"approval-program\": \"7dF3\",\n        \"clear-state-program\": \"EHeozYfy9ZPO2S9hkjElNVGXIzKX0y7DeeKTeUb2Bi==\",\n        \"creator\": \"string\",\n        \"extra-program-pages\": 6833,\n        \"global-state\": [\n          {\n            \"key\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"key\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"global-state-schema\": {\n          \"num-byte-slice\": 4150,\n          \"num-uint\": 3528\n        },\n        \"local-state-schema\": {\n          \"num-byte-slice\": 7278,\n          \"num-uint\": 6587\n        },\n        \"version\": 1269\n      },\n      \"created-at-round\": 4267,\n      \"deleted\": true,\n      \"deleted-at-round\": 7302\n    }\n  ],\n  \"current-round\": 2121,\n  \"next-token\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "237c61e0-2341-4a2c-9d5f-1d1df24d59fb",
+              "name": "Response for errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "application-id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "creator",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "include-all",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "next",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Algo-API-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "557978dc-45b6-461a-87b0-037c8e316010",
+          "name": "Get box names for a given application.",
+          "request": {
+            "name": "Get box names for a given application.",
+            "description": {
+              "content": "Given an application ID, returns the box names of that application sorted lexicographically.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "applications",
+                ":application-id",
+                "boxes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of results to return. There could be additional pages even if the limit is not reached."
+                },
+                {
+                  "disabled": false,
+                  "key": "next",
+                  "value": "<string>",
+                  "description": "The next page of results. Use the next token provided by the previous results."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "application-id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "aff18688-2b3f-4438-a89d-4ffc726e8be2",
+              "name": "Box names of an application",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "applications",
+                    ":application-id",
+                    "boxes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "next",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "application-id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Algo-API-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"application-id\": 2619,\n  \"boxes\": [\n    {\n      \"name\": \"WQrZWBpI+lrk4vsvuOEahWY08neNLA==\"\n    },\n    {\n      \"name\": \"qaTV\"\n    }\n  ],\n  \"next-token\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "25d37e2a-e66d-4427-8996-53595313e7c9",
+              "name": "Response for errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "applications",
+                    ":application-id",
+                    "boxes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "next",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "application-id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Algo-API-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c15923f4-6e24-4d86-bc6c-baf3d51e41b3",
+              "name": "Response for errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "applications",
+                    ":application-id",
+                    "boxes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "next",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "application-id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Algo-API-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f87aaac7-7da8-4534-8f14-02d2219cef47",
+              "name": "Response for errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "applications",
+                    ":application-id",
+                    "boxes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "next",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "application-id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Algo-API-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1dbad6f4-a1b1-4126-b36d-de9b7a74f04d",
+          "name": "search For Assets",
+          "request": {
+            "name": "search For Assets",
+            "description": {
+              "content": "Search for assets.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "assets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "include-all",
+                  "value": "<boolean>",
+                  "description": "Include all items including closed accounts, deleted applications, destroyed assets, opted-out asset holdings, and closed-out application localstates."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of results to return. There could be additional pages even if the limit is not reached."
+                },
+                {
+                  "disabled": false,
+                  "key": "next",
+                  "value": "<string>",
+                  "description": "The next page of results. Use the next token provided by the previous results."
+                },
+                {
+                  "disabled": false,
+                  "key": "creator",
+                  "value": "<string>",
+                  "description": "Filter just assets with the given creator address."
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Filter just assets with the given name."
+                },
+                {
+                  "disabled": false,
+                  "key": "unit",
+                  "value": "<string>",
+                  "description": "Filter just assets with the given unit."
+                },
+                {
+                  "disabled": false,
+                  "key": "asset-id",
+                  "value": "<integer>",
+                  "description": "Asset ID"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0d45359e-e85c-4606-8ac3-08810ea22852",
+              "name": "(empty)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include-all",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "next",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "creator",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "unit",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "asset-id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Algo-API-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"assets\": [\n    {\n      \"index\": 6564,\n      \"params\": {\n        \"creator\": \"string\",\n        \"decimals\": 16,\n        \"total\": 3692,\n        \"clawback\": \"string\",\n        \"default-frozen\": false,\n        \"freeze\": \"string\",\n        \"manager\": \"string\",\n        \"metadata-hash\": \"kg9P4rC=\",\n        \"name\": \"string\",\n        \"name-b64\": \"R4LoysaivlihEXS7p4==\",\n        \"reserve\": \"string\",\n        \"unit-name\": \"string\",\n        \"unit-name-b64\": \"GReMfOCD7Ag/bYqa30GFY6RkKhzdIy==\",\n        \"url\": \"string\",\n        \"url-b64\": \"U7U7cbvNchBqqs2NohYrzAKkn49XGpUIfCvP\"\n      },\n      \"created-at-round\": 9434,\n      \"deleted\": true,\n      \"destroyed-at-round\": 5267\n    },\n    {\n      \"index\": 4255,\n      \"params\": {\n        \"creator\": \"string\",\n        \"decimals\": 5,\n        \"total\": 5321,\n        \"clawback\": \"string\",\n        \"default-frozen\": true,\n        \"freeze\": \"string\",\n        \"manager\": \"string\",\n        \"metadata-hash\": \"bA9KZuJKi3hpa8vJ0mMe2BnUGw1CwA6t0jb8\",\n        \"name\": \"string\",\n        \"name-b64\": \"6TW1bGeB\",\n        \"reserve\": \"string\",\n        \"unit-name\": \"string\",\n        \"unit-name-b64\": \"LmPeOK3t/d2PqV8GMAxOAD5gNqX7gzxXT7n=\",\n        \"url\": \"string\",\n        \"url-b64\": \"MQjHmnkA1+puitStkAd7XMQQxvhK\"\n      },\n      \"created-at-round\": 7421,\n      \"deleted\": false,\n      \"destroyed-at-round\": 1797\n    }\n  ],\n  \"current-round\": 743,\n  \"next-token\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c3b885a0-3a67-4729-8268-fbb7334e2aba",
+              "name": "Response for errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include-all",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "next",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "creator",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "unit",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "asset-id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Algo-API-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "052f55e4-5173-4ca0-a6a8-f5e99083c4ff",
+              "name": "Response for errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include-all",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "next",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "creator",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "unit",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "asset-id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Algo-API-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3f7fcf6c-2362-45f0-8fda-85f2211bf881",
+          "name": "search For Block Headers",
+          "request": {
+            "name": "search For Block Headers",
+            "description": {
+              "content": "Search for block headers. Block headers are returned in ascending round order. Transactions are not included in the output.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "block-headers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of results to return. There could be additional pages even if the limit is not reached."
+                },
+                {
+                  "disabled": false,
+                  "key": "next",
+                  "value": "<string>",
+                  "description": "The next page of results. Use the next token provided by the previous results."
+                },
+                {
+                  "disabled": false,
+                  "key": "min-round",
+                  "value": "<integer>",
+                  "description": "Include results at or after the specified min-round."
+                },
+                {
+                  "disabled": false,
+                  "key": "max-round",
+                  "value": "<integer>",
+                  "description": "Include results at or before the specified max-round."
+                },
+                {
+                  "disabled": false,
+                  "key": "before-time",
+                  "value": "<dateTime>",
+                  "description": "Include results before the given time. Must be an RFC 3339 formatted string."
+                },
+                {
+                  "disabled": false,
+                  "key": "after-time",
+                  "value": "<dateTime>",
+                  "description": "Include results after the given time. Must be an RFC 3339 formatted string."
+                },
+                {
+                  "disabled": false,
+                  "key": "proposers",
+                  "value": "<string>,<string>",
+                  "description": "Accounts marked as proposer in the block header's participation updates. This parameter accepts a comma separated list of addresses."
+                },
+                {
+                  "disabled": false,
+                  "key": "expired",
+                  "value": "<string>,<string>",
+                  "description": "Accounts marked as expired in the block header's participation updates. This parameter accepts a comma separated list of addresses."
+                },
+                {
+                  "disabled": false,
+                  "key": "absent",
+                  "value": "<string>,<string>",
+                  "description": "Accounts marked as absent in the block header's participation updates. This parameter accepts a comma separated list of addresses."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e930e81a-df2e-4f5d-83b6-831ada315ce7",
+              "name": "(empty)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "block-headers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "next",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "min-round",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max-round",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "before-time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "after-time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "proposers",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "expired",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "absent",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Algo-API-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"blocks\": [\n    {\n      \"genesis-hash\": \"7q9LTSd0/iMIp9GMFSUb4nS=\",\n      \"genesis-id\": \"string\",\n      \"previous-block-hash\": \"Bjwt\",\n      \"round\": 1363,\n      \"seed\": \"6eJJJNK1vmKwI8Hixwl+deAb0x6xk/0pU3==\",\n      \"timestamp\": 4008,\n      \"transactions-root\": \"MKkJ6z7D1AzVFltX7QpGXcve4ey8gscv\",\n      \"transactions-root-sha256\": \"Ahj+mzQTgI+RZ1+zy2c=\",\n      \"bonus\": 3817,\n      \"fees-collected\": 4706,\n      \"participation-updates\": {\n        \"absent-participation-accounts\": [\n          \"string\",\n          \"string\"\n        ],\n        \"expired-participation-accounts\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"previous-block-hash-512\": \"hkYuE7em6hkpb+lMt2z2N4e1Dppr72Yd7f2=\",\n      \"proposer\": \"string\",\n      \"proposer-payout\": 8821,\n      \"rewards\": {\n        \"fee-sink\": \"string\",\n        \"rewards-calculation-round\": 121,\n        \"rewards-level\": 5719,\n        \"rewards-pool\": \"string\",\n        \"rewards-rate\": 3569,\n        \"rewards-residue\": 3893\n      },\n      \"state-proof-tracking\": [\n        {\n          \"next-round\": 2820,\n          \"online-total-weight\": 5867,\n          \"type\": 1803,\n          \"voters-commitment\": \"/svCkIndRcwYZ7ES9aV8riRYdbF+QQv1LbLm6W3n\"\n        },\n        {\n          \"next-round\": 866,\n          \"online-total-weight\": 7183,\n          \"type\": 292,\n          \"voters-commitment\": \"x4lUHJ5HOjQTtESsiO2/pKw17Gk=\"\n        }\n      ],\n      \"transactions\": [\n        {\n          \"fee\": 2106,\n          \"first-valid\": 5684,\n          \"last-valid\": 3180,\n          \"sender\": \"string\",\n          \"tx-type\": \"appl\",\n          \"application-transaction\": {\n            \"application-id\": 4364,\n            \"on-completion\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"access\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"accounts\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"application-args\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"approval-program\": \"dTt=\",\n            \"box-references\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"clear-state-program\": \"Bh6EInSC\",\n            \"extra-program-pages\": 1870,\n            \"foreign-apps\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"foreign-assets\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"global-state-schema\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"local-state-schema\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reject-version\": 834\n          },\n          \"asset-config-transaction\": {\n            \"asset-id\": 3117,\n            \"params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"asset-freeze-transaction\": {\n            \"address\": \"string\",\n            \"asset-id\": 142,\n            \"new-freeze-status\": false\n          },\n          \"asset-transfer-transaction\": {\n            \"amount\": 1863,\n            \"asset-id\": 8341,\n            \"receiver\": \"string\",\n            \"close-amount\": 2818,\n            \"close-to\": \"string\",\n            \"sender\": \"string\"\n          },\n          \"auth-addr\": \"string\",\n          \"close-rewards\": 7035,\n          \"closing-amount\": 5151,\n          \"confirmed-round\": 7975,\n          \"created-application-index\": 4658,\n          \"created-asset-index\": 8568,\n          \"genesis-hash\": \"QHQKzo4zy/LYC7xMa4DM\",\n          \"genesis-id\": \"string\",\n          \"global-state-delta\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"group\": \"6RLN4P+Ka1IJE+gkz3Lw\",\n          \"heartbeat-transaction\": {\n            \"hb-address\": \"string\",\n            \"hb-key-dilution\": 5843,\n            \"hb-proof\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"hb-seed\": \"TKBzcgUmj9mzyLKdKjeFfafz\",\n            \"hb-vote-id\": \"4p+uaV40fxCHR2qzL89bCNcElz8fxkSug5gj\"\n          },\n          \"id\": \"string\",\n          \"inner-txns\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/Transaction detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/Transaction detected>\"\n            }\n          ],\n          \"intra-round-offset\": 4500,\n          \"keyreg-transaction\": {\n            \"non-participation\": false,\n            \"selection-participation-key\": \"vsPACMNewP9=\",\n            \"state-proof-key\": \"ZQaItQ==\",\n            \"vote-first-valid\": 9746,\n            \"vote-key-dilution\": 4598,\n            \"vote-last-valid\": 5290,\n            \"vote-participation-key\": \"WdLnnsnopw8QGayifx/VfQFiZ4oW2Lo/\"\n          },\n          \"lease\": \"bp2/19rRAPsMPmLtsZlmrDHvHlmHb1iR\",\n          \"local-state-delta\": [\n            {\n              \"address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"delta\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"delta\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"logs\": [\n            \"EmJbEcFdwuCdaH2y\",\n            \"QEEhcM4V5rFKn90RIM2DsUnzbK5VKan2YRI8scU/\"\n          ],\n          \"note\": \"vkxtxO/NkEPa\",\n          \"payment-transaction\": {\n            \"amount\": 9072,\n            \"receiver\": \"string\",\n            \"close-amount\": 8977,\n            \"close-remainder-to\": \"string\"\n          },\n          \"receiver-rewards\": 4041,\n          \"rekey-to\": \"string\",\n          \"round-time\": 5767,\n          \"sender-rewards\": 6409,\n          \"signature\": {\n            \"logicsig\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"multisig\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sig\": \"afs8ALz7WeEiYEK+jhE=\"\n          },\n          \"state-proof-transaction\": {\n            \"message\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"state-proof\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"state-proof-type\": 7144\n          }\n        },\n        {\n          \"fee\": 2295,\n          \"first-valid\": 8730,\n          \"last-valid\": 3805,\n          \"sender\": \"string\",\n          \"tx-type\": \"pay\",\n          \"application-transaction\": {\n            \"application-id\": 8151,\n            \"on-completion\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"access\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"accounts\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"application-args\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"approval-program\": \"Ezc7NHSXmAgyKCiYjE426F==\",\n            \"box-references\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"clear-state-program\": \"9tnNee==\",\n            \"extra-program-pages\": 5226,\n            \"foreign-apps\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"foreign-assets\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"global-state-schema\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"local-state-schema\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reject-version\": 2248\n          },\n          \"asset-config-transaction\": {\n            \"asset-id\": 9702,\n            \"params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"asset-freeze-transaction\": {\n            \"address\": \"string\",\n            \"asset-id\": 7758,\n            \"new-freeze-status\": true\n          },\n          \"asset-transfer-transaction\": {\n            \"amount\": 5931,\n            \"asset-id\": 2216,\n            \"receiver\": \"string\",\n            \"close-amount\": 8202,\n            \"close-to\": \"string\",\n            \"sender\": \"string\"\n          },\n          \"auth-addr\": \"string\",\n          \"close-rewards\": 277,\n          \"closing-amount\": 1218,\n          \"confirmed-round\": 4592,\n          \"created-application-index\": 2712,\n          \"created-asset-index\": 4279,\n          \"genesis-hash\": \"\",\n          \"genesis-id\": \"string\",\n          \"global-state-delta\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"group\": \"Jw==\",\n          \"heartbeat-transaction\": {\n            \"hb-address\": \"string\",\n            \"hb-key-dilution\": 5463,\n            \"hb-proof\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"hb-seed\": \"13omYgX1\",\n            \"hb-vote-id\": \"wRh6lDRI6A2op8V16UM5G/E9dHGpx1FCjPwrYkP9sS==\"\n          },\n          \"id\": \"string\",\n          \"inner-txns\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/Transaction detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/Transaction detected>\"\n            }\n          ],\n          \"intra-round-offset\": 281,\n          \"keyreg-transaction\": {\n            \"non-participation\": true,\n            \"selection-participation-key\": \"EsG7ISdUtB==\",\n            \"state-proof-key\": \"hiibLggV9RW3\",\n            \"vote-first-valid\": 5574,\n            \"vote-key-dilution\": 6342,\n            \"vote-last-valid\": 3774,\n            \"vote-participation-key\": \"sRR0M5e=\"\n          },\n          \"lease\": \"eUqa2Hb1ZZR4PLQyOj7jrYRPMXEQ0/Ir+9whJOuH\",\n          \"local-state-delta\": [\n            {\n              \"address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"delta\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"delta\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"logs\": [\n            \"7a6KQHPHke7H5YUZRxR1\",\n            \"BsxlAo==\"\n          ],\n          \"note\": \"8SuVIhnUWqG603mBHoah1AmxOpRM\",\n          \"payment-transaction\": {\n            \"amount\": 4827,\n            \"receiver\": \"string\",\n            \"close-amount\": 870,\n            \"close-remainder-to\": \"string\"\n          },\n          \"receiver-rewards\": 1631,\n          \"rekey-to\": \"string\",\n          \"round-time\": 2968,\n          \"sender-rewards\": 5452,\n          \"signature\": {\n            \"logicsig\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"multisig\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sig\": \"Yl0Jq/s9KVwRxlrcg35aozpTWaSstZ30VQ5m7MrW\"\n          },\n          \"state-proof-transaction\": {\n            \"message\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"state-proof\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"state-proof-type\": 8452\n          }\n        }\n      ],\n      \"transactions-root-sha512\": \"3hPeChXjiw9xZyKJNxqMWGDU677Tn9QHKuQF+hVy\",\n      \"txn-counter\": 3612,\n      \"upgrade-state\": {\n        \"current-protocol\": \"string\",\n        \"next-protocol\": \"string\",\n        \"next-protocol-approvals\": 3885,\n        \"next-protocol-switch-on\": 9244,\n        \"next-protocol-vote-before\": 6945\n      },\n      \"upgrade-vote\": {\n        \"upgrade-approve\": false,\n        \"upgrade-delay\": 9029,\n        \"upgrade-propose\": \"string\"\n      }\n    },\n    {\n      \"genesis-hash\": \"7dhEN25f0wT3sKQDwztZJEv9FJbUlM==\",\n      \"genesis-id\": \"string\",\n      \"previous-block-hash\": \"/Wx7u/FvFk0Zv4SE29Bq9zyymL==\",\n      \"round\": 8729,\n      \"seed\": \"89TvOp72P/sJkEVgspg6zDGtUVG+RdQH8s==\",\n      \"timestamp\": 3791,\n      \"transactions-root\": \"1e==\",\n      \"transactions-root-sha256\": \"5Vq6foavNrE0mUKIaoDwTnPr\",\n      \"bonus\": 8720,\n      \"fees-collected\": 1245,\n      \"participation-updates\": {\n        \"absent-participation-accounts\": [\n          \"string\",\n          \"string\"\n        ],\n        \"expired-participation-accounts\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"previous-block-hash-512\": \"JAu=\",\n      \"proposer\": \"string\",\n      \"proposer-payout\": 3404,\n      \"rewards\": {\n        \"fee-sink\": \"string\",\n        \"rewards-calculation-round\": 6647,\n        \"rewards-level\": 4315,\n        \"rewards-pool\": \"string\",\n        \"rewards-rate\": 4605,\n        \"rewards-residue\": 3820\n      },\n      \"state-proof-tracking\": [\n        {\n          \"next-round\": 3656,\n          \"online-total-weight\": 3793,\n          \"type\": 5945,\n          \"voters-commitment\": \"0fUZZYiPju5ZokmtpKW2QztpsQkHHKGw4K2cLN95aH==\"\n        },\n        {\n          \"next-round\": 613,\n          \"online-total-weight\": 284,\n          \"type\": 7116,\n          \"voters-commitment\": \"MDINI3mwQ8k4WGCMnCuID7oJghN8fHAjPyX4xaAk\"\n        }\n      ],\n      \"transactions\": [\n        {\n          \"fee\": 5854,\n          \"first-valid\": 7463,\n          \"last-valid\": 6343,\n          \"sender\": \"string\",\n          \"tx-type\": \"axfer\",\n          \"application-transaction\": {\n            \"application-id\": 903,\n            \"on-completion\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"access\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"accounts\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"application-args\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"approval-program\": \"t6NC+ir3Uz==\",\n            \"box-references\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"clear-state-program\": \"+f7O/lP=\",\n            \"extra-program-pages\": 9624,\n            \"foreign-apps\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"foreign-assets\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"global-state-schema\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"local-state-schema\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reject-version\": 1037\n          },\n          \"asset-config-transaction\": {\n            \"asset-id\": 1284,\n            \"params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"asset-freeze-transaction\": {\n            \"address\": \"string\",\n            \"asset-id\": 8055,\n            \"new-freeze-status\": false\n          },\n          \"asset-transfer-transaction\": {\n            \"amount\": 8965,\n            \"asset-id\": 6629,\n            \"receiver\": \"string\",\n            \"close-amount\": 3280,\n            \"close-to\": \"string\",\n            \"sender\": \"string\"\n          },\n          \"auth-addr\": \"string\",\n          \"close-rewards\": 715,\n          \"closing-amount\": 4790,\n          \"confirmed-round\": 3141,\n          \"created-application-index\": 8065,\n          \"created-asset-index\": 1537,\n          \"genesis-hash\": \"QFanGyqZQG6FGc+KMd+tgQs/4vI=\",\n          \"genesis-id\": \"string\",\n          \"global-state-delta\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"group\": \"0OID2DAj/XzfPv8NTVvXLWTHVkuuPlWLhK7XYA==\",\n          \"heartbeat-transaction\": {\n            \"hb-address\": \"string\",\n            \"hb-key-dilution\": 5687,\n            \"hb-proof\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"hb-seed\": \"H0fK+0VtfNPZkda4PBmM7vmqRUN7VEQ+CH92rHaI66==\",\n            \"hb-vote-id\": \"l+iX9QLZwE+Ae+JcypqEUOoJOu9boaxQ6rIz\"\n          },\n          \"id\": \"string\",\n          \"inner-txns\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/Transaction detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/Transaction detected>\"\n            }\n          ],\n          \"intra-round-offset\": 336,\n          \"keyreg-transaction\": {\n            \"non-participation\": false,\n            \"selection-participation-key\": \"iu1AVyEALz5MMPh=\",\n            \"state-proof-key\": \"eebM27oTPur6JJG3dvlBoQze/9cBON6k9hbPQ/YVVa==\",\n            \"vote-first-valid\": 523,\n            \"vote-key-dilution\": 1055,\n            \"vote-last-valid\": 8908,\n            \"vote-participation-key\": \"pOLwAETcVLoUhj5AxlDTDF4lYXSLS2zspJG1\"\n          },\n          \"lease\": \"ms5uFjmbOJ2i+SmkXgcncaXZC5Z=\",\n          \"local-state-delta\": [\n            {\n              \"address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"delta\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"delta\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"logs\": [\n            \"b4rVRcnm9rYPfy9V+xGj7YYx\",\n            \"z5kY\"\n          ],\n          \"note\": \"b91ahbI=\",\n          \"payment-transaction\": {\n            \"amount\": 2270,\n            \"receiver\": \"string\",\n            \"close-amount\": 5100,\n            \"close-remainder-to\": \"string\"\n          },\n          \"receiver-rewards\": 2679,\n          \"rekey-to\": \"string\",\n          \"round-time\": 9346,\n          \"sender-rewards\": 5457,\n          \"signature\": {\n            \"logicsig\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"multisig\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sig\": \"Dis0tVvv417elTqysSB6grgtpKmgiI5OeMLQULCF\"\n          },\n          \"state-proof-transaction\": {\n            \"message\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"state-proof\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"state-proof-type\": 1248\n          }\n        },\n        {\n          \"fee\": 2173,\n          \"first-valid\": 2076,\n          \"last-valid\": 8110,\n          \"sender\": \"string\",\n          \"tx-type\": \"appl\",\n          \"application-transaction\": {\n            \"application-id\": 2664,\n            \"on-completion\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"access\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"accounts\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"application-args\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"approval-program\": \"NWpSJlz=\",\n            \"box-references\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"clear-state-program\": \"dG1qO0pR55==\",\n            \"extra-program-pages\": 7422,\n            \"foreign-apps\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"foreign-assets\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"global-state-schema\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"local-state-schema\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reject-version\": 153\n          },\n          \"asset-config-transaction\": {\n            \"asset-id\": 7234,\n            \"params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"asset-freeze-transaction\": {\n            \"address\": \"string\",\n            \"asset-id\": 166,\n            \"new-freeze-status\": true\n          },\n          \"asset-transfer-transaction\": {\n            \"amount\": 919,\n            \"asset-id\": 8790,\n            \"receiver\": \"string\",\n            \"close-amount\": 1732,\n            \"close-to\": \"string\",\n            \"sender\": \"string\"\n          },\n          \"auth-addr\": \"string\",\n          \"close-rewards\": 9840,\n          \"closing-amount\": 7969,\n          \"confirmed-round\": 4638,\n          \"created-application-index\": 1074,\n          \"created-asset-index\": 4180,\n          \"genesis-hash\": \"IP+mA+46XuFLS+Dn\",\n          \"genesis-id\": \"string\",\n          \"global-state-delta\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"group\": \"HmFmHNV5tmGshzLi+9I7EQ9HEuifa/+1\",\n          \"heartbeat-transaction\": {\n            \"hb-address\": \"string\",\n            \"hb-key-dilution\": 7958,\n            \"hb-proof\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"hb-seed\": \"FzJS\",\n            \"hb-vote-id\": \"\"\n          },\n          \"id\": \"string\",\n          \"inner-txns\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/Transaction detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/Transaction detected>\"\n            }\n          ],\n          \"intra-round-offset\": 7056,\n          \"keyreg-transaction\": {\n            \"non-participation\": true,\n            \"selection-participation-key\": \"nuDGjk5PIdsaB9e+EY8xWRKeshIxJUfEp8b=\",\n            \"state-proof-key\": \"zpzyU554Mh0u1BNvelb=\",\n            \"vote-first-valid\": 7802,\n            \"vote-key-dilution\": 8871,\n            \"vote-last-valid\": 4293,\n            \"vote-participation-key\": \"9XjGkaSpWa4D4pg+e1/3Hrjj7E==\"\n          },\n          \"lease\": \"3b2xW2tP\",\n          \"local-state-delta\": [\n            {\n              \"address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"delta\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"delta\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"logs\": [\n            \"xG72S/+4TSvJYn8+lErg\",\n            \"Synn1+i=\"\n          ],\n          \"note\": \"5HgFUTv5I+taP2UEoHwz6H==\",\n          \"payment-transaction\": {\n            \"amount\": 1988,\n            \"receiver\": \"string\",\n            \"close-amount\": 3071,\n            \"close-remainder-to\": \"string\"\n          },\n          \"receiver-rewards\": 6225,\n          \"rekey-to\": \"string\",\n          \"round-time\": 7651,\n          \"sender-rewards\": 5538,\n          \"signature\": {\n            \"logicsig\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"multisig\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sig\": \"\"\n          },\n          \"state-proof-transaction\": {\n            \"message\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"state-proof\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"state-proof-type\": 6388\n          }\n        }\n      ],\n      \"transactions-root-sha512\": \"77YWEiuh95T7vpJabxw8SoQs7i==\",\n      \"txn-counter\": 9286,\n      \"upgrade-state\": {\n        \"current-protocol\": \"string\",\n        \"next-protocol\": \"string\",\n        \"next-protocol-approvals\": 171,\n        \"next-protocol-switch-on\": 7902,\n        \"next-protocol-vote-before\": 1696\n      },\n      \"upgrade-vote\": {\n        \"upgrade-approve\": false,\n        \"upgrade-delay\": 3250,\n        \"upgrade-propose\": \"string\"\n      }\n    }\n  ],\n  \"current-round\": 8313,\n  \"next-token\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "21674ada-51c8-4743-963e-008c409a739d",
+              "name": "Response for errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "block-headers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "next",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "min-round",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max-round",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "before-time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "after-time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "proposers",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "expired",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "absent",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Algo-API-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1fb93426-4d58-49dc-a75e-06e113f2cff2",
+              "name": "Response for errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "block-headers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "next",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "min-round",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max-round",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "before-time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "after-time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "proposers",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "expired",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "absent",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Algo-API-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1c7534b3-4c68-422e-a106-ddc7d75b15d2",
+          "name": "search For Transactions",
+          "request": {
+            "name": "search For Transactions",
+            "description": {
+              "content": "Search for transactions. Transactions are returned oldest to newest unless the address parameter is used, in which case results are returned newest to oldest.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "transactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of results to return. There could be additional pages even if the limit is not reached."
+                },
+                {
+                  "disabled": false,
+                  "key": "next",
+                  "value": "<string>",
+                  "description": "The next page of results. Use the next token provided by the previous results."
+                },
+                {
+                  "disabled": false,
+                  "key": "note-prefix",
+                  "value": "<string>",
+                  "description": "Specifies a prefix which must be contained in the note field."
+                },
+                {
+                  "disabled": false,
+                  "key": "tx-type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sig-type",
+                  "value": "<string>",
+                  "description": "SigType filters just results using the specified type of signature:\n* sig - Standard\n* msig - MultiSig\n* lsig - LogicSig"
+                },
+                {
+                  "disabled": false,
+                  "key": "group-id",
+                  "value": "<string>",
+                  "description": "Lookup transactions by group ID. This field must be base64-encoded, and afterwards, base64 characters that are URL-unsafe (i.e. =, /, +) must be URL-encoded"
+                },
+                {
+                  "disabled": false,
+                  "key": "txid",
+                  "value": "<string>",
+                  "description": "Lookup the specific transaction by ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "round",
+                  "value": "<integer>",
+                  "description": "Include results for the specified round."
+                },
+                {
+                  "disabled": false,
+                  "key": "min-round",
+                  "value": "<integer>",
+                  "description": "Include results at or after the specified min-round."
+                },
+                {
+                  "disabled": false,
+                  "key": "max-round",
+                  "value": "<integer>",
+                  "description": "Include results at or before the specified max-round."
+                },
+                {
+                  "disabled": false,
+                  "key": "asset-id",
+                  "value": "<integer>",
+                  "description": "Asset ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "before-time",
+                  "value": "<dateTime>",
+                  "description": "Include results before the given time. Must be an RFC 3339 formatted string."
+                },
+                {
+                  "disabled": false,
+                  "key": "after-time",
+                  "value": "<dateTime>",
+                  "description": "Include results after the given time. Must be an RFC 3339 formatted string."
+                },
+                {
+                  "disabled": false,
+                  "key": "currency-greater-than",
+                  "value": "<integer>",
+                  "description": "Results should have an amount greater than this value. MicroAlgos are the default currency unless an asset-id is provided, in which case the asset will be used."
+                },
+                {
+                  "disabled": false,
+                  "key": "currency-less-than",
+                  "value": "<integer>",
+                  "description": "Results should have an amount less than this value. MicroAlgos are the default currency unless an asset-id is provided, in which case the asset will be used."
+                },
+                {
+                  "disabled": false,
+                  "key": "address",
+                  "value": "<string>",
+                  "description": "Only include transactions with this address in one of the transaction fields."
+                },
+                {
+                  "disabled": false,
+                  "key": "address-role",
+                  "value": "<string>",
+                  "description": "Combine with the address parameter to define what type of address to search for."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude-close-to",
+                  "value": "<boolean>",
+                  "description": "Combine with address and address-role parameters to define what type of address to search for. The close to fields are normally treated as a receiver, if you would like to exclude them set this parameter to true."
+                },
+                {
+                  "disabled": false,
+                  "key": "rekey-to",
+                  "value": "<boolean>",
+                  "description": "Include results which include the rekey-to field."
+                },
+                {
+                  "disabled": false,
+                  "key": "application-id",
+                  "value": "<integer>",
+                  "description": "Application ID"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9282aec6-d98c-4960-8a75-eb458beffa3b",
+              "name": "(empty)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "next",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "note-prefix",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tx-type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sig-type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "group-id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "txid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "round",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "min-round",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max-round",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "asset-id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "before-time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "after-time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "currency-greater-than",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "currency-less-than",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "address",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "address-role",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude-close-to",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "rekey-to",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "application-id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Algo-API-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"current-round\": 3572,\n  \"transactions\": [\n    {\n      \"fee\": 8852,\n      \"first-valid\": 6133,\n      \"last-valid\": 9406,\n      \"sender\": \"string\",\n      \"tx-type\": \"acfg\",\n      \"application-transaction\": {\n        \"application-id\": 5819,\n        \"on-completion\": \"delete\",\n        \"access\": [\n          {\n            \"address\": \"string\",\n            \"application-id\": 291,\n            \"asset-id\": 4657,\n            \"box\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"holding\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"local\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"address\": \"string\",\n            \"application-id\": 8024,\n            \"asset-id\": 3244,\n            \"box\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"holding\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"local\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"accounts\": [\n          \"string\",\n          \"string\"\n        ],\n        \"application-args\": [\n          \"string\",\n          \"string\"\n        ],\n        \"approval-program\": \"qFDxrDikg98a+xV8glb7wrvOjj8=\",\n        \"box-references\": [\n          {\n            \"app\": 5719,\n            \"name\": \"6HnlFwJW\"\n          },\n          {\n            \"app\": 5020,\n            \"name\": \"+PuF89txV1sRGQXI4l7V\"\n          }\n        ],\n        \"clear-state-program\": \"JXdR1h+SLn/PrHAXmUnnOmrg+t0euvzskMU=\",\n        \"extra-program-pages\": 45,\n        \"foreign-apps\": [\n          4756,\n          2462\n        ],\n        \"foreign-assets\": [\n          8370,\n          5967\n        ],\n        \"global-state-schema\": {\n          \"num-byte-slice\": 7503,\n          \"num-uint\": 1973\n        },\n        \"local-state-schema\": {\n          \"num-byte-slice\": 6,\n          \"num-uint\": 6627\n        },\n        \"reject-version\": 5884\n      },\n      \"asset-config-transaction\": {\n        \"asset-id\": 6793,\n        \"params\": {\n          \"creator\": \"string\",\n          \"decimals\": 12,\n          \"total\": 387,\n          \"clawback\": \"string\",\n          \"default-frozen\": true,\n          \"freeze\": \"string\",\n          \"manager\": \"string\",\n          \"metadata-hash\": \"Jcxwdzn1\",\n          \"name\": \"string\",\n          \"name-b64\": \"76i7a+s1WQqMMeIChgj=\",\n          \"reserve\": \"string\",\n          \"unit-name\": \"string\",\n          \"unit-name-b64\": \"dYTI9DniDCWtQE/NiGA+ngP=\",\n          \"url\": \"string\",\n          \"url-b64\": \"lcXmhoG/qcLBjLxbimfj5wl=\"\n        }\n      },\n      \"asset-freeze-transaction\": {\n        \"address\": \"string\",\n        \"asset-id\": 3251,\n        \"new-freeze-status\": false\n      },\n      \"asset-transfer-transaction\": {\n        \"amount\": 9980,\n        \"asset-id\": 2688,\n        \"receiver\": \"string\",\n        \"close-amount\": 8503,\n        \"close-to\": \"string\",\n        \"sender\": \"string\"\n      },\n      \"auth-addr\": \"string\",\n      \"close-rewards\": 7405,\n      \"closing-amount\": 3143,\n      \"confirmed-round\": 3849,\n      \"created-application-index\": 829,\n      \"created-asset-index\": 706,\n      \"genesis-hash\": \"y6Mxw5xrWsYKLFKw/Ni=\",\n      \"genesis-id\": \"string\",\n      \"global-state-delta\": [\n        {\n          \"key\": \"string\",\n          \"value\": {\n            \"action\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bytes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uint\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"key\": \"string\",\n          \"value\": {\n            \"action\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bytes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uint\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ],\n      \"group\": \"qsWO76WLjCazB9poVvLO4i==\",\n      \"heartbeat-transaction\": {\n        \"hb-address\": \"string\",\n        \"hb-key-dilution\": 7474,\n        \"hb-proof\": {\n          \"hb-pk\": \"+2LIhivZe1yG\",\n          \"hb-pk1sig\": \"VP0hpAYLCCMGMABTnV00jjlXXF1E4i2p9Z0D\",\n          \"hb-pk2\": \"tARyENKIusldkWxOS8lUwEJ1JW==\",\n          \"hb-pk2sig\": \"rI8BSS8+XeB0/tMGJi7fDuKYrSL=\",\n          \"hb-sig\": \"W/f81Z0GIbh7\"\n        },\n        \"hb-seed\": \"vXRMVZ5fiuYzqNu+cPHaAS==\",\n        \"hb-vote-id\": \"1LG1oY8Am7fDsFyYSmU=\"\n      },\n      \"id\": \"string\",\n      \"inner-txns\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/Transaction detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/Transaction detected>\"\n        }\n      ],\n      \"intra-round-offset\": 911,\n      \"keyreg-transaction\": {\n        \"non-participation\": true,\n        \"selection-participation-key\": \"mY5=\",\n        \"state-proof-key\": \"hvYa296KODO5qqB4oJNYFakSdV4rOUsg52FffKKg\",\n        \"vote-first-valid\": 1419,\n        \"vote-key-dilution\": 6481,\n        \"vote-last-valid\": 9299,\n        \"vote-participation-key\": \"CgAAezwIyxy60x+VVeOdUTCekmklK3myMi01nwrQ\"\n      },\n      \"lease\": \"1wpeMmw0lQYbCVe=\",\n      \"local-state-delta\": [\n        {\n          \"address\": \"string\",\n          \"delta\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        {\n          \"address\": \"string\",\n          \"delta\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      ],\n      \"logs\": [\n        \"lb0=\",\n        \"m3mjnRAIO0yzYuQF8qNInquyOAgUeSvs\"\n      ],\n      \"note\": \"tLKKxuC2mJLOjJWwbF4G7FhJss+GkwYVHC9/K9YX\",\n      \"payment-transaction\": {\n        \"amount\": 976,\n        \"receiver\": \"string\",\n        \"close-amount\": 5318,\n        \"close-remainder-to\": \"string\"\n      },\n      \"receiver-rewards\": 8804,\n      \"rekey-to\": \"string\",\n      \"round-time\": 1682,\n      \"sender-rewards\": 8555,\n      \"signature\": {\n        \"logicsig\": {\n          \"logic\": \"TZ1Sy6PkY7XXggK5WrFY\",\n          \"args\": [\n            \"string\",\n            \"string\"\n          ],\n          \"logic-multisig-signature\": {\n            \"subsignature\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"threshold\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"version\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"multisig-signature\": {\n            \"subsignature\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"threshold\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"version\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"signature\": \"M0aEUufFKcX8ZIVPjU83yL5l\"\n        },\n        \"multisig\": {\n          \"subsignature\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"threshold\": 7489,\n          \"version\": 2650\n        },\n        \"sig\": \"sXH8tW9J39AIc1AqAuDibMo=\"\n      },\n      \"state-proof-transaction\": {\n        \"message\": {\n          \"block-headers-commitment\": \"bI2JhBq+pBfF2tINJZsS+172atvhJ8GewgOy2hqyNRK=\",\n          \"first-attested-round\": 9451,\n          \"latest-attested-round\": 219,\n          \"ln-proven-weight\": 4047,\n          \"voters-commitment\": \"mIlnDbv7rkAiqLmY\"\n        },\n        \"state-proof\": {\n          \"part-proofs\": {\n            \"hash-factory\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"path\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"tree-depth\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"positions-to-reveal\": [\n            2086,\n            7767\n          ],\n          \"reveals\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"salt-version\": 6753,\n          \"sig-commit\": \"TTZl3XONjkkawz8+8m8ework08fqsb==\",\n          \"sig-proofs\": {\n            \"hash-factory\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"path\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"tree-depth\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"signed-weight\": 4355\n        },\n        \"state-proof-type\": 9524\n      }\n    },\n    {\n      \"fee\": 3089,\n      \"first-valid\": 2047,\n      \"last-valid\": 17,\n      \"sender\": \"string\",\n      \"tx-type\": \"stpf\",\n      \"application-transaction\": {\n        \"application-id\": 6077,\n        \"on-completion\": \"clear\",\n        \"access\": [\n          {\n            \"address\": \"string\",\n            \"application-id\": 2731,\n            \"asset-id\": 7986,\n            \"box\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"holding\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"local\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"address\": \"string\",\n            \"application-id\": 1020,\n            \"asset-id\": 3902,\n            \"box\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"holding\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"local\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"accounts\": [\n          \"string\",\n          \"string\"\n        ],\n        \"application-args\": [\n          \"string\",\n          \"string\"\n        ],\n        \"approval-program\": \"zlq7Pn5UXe4CLK8R8T10R+e6Owri4H==\",\n        \"box-references\": [\n          {\n            \"app\": 808,\n            \"name\": \"ZPm1tB9tiWM1Z2WAwtwGNgi1\"\n          },\n          {\n            \"app\": 8969,\n            \"name\": \"PnSWFZCwP1==\"\n          }\n        ],\n        \"clear-state-program\": \"W7D3OOcX/u3Tz4aqCf+vZPFZ/htS\",\n        \"extra-program-pages\": 3746,\n        \"foreign-apps\": [\n          8544,\n          4735\n        ],\n        \"foreign-assets\": [\n          2278,\n          4941\n        ],\n        \"global-state-schema\": {\n          \"num-byte-slice\": 850,\n          \"num-uint\": 1180\n        },\n        \"local-state-schema\": {\n          \"num-byte-slice\": 2005,\n          \"num-uint\": 5316\n        },\n        \"reject-version\": 2072\n      },\n      \"asset-config-transaction\": {\n        \"asset-id\": 2358,\n        \"params\": {\n          \"creator\": \"string\",\n          \"decimals\": 6,\n          \"total\": 4546,\n          \"clawback\": \"string\",\n          \"default-frozen\": false,\n          \"freeze\": \"string\",\n          \"manager\": \"string\",\n          \"metadata-hash\": \"XPR6I2Fo0nyPEEa69gWe2sftB1sNH+G09BXgSNT=\",\n          \"name\": \"string\",\n          \"name-b64\": \"IN+OENgoRj1n\",\n          \"reserve\": \"string\",\n          \"unit-name\": \"string\",\n          \"unit-name-b64\": \"jVta\",\n          \"url\": \"string\",\n          \"url-b64\": \"I4vDZw6ux1FDyVunne0VqtC+nb3PtwYw\"\n        }\n      },\n      \"asset-freeze-transaction\": {\n        \"address\": \"string\",\n        \"asset-id\": 4749,\n        \"new-freeze-status\": false\n      },\n      \"asset-transfer-transaction\": {\n        \"amount\": 9445,\n        \"asset-id\": 231,\n        \"receiver\": \"string\",\n        \"close-amount\": 2804,\n        \"close-to\": \"string\",\n        \"sender\": \"string\"\n      },\n      \"auth-addr\": \"string\",\n      \"close-rewards\": 9828,\n      \"closing-amount\": 7142,\n      \"confirmed-round\": 6756,\n      \"created-application-index\": 8658,\n      \"created-asset-index\": 3761,\n      \"genesis-hash\": \"UhP8tbt294/rqOESgGcb+SNps/1F21ipvFDfgP==\",\n      \"genesis-id\": \"string\",\n      \"global-state-delta\": [\n        {\n          \"key\": \"string\",\n          \"value\": {\n            \"action\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bytes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uint\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"key\": \"string\",\n          \"value\": {\n            \"action\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bytes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uint\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ],\n      \"group\": \"yeajK4ZnzBXbHMqhBYkUvrrBcib70TBuIppVJKWYW/T=\",\n      \"heartbeat-transaction\": {\n        \"hb-address\": \"string\",\n        \"hb-key-dilution\": 3331,\n        \"hb-proof\": {\n          \"hb-pk\": \"UurTIXyggHztwam52Bip\",\n          \"hb-pk1sig\": \"3Okv3b745zEM2n4XTaV=\",\n          \"hb-pk2\": \"ejxmm6mhiRzPWiMNask6x5zZhgJJGB0NjR38cvjv\",\n          \"hb-pk2sig\": \"\",\n          \"hb-sig\": \"r8WW\"\n        },\n        \"hb-seed\": \"cXtyb4B072PNwwOUJ4==\",\n        \"hb-vote-id\": \"\"\n      },\n      \"id\": \"string\",\n      \"inner-txns\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/Transaction detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/Transaction detected>\"\n        }\n      ],\n      \"intra-round-offset\": 2072,\n      \"keyreg-transaction\": {\n        \"non-participation\": false,\n        \"selection-participation-key\": \"wJZnvbVwTWsEXfl=\",\n        \"state-proof-key\": \"hnU2u1tIPK==\",\n        \"vote-first-valid\": 172,\n        \"vote-key-dilution\": 9969,\n        \"vote-last-valid\": 901,\n        \"vote-participation-key\": \"Nc==\"\n      },\n      \"lease\": \"duWOIbhtcYvzop+h\",\n      \"local-state-delta\": [\n        {\n          \"address\": \"string\",\n          \"delta\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        {\n          \"address\": \"string\",\n          \"delta\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      ],\n      \"logs\": [\n        \"\",\n        \"H0965S7NctyQyTsiTAdFaYxHsei4d6fkZx55toWdi4==\"\n      ],\n      \"note\": \"cIBZNSt3DUvxiQMab700min=\",\n      \"payment-transaction\": {\n        \"amount\": 9845,\n        \"receiver\": \"string\",\n        \"close-amount\": 229,\n        \"close-remainder-to\": \"string\"\n      },\n      \"receiver-rewards\": 4961,\n      \"rekey-to\": \"string\",\n      \"round-time\": 7986,\n      \"sender-rewards\": 1734,\n      \"signature\": {\n        \"logicsig\": {\n          \"logic\": \"58W=\",\n          \"args\": [\n            \"string\",\n            \"string\"\n          ],\n          \"logic-multisig-signature\": {\n            \"subsignature\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"threshold\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"version\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"multisig-signature\": {\n            \"subsignature\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"threshold\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"version\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"signature\": \"GmYUASpdcUUe337Q7dz0\"\n        },\n        \"multisig\": {\n          \"subsignature\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"threshold\": 7404,\n          \"version\": 325\n        },\n        \"sig\": \"hsRw\"\n      },\n      \"state-proof-transaction\": {\n        \"message\": {\n          \"block-headers-commitment\": \"P/nLjEV=\",\n          \"first-attested-round\": 6948,\n          \"latest-attested-round\": 3640,\n          \"ln-proven-weight\": 8684,\n          \"voters-commitment\": \"6GnWiuwPCZwCh8Ca\"\n        },\n        \"state-proof\": {\n          \"part-proofs\": {\n            \"hash-factory\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"path\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"tree-depth\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"positions-to-reveal\": [\n            7973,\n            6512\n          ],\n          \"reveals\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"salt-version\": 19,\n          \"sig-commit\": \"i5zi1iC9UQNuz6iyKRxfEtGAHkx1kFwYq6FU20wNe3==\",\n          \"sig-proofs\": {\n            \"hash-factory\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"path\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"tree-depth\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"signed-weight\": 9540\n        },\n        \"state-proof-type\": 5412\n      }\n    }\n  ],\n  \"next-token\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "14da04ff-4bfa-45ba-b240-60a89b7885f3",
+              "name": "Response for errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "next",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "note-prefix",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tx-type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sig-type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "group-id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "txid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "round",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "min-round",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max-round",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "asset-id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "before-time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "after-time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "currency-greater-than",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "currency-less-than",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "address",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "address-role",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude-close-to",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "rekey-to",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "application-id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Algo-API-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "afb1598e-9025-4a83-817b-e153ddfc3bd4",
+              "name": "Response for errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "next",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "note-prefix",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tx-type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sig-type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "group-id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "txid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "round",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "min-round",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max-round",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "asset-id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "before-time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "after-time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "currency-greater-than",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "currency-less-than",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "address",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "address-role",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude-close-to",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "rekey-to",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "application-id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Algo-API-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Algo-API-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1fcb903d-0081-47dd-b9cb-39bdbee27782",
+    "name": "Algod REST API. common search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API endpoint for algod operations.\n\nContact Support:\n Name: algorand\n Email: contact@algorand.com",
+      "type": "text/plain"
+    }
+  }
+}

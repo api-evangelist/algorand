@@ -1,0 +1,81 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Algod REST API. common Key API",
+    "version": "0.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Algo-API-Token",
+      "value": "{{X-Algo-API-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Key",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate a key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/v1/key"
+          },
+          "docs": "Generates the next key in the deterministic key sequence (as determined by the master derivation key) and adds it to the wallet, returning the public key.\n"
+        },
+        {
+          "info": {
+            "name": "Delete a key",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost/v1/key"
+          },
+          "docs": "Deletes the key with the passed public key from the wallet."
+        },
+        {
+          "info": {
+            "name": "Export a key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/v1/key/export"
+          },
+          "docs": "Export the secret key associated with the passed public key."
+        },
+        {
+          "info": {
+            "name": "Import a key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/v1/key/import"
+          },
+          "docs": "Import an externally generated key into the wallet. Note that if you wish to back up the imported key, you must do so by backing up the entire wallet database, because imported keys were not derived from the wallet's master derivation key.\n"
+        },
+        {
+          "info": {
+            "name": "List keys in wallet",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/v1/key/list"
+          },
+          "docs": "Lists all of the public keys in this wallet. All of them have a stored private key."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

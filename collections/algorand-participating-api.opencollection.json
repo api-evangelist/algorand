@@ -1,0 +1,231 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Algod REST API. common participating API",
+    "version": "0.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Algo-API-Token",
+      "value": "{{X-Algo-API-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "participating",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a list of unconfirmed transactions currently in the transaction pool by address.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/v2/accounts/:address/transactions/pending",
+            "params": [
+              {
+                "name": "address",
+                "value": "",
+                "type": "path",
+                "description": "An account public key."
+              },
+              {
+                "name": "max",
+                "value": "",
+                "type": "query",
+                "description": "Truncated number of transactions to display. If max=0, returns all pending txns."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Configures whether the response object is JSON or MessagePack encoded. If not provided, defaults to JSON."
+              }
+            ]
+          },
+          "docs": "Get the list of pending transactions by address, sorted by priority, in decreasing order, truncated at the end at MAX. If MAX = 0, returns all pending transactions."
+        },
+        {
+          "info": {
+            "name": "Return a list of participation keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/v2/participation"
+          },
+          "docs": "Return a list of participation keys"
+        },
+        {
+          "info": {
+            "name": "Add a participation key to the node",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/v2/participation"
+          },
+          "docs": "Add a participation key to the node"
+        },
+        {
+          "info": {
+            "name": "Generate and install participation keys to the node.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/v2/participation/generate/:address",
+            "params": [
+              {
+                "name": "address",
+                "value": "",
+                "type": "path",
+                "description": "An account public key."
+              },
+              {
+                "name": "dilution",
+                "value": "",
+                "type": "query",
+                "description": "Key dilution for two-level participation keys (defaults to sqrt of validity window)."
+              },
+              {
+                "name": "first",
+                "value": "",
+                "type": "query",
+                "description": "First round for participation key."
+              },
+              {
+                "name": "last",
+                "value": "",
+                "type": "query",
+                "description": "Last round for participation key."
+              }
+            ]
+          },
+          "docs": "Generate and install participation keys to the node."
+        },
+        {
+          "info": {
+            "name": "Get participation key info given a participation ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/v2/participation/:participation-id",
+            "params": [
+              {
+                "name": "participation-id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Given a participation ID, return information about that participation key"
+        },
+        {
+          "info": {
+            "name": "Append state proof keys to a participation key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/v2/participation/:participation-id",
+            "params": [
+              {
+                "name": "participation-id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Given a participation ID, append state proof keys to a particular set of participation keys"
+        },
+        {
+          "info": {
+            "name": "Delete a given participation key by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost/v2/participation/:participation-id",
+            "params": [
+              {
+                "name": "participation-id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a given participation key by ID"
+        },
+        {
+          "info": {
+            "name": "Broadcasts a raw transaction or transaction group to the network.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/v2/transactions"
+          },
+          "docs": "Broadcasts a raw transaction or transaction group to the network."
+        },
+        {
+          "info": {
+            "name": "Get a list of unconfirmed transactions currently in the transaction pool.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/v2/transactions/pending",
+            "params": [
+              {
+                "name": "max",
+                "value": "",
+                "type": "query",
+                "description": "Truncated number of transactions to display. If max=0, returns all pending txns."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Configures whether the response object is JSON or MessagePack encoded. If not provided, defaults to JSON."
+              }
+            ]
+          },
+          "docs": "Get the list of pending transactions, sorted by priority, in decreasing order, truncated at the end at MAX. If MAX = 0, returns all pending transactions."
+        },
+        {
+          "info": {
+            "name": "Get a specific pending transaction.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/v2/transactions/pending/:txid",
+            "params": [
+              {
+                "name": "txid",
+                "value": "",
+                "type": "path",
+                "description": "A transaction ID"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Configures whether the response object is JSON or MessagePack encoded. If not provided, defaults to JSON."
+              }
+            ]
+          },
+          "docs": "Given a transaction ID of a recently submitted transaction, it returns information about it.  There are several cases when this might succeed:\n- transaction committed (committed round > 0)\n- transaction still in the pool (committed round = 0, pool error = \"\")\n- transaction removed from pool due to error (committed round = 0, pool error != \"\")\nOr the transaction may have happened sufficiently long ago that the node no longer remembers it, and this will return an error."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

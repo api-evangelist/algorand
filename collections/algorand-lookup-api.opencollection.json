@@ -1,0 +1,679 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Algod REST API. common lookup API",
+    "version": "0.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Algo-API-Token",
+      "value": "{{X-Algo-API-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "lookup",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "lookupAccountByID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/v2/accounts/:account-id",
+            "params": [
+              {
+                "name": "account-id",
+                "value": "",
+                "type": "path",
+                "description": "account string"
+              },
+              {
+                "name": "round",
+                "value": "",
+                "type": "query",
+                "description": "Include results for the specified round."
+              },
+              {
+                "name": "include-all",
+                "value": "",
+                "type": "query",
+                "description": "Include all items including closed accounts, deleted applications, destroyed assets, opted-out asset holdings, and closed-out application localstates."
+              },
+              {
+                "name": "exclude",
+                "value": "",
+                "type": "query",
+                "description": "Exclude additional items such as asset holdings, application local data stored for this account, asset parameters created by this account, and application parameters created by this account."
+              }
+            ]
+          },
+          "docs": "Lookup account information."
+        },
+        {
+          "info": {
+            "name": "lookupAccountAppLocalStates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/v2/accounts/:account-id/apps-local-state",
+            "params": [
+              {
+                "name": "account-id",
+                "value": "",
+                "type": "path",
+                "description": "account string"
+              },
+              {
+                "name": "application-id",
+                "value": "",
+                "type": "query",
+                "description": "Application ID"
+              },
+              {
+                "name": "include-all",
+                "value": "",
+                "type": "query",
+                "description": "Include all items including closed accounts, deleted applications, destroyed assets, opted-out asset holdings, and closed-out application localstates."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return. There could be additional pages even if the limit is not reached."
+              },
+              {
+                "name": "next",
+                "value": "",
+                "type": "query",
+                "description": "The next page of results. Use the next token provided by the previous results."
+              }
+            ]
+          },
+          "docs": "Lookup an account's asset holdings, optionally for a specific ID."
+        },
+        {
+          "info": {
+            "name": "lookupAccountAssets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/v2/accounts/:account-id/assets",
+            "params": [
+              {
+                "name": "account-id",
+                "value": "",
+                "type": "path",
+                "description": "account string"
+              },
+              {
+                "name": "asset-id",
+                "value": "",
+                "type": "query",
+                "description": "Asset ID"
+              },
+              {
+                "name": "include-all",
+                "value": "",
+                "type": "query",
+                "description": "Include all items including closed accounts, deleted applications, destroyed assets, opted-out asset holdings, and closed-out application localstates."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return. There could be additional pages even if the limit is not reached."
+              },
+              {
+                "name": "next",
+                "value": "",
+                "type": "query",
+                "description": "The next page of results. Use the next token provided by the previous results."
+              }
+            ]
+          },
+          "docs": "Lookup an account's asset holdings, optionally for a specific ID."
+        },
+        {
+          "info": {
+            "name": "lookupAccountCreatedApplications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/v2/accounts/:account-id/created-applications",
+            "params": [
+              {
+                "name": "account-id",
+                "value": "",
+                "type": "path",
+                "description": "account string"
+              },
+              {
+                "name": "application-id",
+                "value": "",
+                "type": "query",
+                "description": "Application ID"
+              },
+              {
+                "name": "include-all",
+                "value": "",
+                "type": "query",
+                "description": "Include all items including closed accounts, deleted applications, destroyed assets, opted-out asset holdings, and closed-out application localstates."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return. There could be additional pages even if the limit is not reached."
+              },
+              {
+                "name": "next",
+                "value": "",
+                "type": "query",
+                "description": "The next page of results. Use the next token provided by the previous results."
+              }
+            ]
+          },
+          "docs": "Lookup an account's created application parameters, optionally for a specific ID."
+        },
+        {
+          "info": {
+            "name": "lookupAccountCreatedAssets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/v2/accounts/:account-id/created-assets",
+            "params": [
+              {
+                "name": "account-id",
+                "value": "",
+                "type": "path",
+                "description": "account string"
+              },
+              {
+                "name": "asset-id",
+                "value": "",
+                "type": "query",
+                "description": "Asset ID"
+              },
+              {
+                "name": "include-all",
+                "value": "",
+                "type": "query",
+                "description": "Include all items including closed accounts, deleted applications, destroyed assets, opted-out asset holdings, and closed-out application localstates."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return. There could be additional pages even if the limit is not reached."
+              },
+              {
+                "name": "next",
+                "value": "",
+                "type": "query",
+                "description": "The next page of results. Use the next token provided by the previous results."
+              }
+            ]
+          },
+          "docs": "Lookup an account's created asset parameters, optionally for a specific ID."
+        },
+        {
+          "info": {
+            "name": "lookupAccountTransactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/v2/accounts/:account-id/transactions",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return. There could be additional pages even if the limit is not reached."
+              },
+              {
+                "name": "next",
+                "value": "",
+                "type": "query",
+                "description": "The next page of results. Use the next token provided by the previous results."
+              },
+              {
+                "name": "note-prefix",
+                "value": "",
+                "type": "query",
+                "description": "Specifies a prefix which must be contained in the note field."
+              },
+              {
+                "name": "tx-type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sig-type",
+                "value": "",
+                "type": "query",
+                "description": "SigType filters just results using the specified type of signature:\n* sig - Standard\n* msig - MultiSig\n* lsig - LogicSig"
+              },
+              {
+                "name": "txid",
+                "value": "",
+                "type": "query",
+                "description": "Lookup the specific transaction by ID."
+              },
+              {
+                "name": "round",
+                "value": "",
+                "type": "query",
+                "description": "Include results for the specified round."
+              },
+              {
+                "name": "min-round",
+                "value": "",
+                "type": "query",
+                "description": "Include results at or after the specified min-round."
+              },
+              {
+                "name": "max-round",
+                "value": "",
+                "type": "query",
+                "description": "Include results at or before the specified max-round."
+              },
+              {
+                "name": "asset-id",
+                "value": "",
+                "type": "query",
+                "description": "Asset ID"
+              },
+              {
+                "name": "before-time",
+                "value": "",
+                "type": "query",
+                "description": "Include results before the given time. Must be an RFC 3339 formatted string."
+              },
+              {
+                "name": "after-time",
+                "value": "",
+                "type": "query",
+                "description": "Include results after the given time. Must be an RFC 3339 formatted string."
+              },
+              {
+                "name": "currency-greater-than",
+                "value": "",
+                "type": "query",
+                "description": "Results should have an amount greater than this value. MicroAlgos are the default currency unless an asset-id is provided, in which case the asset will be used."
+              },
+              {
+                "name": "currency-less-than",
+                "value": "",
+                "type": "query",
+                "description": "Results should have an amount less than this value. MicroAlgos are the default currency unless an asset-id is provided, in which case the asset will be used."
+              },
+              {
+                "name": "account-id",
+                "value": "",
+                "type": "path",
+                "description": "account string"
+              },
+              {
+                "name": "rekey-to",
+                "value": "",
+                "type": "query",
+                "description": "Include results which include the rekey-to field."
+              }
+            ]
+          },
+          "docs": "Lookup account transactions. Transactions are returned newest to oldest."
+        },
+        {
+          "info": {
+            "name": "lookupApplicationByID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/v2/applications/:application-id",
+            "params": [
+              {
+                "name": "application-id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "include-all",
+                "value": "",
+                "type": "query",
+                "description": "Include all items including closed accounts, deleted applications, destroyed assets, opted-out asset holdings, and closed-out application localstates."
+              }
+            ]
+          },
+          "docs": "Lookup application."
+        },
+        {
+          "info": {
+            "name": "Get box information for a given application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/v2/applications/:application-id/box",
+            "params": [
+              {
+                "name": "application-id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "A box name in goal-arg form 'encoding:value'. For ints, use the form 'int:1234'. For raw bytes, use the form 'b64:A=='. For printable strings, use the form 'str:hello'. For addresses, use the form 'addr:XYZ...'."
+              }
+            ]
+          },
+          "docs": "Given an application ID and box name, returns base64 encoded box name and value. Box names must be in the goal app call arg form 'encoding:value'. For ints, use the form 'int:1234'. For raw bytes, encode base 64 and use 'b64' prefix as in 'b64:A=='. For printable strings, use the form 'str:hello'. For addresses, use the form 'addr:XYZ...'."
+        },
+        {
+          "info": {
+            "name": "lookupApplicationLogsByID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/v2/applications/:application-id/logs",
+            "params": [
+              {
+                "name": "application-id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return. There could be additional pages even if the limit is not reached."
+              },
+              {
+                "name": "next",
+                "value": "",
+                "type": "query",
+                "description": "The next page of results. Use the next token provided by the previous results."
+              },
+              {
+                "name": "txid",
+                "value": "",
+                "type": "query",
+                "description": "Lookup the specific transaction by ID."
+              },
+              {
+                "name": "min-round",
+                "value": "",
+                "type": "query",
+                "description": "Include results at or after the specified min-round."
+              },
+              {
+                "name": "max-round",
+                "value": "",
+                "type": "query",
+                "description": "Include results at or before the specified max-round."
+              },
+              {
+                "name": "sender-address",
+                "value": "",
+                "type": "query",
+                "description": "Only include transactions with this sender address."
+              }
+            ]
+          },
+          "docs": "Lookup application logs."
+        },
+        {
+          "info": {
+            "name": "lookupAssetByID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/v2/assets/:asset-id",
+            "params": [
+              {
+                "name": "asset-id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "include-all",
+                "value": "",
+                "type": "query",
+                "description": "Include all items including closed accounts, deleted applications, destroyed assets, opted-out asset holdings, and closed-out application localstates."
+              }
+            ]
+          },
+          "docs": "Lookup asset information."
+        },
+        {
+          "info": {
+            "name": "lookupAssetBalances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/v2/assets/:asset-id/balances",
+            "params": [
+              {
+                "name": "include-all",
+                "value": "",
+                "type": "query",
+                "description": "Include all items including closed accounts, deleted applications, destroyed assets, opted-out asset holdings, and closed-out application localstates."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return. There could be additional pages even if the limit is not reached."
+              },
+              {
+                "name": "next",
+                "value": "",
+                "type": "query",
+                "description": "The next page of results. Use the next token provided by the previous results."
+              },
+              {
+                "name": "currency-greater-than",
+                "value": "",
+                "type": "query",
+                "description": "Results should have an amount greater than this value. MicroAlgos are the default currency unless an asset-id is provided, in which case the asset will be used."
+              },
+              {
+                "name": "currency-less-than",
+                "value": "",
+                "type": "query",
+                "description": "Results should have an amount less than this value. MicroAlgos are the default currency unless an asset-id is provided, in which case the asset will be used."
+              },
+              {
+                "name": "asset-id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Lookup the list of accounts who hold this asset "
+        },
+        {
+          "info": {
+            "name": "lookupAssetTransactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/v2/assets/:asset-id/transactions",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return. There could be additional pages even if the limit is not reached."
+              },
+              {
+                "name": "next",
+                "value": "",
+                "type": "query",
+                "description": "The next page of results. Use the next token provided by the previous results."
+              },
+              {
+                "name": "note-prefix",
+                "value": "",
+                "type": "query",
+                "description": "Specifies a prefix which must be contained in the note field."
+              },
+              {
+                "name": "tx-type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sig-type",
+                "value": "",
+                "type": "query",
+                "description": "SigType filters just results using the specified type of signature:\n* sig - Standard\n* msig - MultiSig\n* lsig - LogicSig"
+              },
+              {
+                "name": "txid",
+                "value": "",
+                "type": "query",
+                "description": "Lookup the specific transaction by ID."
+              },
+              {
+                "name": "round",
+                "value": "",
+                "type": "query",
+                "description": "Include results for the specified round."
+              },
+              {
+                "name": "min-round",
+                "value": "",
+                "type": "query",
+                "description": "Include results at or after the specified min-round."
+              },
+              {
+                "name": "max-round",
+                "value": "",
+                "type": "query",
+                "description": "Include results at or before the specified max-round."
+              },
+              {
+                "name": "before-time",
+                "value": "",
+                "type": "query",
+                "description": "Include results before the given time. Must be an RFC 3339 formatted string."
+              },
+              {
+                "name": "after-time",
+                "value": "",
+                "type": "query",
+                "description": "Include results after the given time. Must be an RFC 3339 formatted string."
+              },
+              {
+                "name": "currency-greater-than",
+                "value": "",
+                "type": "query",
+                "description": "Results should have an amount greater than this value. MicroAlgos are the default currency unless an asset-id is provided, in which case the asset will be used."
+              },
+              {
+                "name": "currency-less-than",
+                "value": "",
+                "type": "query",
+                "description": "Results should have an amount less than this value. MicroAlgos are the default currency unless an asset-id is provided, in which case the asset will be used."
+              },
+              {
+                "name": "address",
+                "value": "",
+                "type": "query",
+                "description": "Only include transactions with this address in one of the transaction fields."
+              },
+              {
+                "name": "address-role",
+                "value": "",
+                "type": "query",
+                "description": "Combine with the address parameter to define what type of address to search for."
+              },
+              {
+                "name": "exclude-close-to",
+                "value": "",
+                "type": "query",
+                "description": "Combine with address and address-role parameters to define what type of address to search for. The close to fields are normally treated as a receiver, if you would like to exclude them set this parameter to true."
+              },
+              {
+                "name": "asset-id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "rekey-to",
+                "value": "",
+                "type": "query",
+                "description": "Include results which include the rekey-to field."
+              }
+            ]
+          },
+          "docs": "Lookup transactions for an asset. Transactions are returned oldest to newest."
+        },
+        {
+          "info": {
+            "name": "lookupBlock",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/v2/blocks/:round-number",
+            "params": [
+              {
+                "name": "round-number",
+                "value": "",
+                "type": "path",
+                "description": "Round number"
+              },
+              {
+                "name": "header-only",
+                "value": "",
+                "type": "query",
+                "description": "Header only flag. When this is set to true, returned block does not contain the transactions"
+              }
+            ]
+          },
+          "docs": "Lookup block."
+        },
+        {
+          "info": {
+            "name": "lookupTransaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/v2/transactions/:txid",
+            "params": [
+              {
+                "name": "txid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Lookup a single transaction."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
