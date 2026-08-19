@@ -34,7 +34,7 @@ description: Algorand is a pure proof-of-stake blockchain platform designed for 
   and Java.
 created: '2026-06-13'
 modified: '2026-06-13'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: algorand:algorand-kmd-api
   name: Algorand KMD REST API
