@@ -1,0 +1,29 @@
+# Front Door AI Index — algorand — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: algorand
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: algorand.co
+  final_host: algorand.co
+  ownership: own
+  owner: algorand
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 15
+  host_score: 15
+  density: 5.91
+  words: 2539
+  tiers:
+    agentic: 10
+    core: 5
+    model: 0
+  ambiguous: 9
+  top_terms:
+    agent: 7
+    agentic: 7
+    AI: 5
+    AI agent: 3
+    smart: 2

@@ -1,15 +1,12 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
+  description: API for KMD (Key Management Daemon)
+  title: KMD HTTP Versions API
   contact:
     email: contact@algorand.com
-    name: algorand
-    url: https://www.algorand.com/get-in-touch/contact
-  description: API endpoint for algod operations.
-  title: Algod REST API. common Versions API
   version: 0.0.1
 servers:
 - url: http://localhost/
-- url: https://localhost/
 security:
 - api_key: []
 tags:
@@ -17,47 +14,47 @@ tags:
 paths:
   /versions:
     get:
-      produces:
-      - application/json
       summary: Retrieves the current version
       operationId: GetVersion
-      parameters:
-      - name: Versions Request
-        in: body
-        schema:
-          $ref: '#/definitions/VersionsRequest'
       responses:
         '200':
-          $ref: '#/responses/VersionsResponse'
+          $ref: '#/components/responses/VersionsResponse'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VersionsRequest'
       tags:
       - Versions
 components:
+  responses:
+    VersionsResponse:
+      description: Response to `GET /versions`
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/VersionsResponse'
+  schemas:
+    VersionsResponse:
+      description: 'VersionsResponse is the response to `GET /versions`
+
+        friendly:VersionsResponse'
+      type: object
+      properties:
+        versions:
+          type: array
+          items:
+            type: string
+          x-go-name: Versions
+      x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+    VersionsRequest:
+      description: VersionsRequest is the request for `GET /versions`
+      type: object
+      x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
   securitySchemes:
     api_key:
-      description: Generated header parameter. This token can be generated using the Goal command line tool. Example value ='b7e384d0317b8050ce45900a94a1931e28540e1f69b2d242b424659c341b4697'
-      in: header
-      name: X-Algo-API-Token
+      description: 'Generated header parameter. This value can be found in `/kmd/data/dir/kmd.token`. Example value: ''330b2e4fc9b20f4f89812cf87f1dabeb716d23e3f11aec97a61ff5f750563b78'''
       type: apiKey
-definitions:
-  VersionsRequest:
-    description: VersionsRequest is the request for `GET /versions`
-    type: object
-    x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
-  VersionsResponse:
-    description: 'VersionsResponse is the response to `GET /versions`
-
-      friendly:VersionsResponse'
-    type: object
-    properties:
-      versions:
-        type: array
-        items:
-          type: string
-        x-go-name: Versions
-    x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
-responses:
-  VersionsResponse:
-    description: Response to `GET /versions`
-    schema:
-      $ref: '#/definitions/VersionsResponse'
-x-original-swagger-version: '2.0'
+      name: X-KMD-API-Token
+      in: header
+      x-example: 330b2e4fc9b20f4f89812cf87f1dabeb716d23e3f11aec97a61ff5f750563b78
