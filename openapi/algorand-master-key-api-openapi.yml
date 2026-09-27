@@ -37,18 +37,6 @@ components:
         type: integer
         format: uint8
       x-go-package: github.com/algorand/go-algorand/crypto
-    ExportMasterKeyRequest:
-      description: APIV1POSTMasterKeyExportRequest is the request for `POST /v1/master-key/export`
-      type: object
-      properties:
-        wallet_handle_token:
-          type: string
-          x-go-name: WalletHandleToken
-        wallet_password:
-          type: string
-          x-go-name: WalletPassword
-      x-go-name: APIV1POSTMasterKeyExportRequest
-      x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
     APIV1POSTMasterKeyExportResponse:
       description: 'APIV1POSTMasterKeyExportResponse is the response to `POST /v1/master-key/export`
 
@@ -63,6 +51,18 @@ components:
         message:
           type: string
           x-go-name: Message
+      x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+    ExportMasterKeyRequest:
+      description: APIV1POSTMasterKeyExportRequest is the request for `POST /v1/master-key/export`
+      type: object
+      properties:
+        wallet_handle_token:
+          type: string
+          x-go-name: WalletHandleToken
+        wallet_password:
+          type: string
+          x-go-name: WalletPassword
+      x-go-name: APIV1POSTMasterKeyExportRequest
       x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
   responses:
     ExportMasterKeyResponse:

@@ -29,24 +29,14 @@ paths:
       tags:
       - Program
 components:
+  responses:
+    SignProgramResponse:
+      description: Response to `POST /v1/data/sign`
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIV1POSTProgramSignResponse'
   schemas:
-    APIV1POSTProgramSignResponse:
-      description: 'APIV1POSTProgramSignResponse is the response to `POST /v1/data/sign`
-
-        friendly:SignProgramResponse'
-      type: object
-      properties:
-        error:
-          type: boolean
-          x-go-name: Error
-        message:
-          type: string
-          x-go-name: Message
-        sig:
-          type: string
-          format: byte
-          x-go-name: Signature
-      x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
     SignProgramRequest:
       description: APIV1POSTProgramSignRequest is the request for `POST /v1/program/sign`
       type: object
@@ -66,13 +56,23 @@ components:
           x-go-name: WalletPassword
       x-go-name: APIV1POSTProgramSignRequest
       x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
-  responses:
-    SignProgramResponse:
-      description: Response to `POST /v1/data/sign`
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/APIV1POSTProgramSignResponse'
+    APIV1POSTProgramSignResponse:
+      description: 'APIV1POSTProgramSignResponse is the response to `POST /v1/data/sign`
+
+        friendly:SignProgramResponse'
+      type: object
+      properties:
+        error:
+          type: boolean
+          x-go-name: Error
+        message:
+          type: string
+          x-go-name: Message
+        sig:
+          type: string
+          format: byte
+          x-go-name: Signature
+      x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
   securitySchemes:
     api_key:
       description: 'Generated header parameter. This value can be found in `/kmd/data/dir/kmd.token`. Example value: ''330b2e4fc9b20f4f89812cf87f1dabeb716d23e3f11aec97a61ff5f750563b78'''

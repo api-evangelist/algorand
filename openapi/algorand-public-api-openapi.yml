@@ -2846,426 +2846,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ApplicationLocalReference:
-      description: References an account's local state for an application.
-      properties:
-        account:
-          description: Address of the account with the local state.
-          type: string
-          x-algorand-format: Address
-        app:
-          description: Application ID of the local state application.
-          type: integer
-          x-algorand-format: uint64
-          x-go-type: basics.AppIndex
-      required:
-      - account
-      - app
-      type: object
-    ApplicationLocalState:
-      description: Stores local state associated with an application.
-      properties:
-        id:
-          description: The application which this local state is for.
-          type: integer
-          x-go-type: basics.AppIndex
-        key-value:
-          $ref: '#/components/schemas/TealKeyValueStore'
-        schema:
-          $ref: '#/components/schemas/ApplicationStateSchema'
-      required:
-      - id
-      - schema
-      type: object
-    Application:
-      description: Application index and its parameters
-      properties:
-        id:
-          description: \[appidx\] application index.
-          type: integer
-          x-go-type: basics.AppIndex
-        params:
-          $ref: '#/components/schemas/ApplicationParams'
-      required:
-      - id
-      type: object
-    DryrunTxnResult:
-      description: DryrunTxnResult contains any LogicSig or ApplicationCall program debug information and state updates from a dryrun.
-      properties:
-        app-call-messages:
-          items:
-            type: string
-          type: array
-        app-call-trace:
-          items:
-            $ref: '#/components/schemas/DryrunState'
-          type: array
-        budget-added:
-          description: Budget added during execution of app call transaction.
-          type: integer
-        budget-consumed:
-          description: Budget consumed during execution of app call transaction.
-          type: integer
-        disassembly:
-          description: Disassembled program line by line.
-          items:
-            type: string
-          type: array
-        global-delta:
-          $ref: '#/components/schemas/StateDelta'
-        local-deltas:
-          items:
-            $ref: '#/components/schemas/AccountStateDelta'
-          type: array
-        logic-sig-disassembly:
-          description: Disassembled lsig program line by line.
-          items:
-            type: string
-          type: array
-        logic-sig-messages:
-          items:
-            type: string
-          type: array
-        logic-sig-trace:
-          items:
-            $ref: '#/components/schemas/DryrunState'
-          type: array
-        logs:
-          items:
-            format: byte
-            pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
-            type: string
-          type: array
-      required:
-      - disassembly
-      type: object
-    TealKeyValueStore:
-      description: Represents a key-value store for use in an application.
-      items:
-        $ref: '#/components/schemas/TealKeyValue'
-      type: array
-    AvmValue:
-      description: Represents an AVM value.
-      properties:
-        bytes:
-          description: bytes value.
-          format: byte
-          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
-          type: string
-        type:
-          description: value type. Value `1` refers to **bytes**, value `2` refers to **uint64**
-          type: integer
-          x-go-type: uint64
-        uint:
-          description: uint value.
-          format: uint64
-          type: integer
-          x-algorand-format: uint64
-      required:
-      - type
-      type: object
-    Genesis:
-      properties:
-        alloc:
-          items:
-            $ref: '#/components/schemas/GenesisAllocation'
-          type: array
-        comment:
-          type: string
-        devmode:
-          type: boolean
-        fees:
-          type: string
-        id:
-          type: string
-        network:
-          type: string
-        proto:
-          type: string
-        rwd:
-          type: string
-        timestamp:
-          format: int64
-          type: integer
-      required:
-      - alloc
-      - fees
-      - id
-      - network
-      - proto
-      - rwd
-      - timestamp
-      title: Genesis File in JSON
-      type: object
-    BuildVersion:
-      properties:
-        branch:
-          type: string
-        build_number:
-          type: integer
-        channel:
-          type: string
-        commit_hash:
-          type: string
-        major:
-          type: integer
-        minor:
-          type: integer
-      required:
-      - branch
-      - build_number
-      - channel
-      - commit_hash
-      - major
-      - minor
-      title: BuildVersion contains the current algod build version information.
-      type: object
-    DryrunRequest:
-      description: Request data type for dryrun endpoint. Given the Transactions and simulated ledger state upload, run TEAL scripts and return debugging information.
-      properties:
-        accounts:
-          items:
-            $ref: '#/components/schemas/Account'
-          type: array
-        apps:
-          items:
-            $ref: '#/components/schemas/Application'
-          type: array
-        latest-timestamp:
-          description: LatestTimestamp is available to some TEAL scripts. Defaults to the latest confirmed timestamp this algod is attached to.
-          minimum: 0
-          type: integer
-          x-go-type: int64
-        protocol-version:
-          description: ProtocolVersion specifies a specific version string to operate under, otherwise whatever the current protocol of the network this algod is running in.
-          type: string
-        round:
-          description: Round is available to some TEAL scripts. Defaults to the current round on the network this algod is attached to.
-          type: integer
-          x-algorand-format: uint64
-          x-go-type: basics.Round
-        sources:
-          items:
-            $ref: '#/components/schemas/DryrunSource'
-          type: array
-        txns:
-          items:
-            description: SignedTxn object. Must be canonically encoded.
-            format: json
-            type: string
-            x-algorand-format: SignedTransaction
-          type: array
-      required:
-      - accounts
-      - apps
-      - latest-timestamp
-      - protocol-version
-      - round
-      - sources
-      - txns
-      type: object
-    SimulateTransactionResult:
-      description: Simulation result for an individual transaction
-      properties:
-        app-budget-consumed:
-          description: Budget used during execution of an app call transaction. This value includes budged used by inner app calls spawned by this transaction.
-          type: integer
-        exec-trace:
-          $ref: '#/components/schemas/SimulationTransactionExecTrace'
-        fixed-signer:
-          description: The account that needed to sign this transaction when no signature was provided and the provided signer was incorrect.
-          type: string
-          x-algorand-format: Address
-        logic-sig-budget-consumed:
-          description: Budget used during execution of a logic sig transaction.
-          type: integer
-        txn-result:
-          $ref: '#/components/schemas/PendingTransactionResponse'
-        unnamed-resources-accessed:
-          $ref: '#/components/schemas/SimulateUnnamedResourcesAccessed'
-      required:
-      - txn-result
-      type: object
-    ScratchChange:
-      description: A write operation into a scratch slot.
-      properties:
-        new-value:
-          $ref: '#/components/schemas/AvmValue'
-        slot:
-          description: The scratch slot written.
-          type: integer
-      required:
-      - new-value
-      - slot
-      type: object
-    ApplicationStateOperation:
-      description: An operation against an application's global/local/box state.
-      properties:
-        account:
-          description: For local state changes, the address of the account associated with the local state.
-          type: string
-          x-algorand-format: Address
-        app-state-type:
-          description: Type of application state. Value `g` is **global state**, `l` is **local state**, `b` is **boxes**.
-          type: string
-        key:
-          description: The key (name) of the global/local/box state.
-          format: byte
-          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
-          type: string
-        new-value:
-          $ref: '#/components/schemas/AvmValue'
-        operation:
-          description: Operation type. Value `w` is **write**, `d` is **delete**.
-          type: string
-      required:
-      - app-state-type
-      - key
-      - operation
-      type: object
-    TealValue:
-      description: Represents a TEAL value.
-      properties:
-        bytes:
-          description: \[tb\] bytes value.
-          type: string
-        type:
-          description: \[tt\] value type. Value `1` refers to **bytes**, value `2` refers to **uint**
-          type: integer
-          x-go-type: uint64
-        uint:
-          description: \[ui\] uint value.
-          format: uint64
-          type: integer
-          x-algorand-format: uint64
-      required:
-      - bytes
-      - type
-      - uint
-      type: object
-    DryrunSource:
-      description: DryrunSource is TEAL source text that gets uploaded, compiled, and inserted into transactions or application state.
-      properties:
-        app-index:
-          type: integer
-          x-algorand-format: uint64
-          x-go-type: basics.AppIndex
-        field-name:
-          description: FieldName is what kind of sources this is. If lsig then it goes into the transactions[this.TxnIndex].LogicSig. If approv or clearp it goes into the Approval Program or Clear State Program of application[this.AppIndex].
-          type: string
-        source:
-          type: string
-        txn-index:
-          type: integer
-      required:
-      - app-index
-      - field-name
-      - source
-      - txn-index
-      type: object
-    TealKeyValue:
-      description: Represents a key-value pair in an application store.
-      properties:
-        key:
-          type: string
-        value:
-          $ref: '#/components/schemas/TealValue'
-      required:
-      - key
-      - value
-      type: object
-    EvalDelta:
-      description: Represents a TEAL value delta.
-      properties:
-        action:
-          description: \[at\] delta action.
-          format: uint64
-          type: integer
-        bytes:
-          description: \[bs\] bytes value.
-          type: string
-        uint:
-          description: \[ui\] uint value.
-          format: uint64
-          type: integer
-          x-algorand-format: uint64
-      required:
-      - action
-      type: object
-    SimulateTraceConfig:
-      description: An object that configures simulation execution trace.
-      properties:
-        enable:
-          description: A boolean option for opting in execution trace features simulation endpoint.
-          type: boolean
-        scratch-change:
-          description: A boolean option enabling returning scratch slot changes together with execution trace during simulation.
-          type: boolean
-        stack-change:
-          description: A boolean option enabling returning stack changes together with execution trace during simulation.
-          type: boolean
-        state-change:
-          description: A boolean option enabling returning application state changes (global, local, and box changes) with the execution trace during simulation.
-          type: boolean
-      type: object
-    LedgerStateDeltaForTransactionGroup:
-      description: Contains a ledger delta for a single transaction group
-      properties:
-        Delta:
-          $ref: '#/components/schemas/LedgerStateDelta'
-        Ids:
-          items:
-            type: string
-          type: array
-      required:
-      - Delta
-      - Ids
-      type: object
-    SimulationTransactionExecTrace:
-      description: The execution trace of calling an app or a logic sig, containing the inner app call trace in a recursive way.
-      properties:
-        approval-program-hash:
-          description: SHA512_256 hash digest of the approval program executed in transaction.
-          format: byte
-          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
-          type: string
-        approval-program-trace:
-          description: Program trace that contains a trace of opcode effects in an approval program.
-          items:
-            $ref: '#/components/schemas/SimulationOpcodeTraceUnit'
-          type: array
-        clear-state-program-hash:
-          description: SHA512_256 hash digest of the clear state program executed in transaction.
-          format: byte
-          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
-          type: string
-        clear-state-program-trace:
-          description: Program trace that contains a trace of opcode effects in a clear state program.
-          items:
-            $ref: '#/components/schemas/SimulationOpcodeTraceUnit'
-          type: array
-        clear-state-rollback:
-          description: If true, indicates that the clear state program failed and any persistent state changes it produced should be reverted once the program exits.
-          type: boolean
-        clear-state-rollback-error:
-          description: The error message explaining why the clear state program failed. This field will only be populated if clear-state-rollback is true and the failure was due to an execution error.
-          type: string
-        inner-trace:
-          description: An array of SimulationTransactionExecTrace representing the execution trace of any inner transactions executed.
-          items:
-            $ref: '#/components/schemas/SimulationTransactionExecTrace'
-          type: array
-        logic-sig-hash:
-          description: SHA512_256 hash digest of the logic sig executed in transaction.
-          format: byte
-          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
-          type: string
-        logic-sig-trace:
-          description: Program trace that contains a trace of opcode effects in a logic sig.
-          items:
-            $ref: '#/components/schemas/SimulationOpcodeTraceUnit'
-          type: array
-      type: object
     SimulateTransactionGroupResult:
       description: Simulation result for an atomic transaction group
       properties:
@@ -3293,21 +2873,21 @@ components:
       required:
       - txn-results
       type: object
-    AssetHoldingReference:
-      description: References an asset held by an account.
+    SimulateTraceConfig:
+      description: An object that configures simulation execution trace.
       properties:
-        account:
-          description: Address of the account holding the asset.
-          type: string
-          x-algorand-format: Address
-        asset:
-          description: Asset ID of the holding.
-          type: integer
-          x-algorand-format: uint64
-          x-go-type: basics.AssetIndex
-      required:
-      - account
-      - asset
+        enable:
+          description: A boolean option for opting in execution trace features simulation endpoint.
+          type: boolean
+        scratch-change:
+          description: A boolean option enabling returning scratch slot changes together with execution trace during simulation.
+          type: boolean
+        stack-change:
+          description: A boolean option enabling returning stack changes together with execution trace during simulation.
+          type: boolean
+        state-change:
+          description: A boolean option enabling returning application state changes (global, local, and box changes) with the execution trace during simulation.
+          type: boolean
       type: object
     SimulationEvalOverrides:
       description: The set of parameters and limits override during simulation. If this set of parameters is present, then evaluation parameters may differ from standard evaluation in certain ways.
@@ -3331,160 +2911,40 @@ components:
           description: The maximum byte number to log during simulation
           type: integer
       type: object
-    ApplicationInitialStates:
-      description: An application's initial global/local/box states that were accessed during simulation.
+    BuildVersion:
       properties:
-        app-boxes:
-          $ref: '#/components/schemas/ApplicationKVStorage'
-        app-globals:
-          $ref: '#/components/schemas/ApplicationKVStorage'
-        app-locals:
-          description: An application's initial local states tied to different accounts.
-          items:
-            $ref: '#/components/schemas/ApplicationKVStorage'
-          type: array
-        id:
-          description: Application index.
-          type: integer
-          x-algorand-format: uint64
-          x-go-type: basics.AppIndex
-      required:
-      - id
-      type: object
-    SimulateRequest:
-      description: Request type for simulation endpoint.
-      properties:
-        allow-empty-signatures:
-          description: Allows transactions without signatures to be simulated as if they had correct signatures.
-          type: boolean
-        allow-more-logging:
-          description: Lifts limits on log opcode usage during simulation.
-          type: boolean
-        allow-unnamed-resources:
-          description: Allows access to unnamed resources during simulation.
-          type: boolean
-        exec-trace-config:
-          $ref: '#/components/schemas/SimulateTraceConfig'
-        extra-opcode-budget:
-          description: Applies extra opcode budget during simulation for each transaction group.
-          type: integer
-        fix-signers:
-          description: If true, signers for transactions that are missing signatures will be fixed during evaluation.
-          type: boolean
-        round:
-          description: If provided, specifies the round preceding the simulation. State changes through this round will be used to run this simulation. Usually only the 4 most recent rounds will be available (controlled by the node config value MaxAcctLookback). If not specified, defaults to the latest available round.
-          type: integer
-          x-go-type: basics.Round
-        txn-groups:
-          description: The transaction groups to simulate.
-          items:
-            $ref: '#/components/schemas/SimulateRequestTransactionGroup'
-          type: array
-      required:
-      - txn-groups
-      type: object
-    BoxDescriptor:
-      description: Box descriptor describes a Box.
-      properties:
-        name:
-          description: Base64 encoded box name
-          format: byte
-          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+        branch:
           type: string
-        value:
-          description: Base64 encoded box value. Present only when the `values` query parameter is set to true.
-          format: byte
-          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
-          type: string
-      required:
-      - name
-      type: object
-    SimulateRequestTransactionGroup:
-      description: A transaction group to simulate.
-      properties:
-        txns:
-          description: An atomic transaction group.
-          items:
-            description: SignedTxn object. Must be canonically encoded.
-            format: json
-            type: string
-            x-algorand-format: SignedTransaction
-          type: array
-      required:
-      - txns
-      type: object
-    AccountApplicationResource:
-      description: AccountApplicationResource describes the account's application resource (local state and params if the account is the creator) for a specific application ID.
-      properties:
-        app-local-state:
-          $ref: '#/components/schemas/ApplicationLocalState'
-        created-at-round:
-          description: Round when the account opted into or created the application.
+        build_number:
           type: integer
-          x-go-type: basics.Round
-        deleted:
-          description: Whether the application has been deleted.
-          type: boolean
+        channel:
+          type: string
+        commit_hash:
+          type: string
+        major:
+          type: integer
+        minor:
+          type: integer
+      required:
+      - branch
+      - build_number
+      - channel
+      - commit_hash
+      - major
+      - minor
+      title: BuildVersion contains the current algod build version information.
+      type: object
+    Application:
+      description: Application index and its parameters
+      properties:
         id:
-          description: The application ID.
+          description: \[appidx\] application index.
           type: integer
           x-go-type: basics.AppIndex
         params:
           $ref: '#/components/schemas/ApplicationParams'
       required:
       - id
-      type: object
-    StateDelta:
-      description: Application state delta.
-      items:
-        $ref: '#/components/schemas/EvalDeltaKeyValue'
-      type: array
-    GenesisAllocation:
-      properties:
-        addr:
-          type: string
-        comment:
-          type: string
-        state:
-          properties:
-            algo:
-              format: uint64
-              type: integer
-            onl:
-              type: integer
-            sel:
-              type: string
-            stprf:
-              type: string
-            vote:
-              type: string
-            voteFst:
-              format: uint64
-              type: integer
-            voteKD:
-              format: uint64
-              type: integer
-            voteLst:
-              format: uint64
-              type: integer
-          required:
-          - algo
-          - onl
-          type: object
-      required:
-      - addr
-      - comment
-      - state
-      title: Allocations for Genesis File
-      type: object
-    SimulateInitialStates:
-      description: Initial states of resources that were accessed during simulation.
-      properties:
-        app-initial-states:
-          description: The initial states of accessed application before simulation. The order of this array is arbitrary.
-          items:
-            $ref: '#/components/schemas/ApplicationInitialStates'
-          type: array
       type: object
     PendingTransactionResponse:
       description: Details about a pending transaction. If the transaction was recently confirmed, includes confirmation details like the round and reward details.
@@ -3553,159 +3013,6 @@ components:
       - pool-error
       - txn
       type: object
-    LightBlockHeaderProof:
-      description: Proof of membership and position of a light block header.
-      properties:
-        index:
-          description: The index of the light block header in the vector commitment tree
-          type: integer
-          x-go-type: uint64
-        proof:
-          description: The encoded proof.
-          format: byte
-          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
-          type: string
-        treedepth:
-          description: Represents the depth of the tree that is being proven, i.e. the number of edges from a leaf to the root.
-          type: integer
-      required:
-      - index
-      - proof
-      - treedepth
-      type: object
-    BoxReference:
-      description: References a box of an application.
-      properties:
-        app:
-          description: Application ID which this box belongs to
-          type: integer
-          x-go-type: basics.AppIndex
-        name:
-          description: Base64 encoded box name
-          format: byte
-          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
-          type: string
-      required:
-      - app
-      - name
-      type: object
-    SimulateUnnamedResourcesAccessed:
-      description: These are resources that were accessed by this group that would normally have caused failure, but were allowed in simulation. Depending on where this object is in the response, the unnamed resources it contains may or may not qualify for group resource sharing. If this is a field in SimulateTransactionGroupResult, the resources do qualify, but if this is a field in SimulateTransactionResult, they do not qualify. In order to make this group valid for actual submission, resources that qualify for group sharing can be made available by any transaction of the group; otherwise, resources must be placed in the same transaction which accessed them.
-      properties:
-        accounts:
-          description: The unnamed accounts that were referenced. The order of this array is arbitrary.
-          items:
-            type: string
-            x-algorand-format: Address
-          type: array
-        app-locals:
-          description: The unnamed application local states that were referenced. The order of this array is arbitrary.
-          items:
-            $ref: '#/components/schemas/ApplicationLocalReference'
-          type: array
-        apps:
-          description: The unnamed applications that were referenced. The order of this array is arbitrary.
-          items:
-            type: integer
-            x-algorand-format: uint64
-            x-go-type: basics.AppIndex
-          type: array
-        asset-holdings:
-          description: The unnamed asset holdings that were referenced. The order of this array is arbitrary.
-          items:
-            $ref: '#/components/schemas/AssetHoldingReference'
-          type: array
-        assets:
-          description: The unnamed assets that were referenced. The order of this array is arbitrary.
-          items:
-            type: integer
-            x-algorand-format: uint64
-            x-go-type: basics.AssetIndex
-          type: array
-        boxes:
-          description: The unnamed boxes that were referenced. The order of this array is arbitrary.
-          items:
-            $ref: '#/components/schemas/BoxReference'
-          type: array
-        extra-box-refs:
-          description: The number of extra box references used to increase the IO budget. This is in addition to the references defined in the input transaction group and any referenced to unnamed boxes.
-          type: integer
-      type: object
-    StateProof:
-      description: Represents a state proof and its corresponding message
-      properties:
-        Message:
-          $ref: '#/components/schemas/StateProofMessage'
-        StateProof:
-          description: The encoded StateProof for the message.
-          format: byte
-          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
-          type: string
-      required:
-      - Message
-      - StateProof
-      type: object
-    Asset:
-      description: Specifies both the unique identifier and the parameters for an asset
-      properties:
-        index:
-          description: unique asset identifier
-          type: integer
-          x-go-type: basics.AssetIndex
-        params:
-          $ref: '#/components/schemas/AssetParams'
-      required:
-      - index
-      type: object
-    AppCallLogs:
-      description: The logged messages from an app call along with the app ID and outer transaction ID. Logs appear in the same order that they were emitted.
-      properties:
-        application-index:
-          description: The application from which the logs were generated
-          type: integer
-          x-go-type: basics.AppIndex
-        logs:
-          description: An array of logs
-          items:
-            format: byte
-            pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
-            type: string
-          type: array
-        txId:
-          description: The transaction ID of the outer app call that lead to these logs
-          type: string
-      required:
-      - application-index
-      - logs
-      - txId
-      type: object
-    AccountAssetHolding:
-      description: AccountAssetHolding describes the account's asset holding and asset parameters (if either exist) for a specific asset ID.
-      properties:
-        asset-holding:
-          $ref: '#/components/schemas/AssetHolding'
-        asset-params:
-          $ref: '#/components/schemas/AssetParams'
-      required:
-      - asset-holding
-      type: object
-    LedgerStateDelta:
-      description: Ledger StateDelta object
-      type: object
-      x-algorand-format: StateDelta
-    AvmKeyValue:
-      description: Represents an AVM key-value pair in an application store.
-      properties:
-        key:
-          format: byte
-          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
-          type: string
-        value:
-          $ref: '#/components/schemas/AvmValue'
-      required:
-      - key
-      - value
-      type: object
     AssetHolding:
       description: 'Describes an asset held by an account.
 
@@ -3732,113 +3039,78 @@ components:
       - asset-id
       - is-frozen
       type: object
-    TransactionProof:
-      description: Proof of transaction in a block.
+    ScratchChange:
+      description: A write operation into a scratch slot.
       properties:
-        hashtype:
-          description: "The type of hash function used to create the proof, must be one of: \n* sha512_256 \n* sha256"
-          enum:
-          - sha512_256
-          - sha256
-          type: string
-        idx:
-          description: Index of the transaction in the block's payset.
+        new-value:
+          $ref: '#/components/schemas/AvmValue'
+        slot:
+          description: The scratch slot written.
           type: integer
-          x-go-type: uint64
-        proof:
-          description: Proof of transaction membership.
-          format: byte
-          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
-          type: string
-        stibhash:
-          description: Hash of SignedTxnInBlock for verifying proof.
-          format: byte
-          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
-          type: string
-        treedepth:
-          description: Represents the depth of the tree that is being proven, i.e. the number of edges from a leaf to the root.
-          type: integer
-          x-go-type: uint64
       required:
-      - hashtype
-      - idx
-      - proof
-      - stibhash
-      - treedepth
+      - new-value
+      - slot
       type: object
-    AssetParams:
-      description: 'AssetParams specifies the parameters for an asset.
-
-
-        \[apar\] when part of an AssetConfig transaction.
-
-
-        Definition:
-
-        data/transactions/asset.go : AssetParams'
+    BoxReference:
+      description: References a box of an application.
       properties:
-        clawback:
-          description: \[c\] Address of account used to clawback holdings of this asset.  If empty, clawback is not permitted.
-          type: string
-        creator:
-          description: The address that created this asset. This is the address where the parameters for this asset can be found, and also the address where unwanted asset units can be sent in the worst case.
-          type: string
-        decimals:
-          description: \[dc\] The number of digits to use after the decimal point when displaying this asset. If 0, the asset is not divisible. If 1, the base unit of the asset is in tenths. If 2, the base unit of the asset is in hundredths, and so on. This value must be between 0 and 19 (inclusive).
-          format: uint64
-          maximum: 19
-          minimum: 0
+        app:
+          description: Application ID which this box belongs to
           type: integer
-        default-frozen:
-          description: \[df\] Whether holdings of this asset are frozen by default.
-          type: boolean
-        freeze:
-          description: \[f\] Address of account used to freeze holdings of this asset.  If empty, freezing is not permitted.
-          type: string
-        manager:
-          description: \[m\] Address of account used to manage the keys of this asset and to destroy it.
-          type: string
-        metadata-hash:
-          description: \[am\] A commitment to some unspecified asset metadata. The format of this metadata is up to the application.
-          format: byte
-          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
-          type: string
+          x-go-type: basics.AppIndex
         name:
-          description: \[an\] Name of this asset, as supplied by the creator. Included only when the asset name is composed of printable utf-8 characters.
-          type: string
-        name-b64:
-          description: Base64 encoded name of this asset, as supplied by the creator.
-          format: byte
-          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
-          type: string
-        reserve:
-          description: \[r\] Address of account holding reserve (non-minted) units of this asset.
-          type: string
-        total:
-          description: \[t\] The total number of units of this asset.
-          format: uint64
-          type: integer
-          x-algorand-format: uint64
-        unit-name:
-          description: \[un\] Name of a unit of this asset, as supplied by the creator. Included only when the name of a unit of this asset is composed of printable utf-8 characters.
-          type: string
-        unit-name-b64:
-          description: Base64 encoded name of a unit of this asset, as supplied by the creator.
-          format: byte
-          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
-          type: string
-        url:
-          description: \[au\] URL where more information about the asset can be retrieved. Included only when the URL is composed of printable utf-8 characters.
-          type: string
-        url-b64:
-          description: Base64 encoded URL where more information about the asset can be retrieved.
+          description: Base64 encoded box name
           format: byte
           pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
           type: string
       required:
-      - creator
-      - decimals
-      - total
+      - app
+      - name
+      type: object
+    SimulateRequest:
+      description: Request type for simulation endpoint.
+      properties:
+        allow-empty-signatures:
+          description: Allows transactions without signatures to be simulated as if they had correct signatures.
+          type: boolean
+        allow-more-logging:
+          description: Lifts limits on log opcode usage during simulation.
+          type: boolean
+        allow-unnamed-resources:
+          description: Allows access to unnamed resources during simulation.
+          type: boolean
+        exec-trace-config:
+          $ref: '#/components/schemas/SimulateTraceConfig'
+        extra-opcode-budget:
+          description: Applies extra opcode budget during simulation for each transaction group.
+          type: integer
+        fix-signers:
+          description: If true, signers for transactions that are missing signatures will be fixed during evaluation.
+          type: boolean
+        round:
+          description: If provided, specifies the round preceding the simulation. State changes through this round will be used to run this simulation. Usually only the 4 most recent rounds will be available (controlled by the node config value MaxAcctLookback). If not specified, defaults to the latest available round.
+          type: integer
+          x-go-type: basics.Round
+        txn-groups:
+          description: The transaction groups to simulate.
+          items:
+            $ref: '#/components/schemas/SimulateRequestTransactionGroup'
+          type: array
+      required:
+      - txn-groups
+      type: object
+    AvmKeyValue:
+      description: Represents an AVM key-value pair in an application store.
+      properties:
+        key:
+          format: byte
+          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          type: string
+        value:
+          $ref: '#/components/schemas/AvmValue'
+      required:
+      - key
+      - value
       type: object
     SimulationOpcodeTraceUnit:
       description: The set of trace information and effect from evaluating a single opcode.
@@ -3872,131 +3144,77 @@ components:
       required:
       - pc
       type: object
-    EvalDeltaKeyValue:
-      description: Key-value pairs for StateDelta.
+    AccountAssetHolding:
+      description: AccountAssetHolding describes the account's asset holding and asset parameters (if either exist) for a specific asset ID.
       properties:
-        key:
-          type: string
-        value:
-          $ref: '#/components/schemas/EvalDelta'
+        asset-holding:
+          $ref: '#/components/schemas/AssetHolding'
+        asset-params:
+          $ref: '#/components/schemas/AssetParams'
       required:
-      - key
-      - value
+      - asset-holding
       type: object
-    ErrorResponse:
-      description: An error response with optional data field.
+    TealValue:
+      description: Represents a TEAL value.
       properties:
-        data:
-          properties: {}
-          type: object
-        message:
+        bytes:
+          description: \[tb\] bytes value.
           type: string
-      required:
-      - message
-      type: object
-    StateProofMessage:
-      description: Represents the message that the state proofs are attesting to.
-      properties:
-        BlockHeadersCommitment:
-          description: The vector commitment root on all light block headers within a state proof interval.
-          format: byte
-          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
-          type: string
-        FirstAttestedRound:
-          description: The first round the message attests to.
+        type:
+          description: \[tt\] value type. Value `1` refers to **bytes**, value `2` refers to **uint**
           type: integer
-          x-algorand-format: uint64
-          x-go-type: basics.Round
-        LastAttestedRound:
-          description: The last round the message attests to.
-          type: integer
-          x-algorand-format: uint64
-          x-go-type: basics.Round
-        LnProvenWeight:
-          description: An integer value representing the natural log of the proven weight with 16 bits of precision. This value would be used to verify the next state proof.
+          x-go-type: uint64
+        uint:
+          description: \[ui\] uint value.
           format: uint64
           type: integer
           x-algorand-format: uint64
-        VotersCommitment:
-          description: The vector commitment root of the top N accounts to sign the next StateProof.
-          format: byte
-          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
-          type: string
       required:
-      - BlockHeadersCommitment
-      - FirstAttestedRound
-      - LastAttestedRound
-      - LnProvenWeight
-      - VotersCommitment
+      - bytes
+      - type
+      - uint
       type: object
-    Box:
-      description: Box name and its content.
+    ApplicationParams:
+      description: Stores the global information associated with an application.
       properties:
-        name:
-          description: The box name, base64 encoded
+        approval-program:
+          description: \[approv\] approval program.
           format: byte
           pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
           type: string
-        round:
-          description: The round for which this information is relevant
-          type: integer
-          x-go-type: basics.Round
-        value:
-          description: The box value, base64 encoded.
+          x-algorand-format: TEALProgram
+        clear-state-program:
+          description: \[clearp\] approval program.
           format: byte
           pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
           type: string
-      required:
-      - name
-      - round
-      - value
-      type: object
-    DryrunState:
-      description: Stores the TEAL eval step data
-      properties:
-        error:
-          description: Evaluation error if any
+          x-algorand-format: TEALProgram
+        creator:
+          description: The address that created this application. This is the address where the parameters and global state for this application can be found.
           type: string
-        line:
-          description: Line number
+          x-algorand-format: Address
+        extra-program-pages:
+          description: \[epp\] the amount of extra program pages available to this app.
+          format: uint64
           type: integer
-        pc:
-          description: Program counter
+        global-state:
+          $ref: '#/components/schemas/TealKeyValueStore'
+        global-state-schema:
+          $ref: '#/components/schemas/ApplicationStateSchema'
+        local-state-schema:
+          $ref: '#/components/schemas/ApplicationStateSchema'
+        size-sponsor:
+          description: \[ss\] the account responsible for extra pages and global state MBR
+          type: string
+          x-algorand-format: Address
+        version:
+          description: \[v\] the number of updates to the application programs
           type: integer
-        scratch:
-          items:
-            $ref: '#/components/schemas/TealValue'
-          type: array
-        stack:
-          items:
-            $ref: '#/components/schemas/TealValue'
-          type: array
+          x-go-type: uint64
       required:
-      - line
-      - pc
-      - stack
-      type: object
-    Version:
-      description: algod version information.
-      properties:
-        build:
-          $ref: '#/components/schemas/BuildVersion'
-        genesis_hash_b64:
-          format: byte
-          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
-          type: string
-        genesis_id:
-          type: string
-        versions:
-          items:
-            type: string
-          type: array
-      required:
-      - build
-      - genesis_hash_b64
-      - genesis_id
-      - versions
-      title: Version contains the current algod version.
+      - approval-program
+      - clear-state-program
+      - creator
       type: object
     Account:
       description: 'Account information at a given round.
@@ -4157,62 +3375,227 @@ components:
       - total-created-apps
       - total-created-assets
       type: object
-    ApplicationParams:
-      description: Stores the global information associated with an application.
+    Version:
+      description: algod version information.
       properties:
-        approval-program:
-          description: \[approv\] approval program.
+        build:
+          $ref: '#/components/schemas/BuildVersion'
+        genesis_hash_b64:
           format: byte
           pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
           type: string
-          x-algorand-format: TEALProgram
-        clear-state-program:
-          description: \[clearp\] approval program.
-          format: byte
-          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+        genesis_id:
           type: string
-          x-algorand-format: TEALProgram
-        creator:
-          description: The address that created this application. This is the address where the parameters and global state for this application can be found.
-          type: string
-          x-algorand-format: Address
-        extra-program-pages:
-          description: \[epp\] the amount of extra program pages available to this app.
-          format: uint64
-          type: integer
-        global-state:
-          $ref: '#/components/schemas/TealKeyValueStore'
-        global-state-schema:
-          $ref: '#/components/schemas/ApplicationStateSchema'
-        local-state-schema:
-          $ref: '#/components/schemas/ApplicationStateSchema'
-        size-sponsor:
-          description: \[ss\] the account responsible for extra pages and global state MBR
-          type: string
-          x-algorand-format: Address
-        version:
-          description: \[v\] the number of updates to the application programs
-          type: integer
-          x-go-type: uint64
-      required:
-      - approval-program
-      - clear-state-program
-      - creator
-      type: object
-    ApplicationKVStorage:
-      description: An application's global/local/box state.
-      properties:
-        account:
-          description: The address of the account associated with the local state.
-          type: string
-          x-algorand-format: Address
-        kvs:
-          description: Key-Value pairs representing application states.
+        versions:
           items:
-            $ref: '#/components/schemas/AvmKeyValue'
+            type: string
           type: array
       required:
-      - kvs
+      - build
+      - genesis_hash_b64
+      - genesis_id
+      - versions
+      title: Version contains the current algod version.
+      type: object
+    AccountStateDelta:
+      description: Application state delta.
+      properties:
+        address:
+          type: string
+        delta:
+          $ref: '#/components/schemas/StateDelta'
+      required:
+      - address
+      - delta
+      type: object
+    AssetParams:
+      description: 'AssetParams specifies the parameters for an asset.
+
+
+        \[apar\] when part of an AssetConfig transaction.
+
+
+        Definition:
+
+        data/transactions/asset.go : AssetParams'
+      properties:
+        clawback:
+          description: \[c\] Address of account used to clawback holdings of this asset.  If empty, clawback is not permitted.
+          type: string
+        creator:
+          description: The address that created this asset. This is the address where the parameters for this asset can be found, and also the address where unwanted asset units can be sent in the worst case.
+          type: string
+        decimals:
+          description: \[dc\] The number of digits to use after the decimal point when displaying this asset. If 0, the asset is not divisible. If 1, the base unit of the asset is in tenths. If 2, the base unit of the asset is in hundredths, and so on. This value must be between 0 and 19 (inclusive).
+          format: uint64
+          maximum: 19
+          minimum: 0
+          type: integer
+        default-frozen:
+          description: \[df\] Whether holdings of this asset are frozen by default.
+          type: boolean
+        freeze:
+          description: \[f\] Address of account used to freeze holdings of this asset.  If empty, freezing is not permitted.
+          type: string
+        manager:
+          description: \[m\] Address of account used to manage the keys of this asset and to destroy it.
+          type: string
+        metadata-hash:
+          description: \[am\] A commitment to some unspecified asset metadata. The format of this metadata is up to the application.
+          format: byte
+          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          type: string
+        name:
+          description: \[an\] Name of this asset, as supplied by the creator. Included only when the asset name is composed of printable utf-8 characters.
+          type: string
+        name-b64:
+          description: Base64 encoded name of this asset, as supplied by the creator.
+          format: byte
+          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          type: string
+        reserve:
+          description: \[r\] Address of account holding reserve (non-minted) units of this asset.
+          type: string
+        total:
+          description: \[t\] The total number of units of this asset.
+          format: uint64
+          type: integer
+          x-algorand-format: uint64
+        unit-name:
+          description: \[un\] Name of a unit of this asset, as supplied by the creator. Included only when the name of a unit of this asset is composed of printable utf-8 characters.
+          type: string
+        unit-name-b64:
+          description: Base64 encoded name of a unit of this asset, as supplied by the creator.
+          format: byte
+          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          type: string
+        url:
+          description: \[au\] URL where more information about the asset can be retrieved. Included only when the URL is composed of printable utf-8 characters.
+          type: string
+        url-b64:
+          description: Base64 encoded URL where more information about the asset can be retrieved.
+          format: byte
+          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          type: string
+      required:
+      - creator
+      - decimals
+      - total
+      type: object
+    Genesis:
+      properties:
+        alloc:
+          items:
+            $ref: '#/components/schemas/GenesisAllocation'
+          type: array
+        comment:
+          type: string
+        devmode:
+          type: boolean
+        fees:
+          type: string
+        id:
+          type: string
+        network:
+          type: string
+        proto:
+          type: string
+        rwd:
+          type: string
+        timestamp:
+          format: int64
+          type: integer
+      required:
+      - alloc
+      - fees
+      - id
+      - network
+      - proto
+      - rwd
+      - timestamp
+      title: Genesis File in JSON
+      type: object
+    ApplicationStateSchema:
+      description: Specifies maximums on the number of each type that may be stored.
+      properties:
+        num-byte-slice:
+          description: \[nbs\] num of byte slices.
+          format: uint64
+          type: integer
+        num-uint:
+          description: \[nui\] num of uints.
+          format: uint64
+          type: integer
+      required:
+      - num-byte-slice
+      - num-uint
+      type: object
+    GenesisAllocation:
+      properties:
+        addr:
+          type: string
+        comment:
+          type: string
+        state:
+          properties:
+            algo:
+              format: uint64
+              type: integer
+            onl:
+              type: integer
+            sel:
+              type: string
+            stprf:
+              type: string
+            vote:
+              type: string
+            voteFst:
+              format: uint64
+              type: integer
+            voteKD:
+              format: uint64
+              type: integer
+            voteLst:
+              format: uint64
+              type: integer
+          required:
+          - algo
+          - onl
+          type: object
+      required:
+      - addr
+      - comment
+      - state
+      title: Allocations for Genesis File
+      type: object
+    AssetHoldingReference:
+      description: References an asset held by an account.
+      properties:
+        account:
+          description: Address of the account holding the asset.
+          type: string
+          x-algorand-format: Address
+        asset:
+          description: Asset ID of the holding.
+          type: integer
+          x-algorand-format: uint64
+          x-go-type: basics.AssetIndex
+      required:
+      - account
+      - asset
+      type: object
+    LedgerStateDeltaForTransactionGroup:
+      description: Contains a ledger delta for a single transaction group
+      properties:
+        Delta:
+          $ref: '#/components/schemas/LedgerStateDelta'
+        Ids:
+          items:
+            type: string
+          type: array
+      required:
+      - Delta
+      - Ids
       type: object
     AccountParticipation:
       description: AccountParticipation describes the parameters used by this account in consensus protocol.
@@ -4251,31 +3634,648 @@ components:
       - vote-last-valid
       - vote-participation-key
       type: object
-    AccountStateDelta:
-      description: Application state delta.
+    ApplicationLocalState:
+      description: Stores local state associated with an application.
       properties:
-        address:
-          type: string
-        delta:
-          $ref: '#/components/schemas/StateDelta'
+        id:
+          description: The application which this local state is for.
+          type: integer
+          x-go-type: basics.AppIndex
+        key-value:
+          $ref: '#/components/schemas/TealKeyValueStore'
+        schema:
+          $ref: '#/components/schemas/ApplicationStateSchema'
       required:
-      - address
-      - delta
+      - id
+      - schema
       type: object
-    ApplicationStateSchema:
-      description: Specifies maximums on the number of each type that may be stored.
+    DryrunTxnResult:
+      description: DryrunTxnResult contains any LogicSig or ApplicationCall program debug information and state updates from a dryrun.
       properties:
-        num-byte-slice:
-          description: \[nbs\] num of byte slices.
+        app-call-messages:
+          items:
+            type: string
+          type: array
+        app-call-trace:
+          items:
+            $ref: '#/components/schemas/DryrunState'
+          type: array
+        budget-added:
+          description: Budget added during execution of app call transaction.
+          type: integer
+        budget-consumed:
+          description: Budget consumed during execution of app call transaction.
+          type: integer
+        disassembly:
+          description: Disassembled program line by line.
+          items:
+            type: string
+          type: array
+        global-delta:
+          $ref: '#/components/schemas/StateDelta'
+        local-deltas:
+          items:
+            $ref: '#/components/schemas/AccountStateDelta'
+          type: array
+        logic-sig-disassembly:
+          description: Disassembled lsig program line by line.
+          items:
+            type: string
+          type: array
+        logic-sig-messages:
+          items:
+            type: string
+          type: array
+        logic-sig-trace:
+          items:
+            $ref: '#/components/schemas/DryrunState'
+          type: array
+        logs:
+          items:
+            format: byte
+            pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+            type: string
+          type: array
+      required:
+      - disassembly
+      type: object
+    StateProof:
+      description: Represents a state proof and its corresponding message
+      properties:
+        Message:
+          $ref: '#/components/schemas/StateProofMessage'
+        StateProof:
+          description: The encoded StateProof for the message.
+          format: byte
+          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          type: string
+      required:
+      - Message
+      - StateProof
+      type: object
+    AccountApplicationResource:
+      description: AccountApplicationResource describes the account's application resource (local state and params if the account is the creator) for a specific application ID.
+      properties:
+        app-local-state:
+          $ref: '#/components/schemas/ApplicationLocalState'
+        created-at-round:
+          description: Round when the account opted into or created the application.
+          type: integer
+          x-go-type: basics.Round
+        deleted:
+          description: Whether the application has been deleted.
+          type: boolean
+        id:
+          description: The application ID.
+          type: integer
+          x-go-type: basics.AppIndex
+        params:
+          $ref: '#/components/schemas/ApplicationParams'
+      required:
+      - id
+      type: object
+    SimulateUnnamedResourcesAccessed:
+      description: These are resources that were accessed by this group that would normally have caused failure, but were allowed in simulation. Depending on where this object is in the response, the unnamed resources it contains may or may not qualify for group resource sharing. If this is a field in SimulateTransactionGroupResult, the resources do qualify, but if this is a field in SimulateTransactionResult, they do not qualify. In order to make this group valid for actual submission, resources that qualify for group sharing can be made available by any transaction of the group; otherwise, resources must be placed in the same transaction which accessed them.
+      properties:
+        accounts:
+          description: The unnamed accounts that were referenced. The order of this array is arbitrary.
+          items:
+            type: string
+            x-algorand-format: Address
+          type: array
+        app-locals:
+          description: The unnamed application local states that were referenced. The order of this array is arbitrary.
+          items:
+            $ref: '#/components/schemas/ApplicationLocalReference'
+          type: array
+        apps:
+          description: The unnamed applications that were referenced. The order of this array is arbitrary.
+          items:
+            type: integer
+            x-algorand-format: uint64
+            x-go-type: basics.AppIndex
+          type: array
+        asset-holdings:
+          description: The unnamed asset holdings that were referenced. The order of this array is arbitrary.
+          items:
+            $ref: '#/components/schemas/AssetHoldingReference'
+          type: array
+        assets:
+          description: The unnamed assets that were referenced. The order of this array is arbitrary.
+          items:
+            type: integer
+            x-algorand-format: uint64
+            x-go-type: basics.AssetIndex
+          type: array
+        boxes:
+          description: The unnamed boxes that were referenced. The order of this array is arbitrary.
+          items:
+            $ref: '#/components/schemas/BoxReference'
+          type: array
+        extra-box-refs:
+          description: The number of extra box references used to increase the IO budget. This is in addition to the references defined in the input transaction group and any referenced to unnamed boxes.
+          type: integer
+      type: object
+    SimulationTransactionExecTrace:
+      description: The execution trace of calling an app or a logic sig, containing the inner app call trace in a recursive way.
+      properties:
+        approval-program-hash:
+          description: SHA512_256 hash digest of the approval program executed in transaction.
+          format: byte
+          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          type: string
+        approval-program-trace:
+          description: Program trace that contains a trace of opcode effects in an approval program.
+          items:
+            $ref: '#/components/schemas/SimulationOpcodeTraceUnit'
+          type: array
+        clear-state-program-hash:
+          description: SHA512_256 hash digest of the clear state program executed in transaction.
+          format: byte
+          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          type: string
+        clear-state-program-trace:
+          description: Program trace that contains a trace of opcode effects in a clear state program.
+          items:
+            $ref: '#/components/schemas/SimulationOpcodeTraceUnit'
+          type: array
+        clear-state-rollback:
+          description: If true, indicates that the clear state program failed and any persistent state changes it produced should be reverted once the program exits.
+          type: boolean
+        clear-state-rollback-error:
+          description: The error message explaining why the clear state program failed. This field will only be populated if clear-state-rollback is true and the failure was due to an execution error.
+          type: string
+        inner-trace:
+          description: An array of SimulationTransactionExecTrace representing the execution trace of any inner transactions executed.
+          items:
+            $ref: '#/components/schemas/SimulationTransactionExecTrace'
+          type: array
+        logic-sig-hash:
+          description: SHA512_256 hash digest of the logic sig executed in transaction.
+          format: byte
+          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          type: string
+        logic-sig-trace:
+          description: Program trace that contains a trace of opcode effects in a logic sig.
+          items:
+            $ref: '#/components/schemas/SimulationOpcodeTraceUnit'
+          type: array
+      type: object
+    TransactionProof:
+      description: Proof of transaction in a block.
+      properties:
+        hashtype:
+          description: "The type of hash function used to create the proof, must be one of: \n* sha512_256 \n* sha256"
+          enum:
+          - sha512_256
+          - sha256
+          type: string
+        idx:
+          description: Index of the transaction in the block's payset.
+          type: integer
+          x-go-type: uint64
+        proof:
+          description: Proof of transaction membership.
+          format: byte
+          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          type: string
+        stibhash:
+          description: Hash of SignedTxnInBlock for verifying proof.
+          format: byte
+          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          type: string
+        treedepth:
+          description: Represents the depth of the tree that is being proven, i.e. the number of edges from a leaf to the root.
+          type: integer
+          x-go-type: uint64
+      required:
+      - hashtype
+      - idx
+      - proof
+      - stibhash
+      - treedepth
+      type: object
+    SimulateTransactionResult:
+      description: Simulation result for an individual transaction
+      properties:
+        app-budget-consumed:
+          description: Budget used during execution of an app call transaction. This value includes budged used by inner app calls spawned by this transaction.
+          type: integer
+        exec-trace:
+          $ref: '#/components/schemas/SimulationTransactionExecTrace'
+        fixed-signer:
+          description: The account that needed to sign this transaction when no signature was provided and the provided signer was incorrect.
+          type: string
+          x-algorand-format: Address
+        logic-sig-budget-consumed:
+          description: Budget used during execution of a logic sig transaction.
+          type: integer
+        txn-result:
+          $ref: '#/components/schemas/PendingTransactionResponse'
+        unnamed-resources-accessed:
+          $ref: '#/components/schemas/SimulateUnnamedResourcesAccessed'
+      required:
+      - txn-result
+      type: object
+    TealKeyValue:
+      description: Represents a key-value pair in an application store.
+      properties:
+        key:
+          type: string
+        value:
+          $ref: '#/components/schemas/TealValue'
+      required:
+      - key
+      - value
+      type: object
+    DryrunState:
+      description: Stores the TEAL eval step data
+      properties:
+        error:
+          description: Evaluation error if any
+          type: string
+        line:
+          description: Line number
+          type: integer
+        pc:
+          description: Program counter
+          type: integer
+        scratch:
+          items:
+            $ref: '#/components/schemas/TealValue'
+          type: array
+        stack:
+          items:
+            $ref: '#/components/schemas/TealValue'
+          type: array
+      required:
+      - line
+      - pc
+      - stack
+      type: object
+    StateProofMessage:
+      description: Represents the message that the state proofs are attesting to.
+      properties:
+        BlockHeadersCommitment:
+          description: The vector commitment root on all light block headers within a state proof interval.
+          format: byte
+          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          type: string
+        FirstAttestedRound:
+          description: The first round the message attests to.
+          type: integer
+          x-algorand-format: uint64
+          x-go-type: basics.Round
+        LastAttestedRound:
+          description: The last round the message attests to.
+          type: integer
+          x-algorand-format: uint64
+          x-go-type: basics.Round
+        LnProvenWeight:
+          description: An integer value representing the natural log of the proven weight with 16 bits of precision. This value would be used to verify the next state proof.
           format: uint64
           type: integer
-        num-uint:
-          description: \[nui\] num of uints.
+          x-algorand-format: uint64
+        VotersCommitment:
+          description: The vector commitment root of the top N accounts to sign the next StateProof.
+          format: byte
+          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          type: string
+      required:
+      - BlockHeadersCommitment
+      - FirstAttestedRound
+      - LastAttestedRound
+      - LnProvenWeight
+      - VotersCommitment
+      type: object
+    ApplicationInitialStates:
+      description: An application's initial global/local/box states that were accessed during simulation.
+      properties:
+        app-boxes:
+          $ref: '#/components/schemas/ApplicationKVStorage'
+        app-globals:
+          $ref: '#/components/schemas/ApplicationKVStorage'
+        app-locals:
+          description: An application's initial local states tied to different accounts.
+          items:
+            $ref: '#/components/schemas/ApplicationKVStorage'
+          type: array
+        id:
+          description: Application index.
+          type: integer
+          x-algorand-format: uint64
+          x-go-type: basics.AppIndex
+      required:
+      - id
+      type: object
+    StateDelta:
+      description: Application state delta.
+      items:
+        $ref: '#/components/schemas/EvalDeltaKeyValue'
+      type: array
+    SimulateRequestTransactionGroup:
+      description: A transaction group to simulate.
+      properties:
+        txns:
+          description: An atomic transaction group.
+          items:
+            description: SignedTxn object. Must be canonically encoded.
+            format: json
+            type: string
+            x-algorand-format: SignedTransaction
+          type: array
+      required:
+      - txns
+      type: object
+    Asset:
+      description: Specifies both the unique identifier and the parameters for an asset
+      properties:
+        index:
+          description: unique asset identifier
+          type: integer
+          x-go-type: basics.AssetIndex
+        params:
+          $ref: '#/components/schemas/AssetParams'
+      required:
+      - index
+      type: object
+    EvalDeltaKeyValue:
+      description: Key-value pairs for StateDelta.
+      properties:
+        key:
+          type: string
+        value:
+          $ref: '#/components/schemas/EvalDelta'
+      required:
+      - key
+      - value
+      type: object
+    EvalDelta:
+      description: Represents a TEAL value delta.
+      properties:
+        action:
+          description: \[at\] delta action.
           format: uint64
+          type: integer
+        bytes:
+          description: \[bs\] bytes value.
+          type: string
+        uint:
+          description: \[ui\] uint value.
+          format: uint64
+          type: integer
+          x-algorand-format: uint64
+      required:
+      - action
+      type: object
+    ApplicationStateOperation:
+      description: An operation against an application's global/local/box state.
+      properties:
+        account:
+          description: For local state changes, the address of the account associated with the local state.
+          type: string
+          x-algorand-format: Address
+        app-state-type:
+          description: Type of application state. Value `g` is **global state**, `l` is **local state**, `b` is **boxes**.
+          type: string
+        key:
+          description: The key (name) of the global/local/box state.
+          format: byte
+          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          type: string
+        new-value:
+          $ref: '#/components/schemas/AvmValue'
+        operation:
+          description: Operation type. Value `w` is **write**, `d` is **delete**.
+          type: string
+      required:
+      - app-state-type
+      - key
+      - operation
+      type: object
+    LedgerStateDelta:
+      description: Ledger StateDelta object
+      type: object
+      x-algorand-format: StateDelta
+    SimulateInitialStates:
+      description: Initial states of resources that were accessed during simulation.
+      properties:
+        app-initial-states:
+          description: The initial states of accessed application before simulation. The order of this array is arbitrary.
+          items:
+            $ref: '#/components/schemas/ApplicationInitialStates'
+          type: array
+      type: object
+    ApplicationKVStorage:
+      description: An application's global/local/box state.
+      properties:
+        account:
+          description: The address of the account associated with the local state.
+          type: string
+          x-algorand-format: Address
+        kvs:
+          description: Key-Value pairs representing application states.
+          items:
+            $ref: '#/components/schemas/AvmKeyValue'
+          type: array
+      required:
+      - kvs
+      type: object
+    TealKeyValueStore:
+      description: Represents a key-value store for use in an application.
+      items:
+        $ref: '#/components/schemas/TealKeyValue'
+      type: array
+    ErrorResponse:
+      description: An error response with optional data field.
+      properties:
+        data:
+          properties: {}
+          type: object
+        message:
+          type: string
+      required:
+      - message
+      type: object
+    DryrunRequest:
+      description: Request data type for dryrun endpoint. Given the Transactions and simulated ledger state upload, run TEAL scripts and return debugging information.
+      properties:
+        accounts:
+          items:
+            $ref: '#/components/schemas/Account'
+          type: array
+        apps:
+          items:
+            $ref: '#/components/schemas/Application'
+          type: array
+        latest-timestamp:
+          description: LatestTimestamp is available to some TEAL scripts. Defaults to the latest confirmed timestamp this algod is attached to.
+          minimum: 0
+          type: integer
+          x-go-type: int64
+        protocol-version:
+          description: ProtocolVersion specifies a specific version string to operate under, otherwise whatever the current protocol of the network this algod is running in.
+          type: string
+        round:
+          description: Round is available to some TEAL scripts. Defaults to the current round on the network this algod is attached to.
+          type: integer
+          x-algorand-format: uint64
+          x-go-type: basics.Round
+        sources:
+          items:
+            $ref: '#/components/schemas/DryrunSource'
+          type: array
+        txns:
+          items:
+            description: SignedTxn object. Must be canonically encoded.
+            format: json
+            type: string
+            x-algorand-format: SignedTransaction
+          type: array
+      required:
+      - accounts
+      - apps
+      - latest-timestamp
+      - protocol-version
+      - round
+      - sources
+      - txns
+      type: object
+    AppCallLogs:
+      description: The logged messages from an app call along with the app ID and outer transaction ID. Logs appear in the same order that they were emitted.
+      properties:
+        application-index:
+          description: The application from which the logs were generated
+          type: integer
+          x-go-type: basics.AppIndex
+        logs:
+          description: An array of logs
+          items:
+            format: byte
+            pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+            type: string
+          type: array
+        txId:
+          description: The transaction ID of the outer app call that lead to these logs
+          type: string
+      required:
+      - application-index
+      - logs
+      - txId
+      type: object
+    Box:
+      description: Box name and its content.
+      properties:
+        name:
+          description: The box name, base64 encoded
+          format: byte
+          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          type: string
+        round:
+          description: The round for which this information is relevant
+          type: integer
+          x-go-type: basics.Round
+        value:
+          description: The box value, base64 encoded.
+          format: byte
+          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          type: string
+      required:
+      - name
+      - round
+      - value
+      type: object
+    DryrunSource:
+      description: DryrunSource is TEAL source text that gets uploaded, compiled, and inserted into transactions or application state.
+      properties:
+        app-index:
+          type: integer
+          x-algorand-format: uint64
+          x-go-type: basics.AppIndex
+        field-name:
+          description: FieldName is what kind of sources this is. If lsig then it goes into the transactions[this.TxnIndex].LogicSig. If approv or clearp it goes into the Approval Program or Clear State Program of application[this.AppIndex].
+          type: string
+        source:
+          type: string
+        txn-index:
           type: integer
       required:
-      - num-byte-slice
-      - num-uint
+      - app-index
+      - field-name
+      - source
+      - txn-index
+      type: object
+    BoxDescriptor:
+      description: Box descriptor describes a Box.
+      properties:
+        name:
+          description: Base64 encoded box name
+          format: byte
+          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          type: string
+        value:
+          description: Base64 encoded box value. Present only when the `values` query parameter is set to true.
+          format: byte
+          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          type: string
+      required:
+      - name
+      type: object
+    LightBlockHeaderProof:
+      description: Proof of membership and position of a light block header.
+      properties:
+        index:
+          description: The index of the light block header in the vector commitment tree
+          type: integer
+          x-go-type: uint64
+        proof:
+          description: The encoded proof.
+          format: byte
+          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          type: string
+        treedepth:
+          description: Represents the depth of the tree that is being proven, i.e. the number of edges from a leaf to the root.
+          type: integer
+      required:
+      - index
+      - proof
+      - treedepth
+      type: object
+    AvmValue:
+      description: Represents an AVM value.
+      properties:
+        bytes:
+          description: bytes value.
+          format: byte
+          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          type: string
+        type:
+          description: value type. Value `1` refers to **bytes**, value `2` refers to **uint64**
+          type: integer
+          x-go-type: uint64
+        uint:
+          description: uint value.
+          format: uint64
+          type: integer
+          x-algorand-format: uint64
+      required:
+      - type
+      type: object
+    ApplicationLocalReference:
+      description: References an account's local state for an application.
+      properties:
+        account:
+          description: Address of the account with the local state.
+          type: string
+          x-algorand-format: Address
+        app:
+          description: Application ID of the local state application.
+          type: integer
+          x-algorand-format: uint64
+          x-go-type: basics.AppIndex
+      required:
+      - account
+      - app
       type: object
   securitySchemes:
     api_key:
