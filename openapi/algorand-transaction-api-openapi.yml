@@ -47,6 +47,15 @@ components:
           format: byte
           x-go-name: SignedTransaction
       x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+    PublicKey:
+      description: PublicKey is an exported ed25519PublicKey
+      $ref: '#/components/schemas/ed25519PublicKey'
+    ed25519PublicKey:
+      type: array
+      items:
+        type: integer
+        format: uint8
+      x-go-package: github.com/algorand/go-algorand/crypto
     SignTransactionRequest:
       description: APIV1POSTTransactionSignRequest is the request for `POST /v1/transaction/sign`
       type: object
@@ -72,15 +81,6 @@ components:
           x-go-name: WalletPassword
       x-go-name: APIV1POSTTransactionSignRequest
       x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
-    PublicKey:
-      description: PublicKey is an exported ed25519PublicKey
-      $ref: '#/components/schemas/ed25519PublicKey'
-    ed25519PublicKey:
-      type: array
-      items:
-        type: integer
-        format: uint8
-      x-go-package: github.com/algorand/go-algorand/crypto
   responses:
     SignTransactionResponse:
       description: Response to `POST /v1/transaction/sign`

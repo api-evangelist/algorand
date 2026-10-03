@@ -27,13 +27,6 @@ paths:
       tags:
       - Versions
 components:
-  responses:
-    VersionsResponse:
-      description: Response to `GET /versions`
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/VersionsResponse'
   schemas:
     VersionsResponse:
       description: 'VersionsResponse is the response to `GET /versions`
@@ -51,6 +44,13 @@ components:
       description: VersionsRequest is the request for `GET /versions`
       type: object
       x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+  responses:
+    VersionsResponse:
+      description: Response to `GET /versions`
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/VersionsResponse'
   securitySchemes:
     api_key:
       description: 'Generated header parameter. This value can be found in `/kmd/data/dir/kmd.token`. Example value: ''330b2e4fc9b20f4f89812cf87f1dabeb716d23e3f11aec97a61ff5f750563b78'''
