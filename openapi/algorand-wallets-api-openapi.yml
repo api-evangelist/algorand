@@ -34,6 +34,10 @@ components:
       type: object
       x-go-name: APIV1GETWalletsRequest
       x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+    TxType:
+      description: TxType is the type of the transaction written to the ledger
+      type: string
+      x-go-package: github.com/algorand/go-algorand/protocol
     APIV1Wallet:
       description: APIV1Wallet is the API's representation of a wallet
       type: object
@@ -78,10 +82,6 @@ components:
             $ref: '#/components/schemas/APIV1Wallet'
           x-go-name: Wallets
       x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
-    TxType:
-      description: TxType is the type of the transaction written to the ledger
-      type: string
-      x-go-package: github.com/algorand/go-algorand/protocol
   responses:
     ListWalletsResponse:
       description: Response to `GET /v1/wallets`

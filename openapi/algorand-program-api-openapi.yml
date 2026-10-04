@@ -30,6 +30,23 @@ paths:
       - Program
 components:
   schemas:
+    APIV1POSTProgramSignResponse:
+      description: 'APIV1POSTProgramSignResponse is the response to `POST /v1/data/sign`
+
+        friendly:SignProgramResponse'
+      type: object
+      properties:
+        error:
+          type: boolean
+          x-go-name: Error
+        message:
+          type: string
+          x-go-name: Message
+        sig:
+          type: string
+          format: byte
+          x-go-name: Signature
+      x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
     SignProgramRequest:
       description: APIV1POSTProgramSignRequest is the request for `POST /v1/program/sign`
       type: object
@@ -48,23 +65,6 @@ components:
           type: string
           x-go-name: WalletPassword
       x-go-name: APIV1POSTProgramSignRequest
-      x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
-    APIV1POSTProgramSignResponse:
-      description: 'APIV1POSTProgramSignResponse is the response to `POST /v1/data/sign`
-
-        friendly:SignProgramResponse'
-      type: object
-      properties:
-        error:
-          type: boolean
-          x-go-name: Error
-        message:
-          type: string
-          x-go-name: Message
-        sig:
-          type: string
-          format: byte
-          x-go-name: Signature
       x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
   responses:
     SignProgramResponse:

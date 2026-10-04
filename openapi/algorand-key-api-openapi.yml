@@ -93,6 +93,122 @@ paths:
       - Key
 components:
   schemas:
+    APIV1DELETEKeyResponse:
+      description: 'APIV1DELETEKeyResponse is the response to `DELETE /v1/key`
+
+        friendly:DeleteKeyResponse'
+      type: object
+      properties:
+        error:
+          type: boolean
+          x-go-name: Error
+        message:
+          type: string
+          x-go-name: Message
+      x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+    APIV1POSTKeyImportResponse:
+      description: 'APIV1POSTKeyImportResponse is the response to `POST /v1/key/import`
+
+        friendly:ImportKeyResponse'
+      type: object
+      properties:
+        address:
+          type: string
+          x-go-name: Address
+        error:
+          type: boolean
+          x-go-name: Error
+        message:
+          type: string
+          x-go-name: Message
+      x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+    ImportKeyRequest:
+      description: APIV1POSTKeyImportRequest is the request for `POST /v1/key/import`
+      type: object
+      properties:
+        private_key:
+          $ref: '#/components/schemas/PrivateKey'
+        wallet_handle_token:
+          type: string
+          x-go-name: WalletHandleToken
+      x-go-name: APIV1POSTKeyImportRequest
+      x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+    ListKeysRequest:
+      description: APIV1POSTKeyListRequest is the request for `POST /v1/key/list`
+      type: object
+      properties:
+        wallet_handle_token:
+          type: string
+          x-go-name: WalletHandleToken
+      x-go-name: APIV1POSTKeyListRequest
+      x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+    APIV1POSTKeyExportResponse:
+      description: 'APIV1POSTKeyExportResponse is the response to `POST /v1/key/export`
+
+        friendly:ExportKeyResponse'
+      type: object
+      properties:
+        error:
+          type: boolean
+          x-go-name: Error
+        message:
+          type: string
+          x-go-name: Message
+        private_key:
+          $ref: '#/components/schemas/PrivateKey'
+      x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+    PrivateKey:
+      description: PrivateKey is an exported ed25519PrivateKey
+      $ref: '#/components/schemas/ed25519PrivateKey'
+    ed25519PrivateKey:
+      type: array
+      items:
+        type: integer
+        format: uint8
+      x-go-package: github.com/algorand/go-algorand/crypto
+    DeleteKeyRequest:
+      description: APIV1DELETEKeyRequest is the request for `DELETE /v1/key`
+      type: object
+      properties:
+        address:
+          type: string
+          x-go-name: Address
+        wallet_handle_token:
+          type: string
+          x-go-name: WalletHandleToken
+        wallet_password:
+          type: string
+          x-go-name: WalletPassword
+      x-go-name: APIV1DELETEKeyRequest
+      x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+    APIV1POSTKeyResponse:
+      description: 'APIV1POSTKeyResponse is the response to `POST /v1/key`
+
+        friendly:GenerateKeyResponse'
+      type: object
+      properties:
+        address:
+          type: string
+          x-go-name: Address
+        error:
+          type: boolean
+          x-go-name: Error
+        message:
+          type: string
+          x-go-name: Message
+      x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+    GenerateKeyRequest:
+      description: APIV1POSTKeyRequest is the request for `POST /v1/key`
+      type: object
+      properties:
+        display_mnemonic:
+          type: boolean
+          x-go-name: DisplayMnemonic
+        wallet_handle_token:
+          type: string
+          x-go-name: WalletHandleToken
+      x-go-name: APIV1POSTKeyRequest
+      x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
     APIV1POSTKeyListResponse:
       description: 'APIV1POSTKeyListResponse is the response to `POST /v1/key/list`
 
@@ -111,72 +227,6 @@ components:
           type: string
           x-go-name: Message
       x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
-    APIV1DELETEKeyResponse:
-      description: 'APIV1DELETEKeyResponse is the response to `DELETE /v1/key`
-
-        friendly:DeleteKeyResponse'
-      type: object
-      properties:
-        error:
-          type: boolean
-          x-go-name: Error
-        message:
-          type: string
-          x-go-name: Message
-      x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
-    APIV1POSTKeyResponse:
-      description: 'APIV1POSTKeyResponse is the response to `POST /v1/key`
-
-        friendly:GenerateKeyResponse'
-      type: object
-      properties:
-        address:
-          type: string
-          x-go-name: Address
-        error:
-          type: boolean
-          x-go-name: Error
-        message:
-          type: string
-          x-go-name: Message
-      x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
-    ed25519PrivateKey:
-      type: array
-      items:
-        type: integer
-        format: uint8
-      x-go-package: github.com/algorand/go-algorand/crypto
-    APIV1POSTKeyImportResponse:
-      description: 'APIV1POSTKeyImportResponse is the response to `POST /v1/key/import`
-
-        friendly:ImportKeyResponse'
-      type: object
-      properties:
-        address:
-          type: string
-          x-go-name: Address
-        error:
-          type: boolean
-          x-go-name: Error
-        message:
-          type: string
-          x-go-name: Message
-      x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
-    APIV1POSTKeyExportResponse:
-      description: 'APIV1POSTKeyExportResponse is the response to `POST /v1/key/export`
-
-        friendly:ExportKeyResponse'
-      type: object
-      properties:
-        error:
-          type: boolean
-          x-go-name: Error
-        message:
-          type: string
-          x-go-name: Message
-        private_key:
-          $ref: '#/components/schemas/PrivateKey'
-      x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
     ExportKeyRequest:
       description: APIV1POSTKeyExportRequest is the request for `POST /v1/key/export`
       type: object
@@ -192,87 +242,37 @@ components:
           x-go-name: WalletPassword
       x-go-name: APIV1POSTKeyExportRequest
       x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
-    ImportKeyRequest:
-      description: APIV1POSTKeyImportRequest is the request for `POST /v1/key/import`
-      type: object
-      properties:
-        private_key:
-          $ref: '#/components/schemas/PrivateKey'
-        wallet_handle_token:
-          type: string
-          x-go-name: WalletHandleToken
-      x-go-name: APIV1POSTKeyImportRequest
-      x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
-    GenerateKeyRequest:
-      description: APIV1POSTKeyRequest is the request for `POST /v1/key`
-      type: object
-      properties:
-        display_mnemonic:
-          type: boolean
-          x-go-name: DisplayMnemonic
-        wallet_handle_token:
-          type: string
-          x-go-name: WalletHandleToken
-      x-go-name: APIV1POSTKeyRequest
-      x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
-    DeleteKeyRequest:
-      description: APIV1DELETEKeyRequest is the request for `DELETE /v1/key`
-      type: object
-      properties:
-        address:
-          type: string
-          x-go-name: Address
-        wallet_handle_token:
-          type: string
-          x-go-name: WalletHandleToken
-        wallet_password:
-          type: string
-          x-go-name: WalletPassword
-      x-go-name: APIV1DELETEKeyRequest
-      x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
-    PrivateKey:
-      description: PrivateKey is an exported ed25519PrivateKey
-      $ref: '#/components/schemas/ed25519PrivateKey'
-    ListKeysRequest:
-      description: APIV1POSTKeyListRequest is the request for `POST /v1/key/list`
-      type: object
-      properties:
-        wallet_handle_token:
-          type: string
-          x-go-name: WalletHandleToken
-      x-go-name: APIV1POSTKeyListRequest
-      x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
   responses:
-    ExportKeyResponse:
-      description: Response to `POST /v1/key/export`
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/APIV1POSTKeyExportResponse'
-    ImportKeyResponse:
-      description: Response to `POST /v1/key/import`
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/APIV1POSTKeyImportResponse'
-    GenerateKeyResponse:
-      description: Response to `POST /v1/key`
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/APIV1POSTKeyResponse'
     ListKeysResponse:
       description: Response to `POST /v1/key/list`
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/APIV1POSTKeyListResponse'
+    ImportKeyResponse:
+      description: Response to `POST /v1/key/import`
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIV1POSTKeyImportResponse'
     DeleteKeyResponse:
       description: Response to `DELETE /v1/key`
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/APIV1DELETEKeyResponse'
+    ExportKeyResponse:
+      description: Response to `POST /v1/key/export`
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIV1POSTKeyExportResponse'
+    GenerateKeyResponse:
+      description: Response to `POST /v1/key`
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIV1POSTKeyResponse'
   securitySchemes:
     api_key:
       description: 'Generated header parameter. This value can be found in `/kmd/data/dir/kmd.token`. Example value: ''330b2e4fc9b20f4f89812cf87f1dabeb716d23e3f11aec97a61ff5f750563b78'''

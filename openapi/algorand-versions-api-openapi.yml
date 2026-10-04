@@ -28,6 +28,10 @@ paths:
       - Versions
 components:
   schemas:
+    VersionsRequest:
+      description: VersionsRequest is the request for `GET /versions`
+      type: object
+      x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
     VersionsResponse:
       description: 'VersionsResponse is the response to `GET /versions`
 
@@ -39,10 +43,6 @@ components:
           items:
             type: string
           x-go-name: Versions
-      x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
-    VersionsRequest:
-      description: VersionsRequest is the request for `GET /versions`
-      type: object
       x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
   responses:
     VersionsResponse:
