@@ -109,101 +109,7 @@ paths:
       tags:
       - Multisig
 components:
-  responses:
-    SignProgramMultisigResponse:
-      description: Response to `POST /v1/multisig/signdata`
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/APIV1POSTMultisigProgramSignResponse'
-    DeleteMultisigResponse:
-      description: Response to POST /v1/multisig/delete
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/APIV1DELETEMultisigResponse'
-    ImportMultisigResponse:
-      description: Response to `POST /v1/multisig/import`
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/APIV1POSTMultisigImportResponse'
-    ExportMultisigResponse:
-      description: Response to `POST /v1/multisig/export`
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/APIV1POSTMultisigExportResponse'
-    SignMultisigResponse:
-      description: Response to `POST /v1/multisig/sign`
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/APIV1POSTMultisigTransactionSignResponse'
-    ListMultisigResponse:
-      description: Response to `POST /v1/multisig/list`
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/APIV1POSTMultisigListResponse'
   schemas:
-    APIV1POSTMultisigListResponse:
-      description: 'APIV1POSTMultisigListResponse is the response to `POST /v1/multisig/list`
-
-        friendly:ListMultisigResponse'
-      type: object
-      properties:
-        addresses:
-          type: array
-          items:
-            type: string
-          x-go-name: Addresses
-        error:
-          type: boolean
-          x-go-name: Error
-        message:
-          type: string
-          x-go-name: Message
-      x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
-    ed25519PublicKey:
-      type: array
-      items:
-        type: integer
-        format: uint8
-      x-go-package: github.com/algorand/go-algorand/crypto
-    APIV1POSTMultisigTransactionSignResponse:
-      description: 'APIV1POSTMultisigTransactionSignResponse is the response to `POST /v1/multisig/sign`
-
-        friendly:SignMultisigResponse'
-      type: object
-      properties:
-        error:
-          type: boolean
-          x-go-name: Error
-        message:
-          type: string
-          x-go-name: Message
-        multisig:
-          type: string
-          format: byte
-          x-go-name: Multisig
-      x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
-    APIV1POSTMultisigImportResponse:
-      description: 'APIV1POSTMultisigImportResponse is the response to `POST /v1/multisig/import`
-
-        friendly:ImportMultisigResponse'
-      type: object
-      properties:
-        address:
-          type: string
-          x-go-name: Address
-        error:
-          type: boolean
-          x-go-name: Error
-        message:
-          type: string
-          x-go-name: Message
-      x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
     ed25519Signature:
       type: array
       title: Classical signatures */
@@ -211,27 +117,44 @@ components:
         type: integer
         format: uint8
       x-go-package: github.com/algorand/go-algorand/crypto
-    SignMultisigRequest:
-      description: APIV1POSTMultisigTransactionSignRequest is the request for `POST /v1/multisig/sign`
+    MultisigSubsig:
+      description: 'MultisigSubsig is a struct that holds a pair of public key and signatures
+
+        signatures may be empty'
       type: object
       properties:
-        partial_multisig:
-          $ref: '#/components/schemas/MultisigSig'
-        public_key:
+        Key:
           $ref: '#/components/schemas/PublicKey'
-        signer:
-          $ref: '#/components/schemas/Digest'
-        transaction:
+        Sig:
+          $ref: '#/components/schemas/Signature'
+      x-go-package: github.com/algorand/go-algorand/crypto
+    MultisigSig:
+      description: MultisigSig is the structure that holds multiple Subsigs
+      type: object
+      properties:
+        Subsigs:
+          type: array
+          items:
+            $ref: '#/components/schemas/MultisigSubsig'
+        Threshold:
+          type: integer
+          format: uint8
+        Version:
+          type: integer
+          format: uint8
+      x-go-package: github.com/algorand/go-algorand/crypto
+    APIV1DELETEMultisigResponse:
+      description: 'APIV1DELETEMultisigResponse is the response to POST /v1/multisig/delete`
+
+        friendly:DeleteMultisigResponse'
+      type: object
+      properties:
+        error:
+          type: boolean
+          x-go-name: Error
+        message:
           type: string
-          format: byte
-          x-go-name: Transaction
-        wallet_handle_token:
-          type: string
-          x-go-name: WalletHandleToken
-        wallet_password:
-          type: string
-          x-go-name: WalletPassword
-      x-go-name: APIV1POSTMultisigTransactionSignRequest
+          x-go-name: Message
       x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
     SignProgramMultisigRequest:
       description: APIV1POSTMultisigProgramSignRequest is the request for `POST /v1/multisig/signprogram`
@@ -259,42 +182,6 @@ components:
           x-go-name: WalletPassword
       x-go-name: APIV1POSTMultisigProgramSignRequest
       x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
-    Signature:
-      description: 'A Signature is a cryptographic signature. It proves that a message was
-
-        produced by a holder of a cryptographic secret.'
-      $ref: '#/components/schemas/ed25519Signature'
-    APIV1DELETEMultisigResponse:
-      description: 'APIV1DELETEMultisigResponse is the response to POST /v1/multisig/delete`
-
-        friendly:DeleteMultisigResponse'
-      type: object
-      properties:
-        error:
-          type: boolean
-          x-go-name: Error
-        message:
-          type: string
-          x-go-name: Message
-      x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
-    PublicKey:
-      description: PublicKey is an exported ed25519PublicKey
-      $ref: '#/components/schemas/ed25519PublicKey'
-    MultisigSig:
-      description: MultisigSig is the structure that holds multiple Subsigs
-      type: object
-      properties:
-        Subsigs:
-          type: array
-          items:
-            $ref: '#/components/schemas/MultisigSubsig'
-        Threshold:
-          type: integer
-          format: uint8
-        Version:
-          type: integer
-          format: uint8
-      x-go-package: github.com/algorand/go-algorand/crypto
     ExportMultisigRequest:
       description: APIV1POSTMultisigExportRequest is the request for `POST /v1/multisig/export`
       type: object
@@ -306,15 +193,6 @@ components:
           type: string
           x-go-name: WalletHandleToken
       x-go-name: APIV1POSTMultisigExportRequest
-      x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
-    ListMultisigRequest:
-      description: APIV1POSTMultisigListRequest is the request for `POST /v1/multisig/list`
-      type: object
-      properties:
-        wallet_handle_token:
-          type: string
-          x-go-name: WalletHandleToken
-      x-go-name: APIV1POSTMultisigListRequest
       x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
     APIV1POSTMultisigProgramSignResponse:
       description: 'APIV1POSTMultisigProgramSignResponse is the response to `POST /v1/multisig/signdata`
@@ -333,35 +211,8 @@ components:
           format: byte
           x-go-name: Multisig
       x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
-    APIV1POSTMultisigExportResponse:
-      description: 'APIV1POSTMultisigExportResponse is the response to `POST /v1/multisig/export`
-
-        friendly:ExportMultisigResponse'
-      type: object
-      properties:
-        error:
-          type: boolean
-          x-go-name: Error
-        message:
-          type: string
-          x-go-name: Message
-        multisig_version:
-          type: integer
-          format: uint8
-          x-go-name: Version
-        pks:
-          type: array
-          items:
-            $ref: '#/components/schemas/PublicKey'
-          x-go-name: PKs
-        threshold:
-          type: integer
-          format: uint8
-          x-go-name: Threshold
-      x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
-    Digest:
+    ed25519PublicKey:
       type: array
-      title: Digest represents a 32-byte value holding the 256-bit Hash digest.
       items:
         type: integer
         format: uint8
@@ -388,16 +239,112 @@ components:
           x-go-name: WalletHandleToken
       x-go-name: APIV1POSTMultisigImportRequest
       x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
-    MultisigSubsig:
-      description: 'MultisigSubsig is a struct that holds a pair of public key and signatures
+    APIV1POSTMultisigTransactionSignResponse:
+      description: 'APIV1POSTMultisigTransactionSignResponse is the response to `POST /v1/multisig/sign`
 
-        signatures may be empty'
+        friendly:SignMultisigResponse'
       type: object
       properties:
-        Key:
+        error:
+          type: boolean
+          x-go-name: Error
+        message:
+          type: string
+          x-go-name: Message
+        multisig:
+          type: string
+          format: byte
+          x-go-name: Multisig
+      x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+    ListMultisigRequest:
+      description: APIV1POSTMultisigListRequest is the request for `POST /v1/multisig/list`
+      type: object
+      properties:
+        wallet_handle_token:
+          type: string
+          x-go-name: WalletHandleToken
+      x-go-name: APIV1POSTMultisigListRequest
+      x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+    APIV1POSTMultisigListResponse:
+      description: 'APIV1POSTMultisigListResponse is the response to `POST /v1/multisig/list`
+
+        friendly:ListMultisigResponse'
+      type: object
+      properties:
+        addresses:
+          type: array
+          items:
+            type: string
+          x-go-name: Addresses
+        error:
+          type: boolean
+          x-go-name: Error
+        message:
+          type: string
+          x-go-name: Message
+      x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+    PublicKey:
+      description: PublicKey is an exported ed25519PublicKey
+      $ref: '#/components/schemas/ed25519PublicKey'
+    APIV1POSTMultisigExportResponse:
+      description: 'APIV1POSTMultisigExportResponse is the response to `POST /v1/multisig/export`
+
+        friendly:ExportMultisigResponse'
+      type: object
+      properties:
+        error:
+          type: boolean
+          x-go-name: Error
+        message:
+          type: string
+          x-go-name: Message
+        multisig_version:
+          type: integer
+          format: uint8
+          x-go-name: Version
+        pks:
+          type: array
+          items:
+            $ref: '#/components/schemas/PublicKey'
+          x-go-name: PKs
+        threshold:
+          type: integer
+          format: uint8
+          x-go-name: Threshold
+      x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+    SignMultisigRequest:
+      description: APIV1POSTMultisigTransactionSignRequest is the request for `POST /v1/multisig/sign`
+      type: object
+      properties:
+        partial_multisig:
+          $ref: '#/components/schemas/MultisigSig'
+        public_key:
           $ref: '#/components/schemas/PublicKey'
-        Sig:
-          $ref: '#/components/schemas/Signature'
+        signer:
+          $ref: '#/components/schemas/Digest'
+        transaction:
+          type: string
+          format: byte
+          x-go-name: Transaction
+        wallet_handle_token:
+          type: string
+          x-go-name: WalletHandleToken
+        wallet_password:
+          type: string
+          x-go-name: WalletPassword
+      x-go-name: APIV1POSTMultisigTransactionSignRequest
+      x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+    Signature:
+      description: 'A Signature is a cryptographic signature. It proves that a message was
+
+        produced by a holder of a cryptographic secret.'
+      $ref: '#/components/schemas/ed25519Signature'
+    Digest:
+      type: array
+      title: Digest represents a 32-byte value holding the 256-bit Hash digest.
+      items:
+        type: integer
+        format: uint8
       x-go-package: github.com/algorand/go-algorand/crypto
     DeleteMultisigRequest:
       description: APIV1DELETEMultisigRequest is the request for `DELETE /v1/multisig`
@@ -414,6 +361,59 @@ components:
           x-go-name: WalletPassword
       x-go-name: APIV1DELETEMultisigRequest
       x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+    APIV1POSTMultisigImportResponse:
+      description: 'APIV1POSTMultisigImportResponse is the response to `POST /v1/multisig/import`
+
+        friendly:ImportMultisigResponse'
+      type: object
+      properties:
+        address:
+          type: string
+          x-go-name: Address
+        error:
+          type: boolean
+          x-go-name: Error
+        message:
+          type: string
+          x-go-name: Message
+      x-go-package: github.com/algorand/go-algorand/daemon/kmd/lib/kmdapi
+  responses:
+    ImportMultisigResponse:
+      description: Response to `POST /v1/multisig/import`
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIV1POSTMultisigImportResponse'
+    SignMultisigResponse:
+      description: Response to `POST /v1/multisig/sign`
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIV1POSTMultisigTransactionSignResponse'
+    ListMultisigResponse:
+      description: Response to `POST /v1/multisig/list`
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIV1POSTMultisigListResponse'
+    SignProgramMultisigResponse:
+      description: Response to `POST /v1/multisig/signdata`
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIV1POSTMultisigProgramSignResponse'
+    DeleteMultisigResponse:
+      description: Response to POST /v1/multisig/delete
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIV1DELETEMultisigResponse'
+    ExportMultisigResponse:
+      description: Response to `POST /v1/multisig/export`
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIV1POSTMultisigExportResponse'
   securitySchemes:
     api_key:
       description: 'Generated header parameter. This value can be found in `/kmd/data/dir/kmd.token`. Example value: ''330b2e4fc9b20f4f89812cf87f1dabeb716d23e3f11aec97a61ff5f750563b78'''

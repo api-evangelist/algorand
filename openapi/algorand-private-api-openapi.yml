@@ -531,6 +531,17 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    ErrorResponse:
+      description: An error response with optional data field.
+      properties:
+        data:
+          properties: {}
+          type: object
+        message:
+          type: string
+      required:
+      - message
+      type: object
     DebugSettingsProf:
       description: algod mutex and blocking profiling state.
       properties:
@@ -621,17 +632,6 @@ components:
       - vote-key-dilution
       - vote-last-valid
       - vote-participation-key
-      type: object
-    ErrorResponse:
-      description: An error response with optional data field.
-      properties:
-        data:
-          properties: {}
-          type: object
-        message:
-          type: string
-      required:
-      - message
       type: object
   securitySchemes:
     api_key:
