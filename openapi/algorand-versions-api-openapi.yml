@@ -58,3 +58,9 @@ components:
       name: X-KMD-API-Token
       in: header
       x-example: 330b2e4fc9b20f4f89812cf87f1dabeb716d23e3f11aec97a61ff5f750563b78
+x-provenance:
+  method: harvested
+  publisher: Algorand
+  source: https://mainnet-api.4160.nodely.dev/swagger.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
